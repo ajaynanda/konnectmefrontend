@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div  class="row left">
+                <h1 style="color: blue;cursor: pointer;" class="m-5 text-left"><b>Konnect Me</b></h1>
+                <img src="../../assets/media.jpg" class="img-responsive" width="400px" height="400px">
+            </div>
+        </div>
+       <div class="col-md-5">
+        <div class="rowright">
+        <form [formGroup]="LoginForm" (ngSubmit)="login()">
+            <label>Email</label>
+            <input type="email" name="email" formControlName="email" placeholder="Email" class="form-control">
+            <span style="color: red;" *ngIf="controls['email'].getError('required')!=null && controls['email'].touched">Enter Email</span>
+            <span style="color: red;" *ngIf="controls['email'].getError('email')!=null && controls['email'].touched">Enter Valid Email</span><br>
+            <label>Password</label>
+            <input type="password" placeholder="Password" formControlName="password" name="password" class="form-control">
+            <span><a routerLink="/forgotpassword">Forgot Password?</a></span>
+            <span style="color: red;" *ngIf="controls['password'].getError('required')!=null && controls['password'].touched">Enter Password</span><br>
+            <span style="color: red;" *ngIf="controls['password'].getError('minlength')!=null">Password must be atleast 6 characters long</span><br>
+            <span>Don't have have account?<a routerLink='/register'> Register</a> Now</span>
+            <button [disabled]="LoginForm.invalid" type="submit" class="btn btn-success btn-lg ">Login</button> 
+        </form>
+        </div>
+    </div>
+    </div>
+</div>

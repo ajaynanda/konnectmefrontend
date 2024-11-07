@@ -1,0 +1,38 @@
+<div class="profile">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="leftBar col-md-2">
+            <app-leftbars [collapsed]="collapsed" [profile]="profile"></app-leftbars>
+        </div>
+
+        <!-- Main content area -->
+        <div class="mainContent col-md-10">
+            <!-- Profile top section with cover and profile images -->
+            <div class="profileTop">
+                <div class="profileCover">
+                    <img class="profileCoverImg img-fluid" src="../../../assets/koneticon.jpg" alt="coverimg">
+                    <img class="profileUserImg" 
+                         [src]="userData?.Profilepic ? userData?.Profilepic : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'"
+                         alt="profile-img">
+                    <div class="profileInfo">
+                        <h4 class="profileInfoName">{{userData?.Firstname | titlecase}} {{userData?.Lastname | titlecase}}</h4>
+                        <p class="profileInfoDesc">{{userData?.Aboutme}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile feed section -->
+            <div class="profileFeed row">
+                <!-- Postbar area -->
+                <div class="centerBar col-md-8">
+                    <app-postbars  [userpost]="userPost"></app-postbars>
+                </div>
+
+                <!-- Right sidebar area -->
+                <div class="rightBar col-md-4">
+                    <app-rightbars *ngIf="userData" [userdata]="userData"></app-rightbars>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

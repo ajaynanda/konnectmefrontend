@@ -1,0 +1,68 @@
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-md-2">
+            <app-leftbar></app-leftbar> 
+        </div>
+        <div class="col-md-10">
+       
+<div class="chat-container">
+    <!-- Sidebar for Users -->
+    <div class="user-sidebar">
+      <div class="search-bar">
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          placeholder="Search users..."
+          (input)="filterUsers($event)"
+        />
+        <button (click)="startNewChat()">New Chat</button>
+      </div>
+    <ng-container *ngFor="let user of users">
+      <div [ngClass]="selectedUser?._id==user?._id?'active':''" class="user-item" (click)="selectUser(user)">       
+        <img *ngIf="user.repProfilePic!=null" src="{{user.repProfilePic}}" alt="Profile Image" class="profile-image">
+        <img *ngIf="user.repProfilePic==null"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            alt="no image" class="profile-image">
+        <span>{{ user.repName }}</span>
+      </div>
+    </ng-container >
+      <!-- </div> -->
+
+    </div>
+  
+    <!-- Chat Box for Selected User -->
+    <div class="chat-box" *ngIf="selectedUser">
+      <h3>{{ selectedUser.repName }}</h3>
+      <ng-container *ngFor="let message of messagesArr">
+      <div class="chat-messages" *ngIf="selectedUser.repID==message.reciepientID || selectedUser.repID== message.userid">
+        <div  class="message" [ngClass]="message.userid==user._id?'user_chat_class':'not_user_chat'">      
+          <p >{{ message.msg }}</p>    
+        </div>
+      </div>
+    </ng-container>
+      <!-- Input Section -->
+      <div class="input-section">
+        <input type="text" [(ngModel)]="newMessage" placeholder="Type your message..." />
+        <button (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+        </div>
+    </div>
+</div>
+<ng-template #chatDialogTemplate>
+  <div class="modal_newchat">
+  <h2>Select a User to Chat</h2>
+<div class="new_chat">
+  <ng-select
+  [(ngModel)]="newSelectedUser"
+  [items]="newUsers"
+  bindLabel="Name"
+  bindValue="_id"
+  [searchable]="true">
+</ng-select>
+</div>
+
+  <button mat-button (click)="confirmSelection()">Start Chat</button>
+</div>
+</ng-template>

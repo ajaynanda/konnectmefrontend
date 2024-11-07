@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''" *ngIf="profile"> 
+        <div class="logo-container">
+            <span class="logo bi bi-list" (click)="collapsed=!collapsed"></span>  
+            <div class="logo-text" *ngIf="collapsed">KonnectMe</div>
+        </div>
+        <ul class="sidenav-nav">
+            <li class="sidenav-nav-item" *ngFor="let data of navProfile">
+                <a class="sidenav-nav-link" (click)="dialogMenu(data?.label)"  >
+                    <i class="sidenav-link-icon" [class]="data?.icon"></i>
+                    <span class="sidenav-link-text" *ngIf="collapsed">{{data?.label}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

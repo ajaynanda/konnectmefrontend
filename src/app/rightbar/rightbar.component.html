@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="birthdayContainer" *ngIf="birthArray!=''">
+        <img class="birthdayImage" src="../../assets/birthday.png" width="30px" height="30px">
+        <span class="birthdayText">
+            <h6 > <b style="cursor: pointer;">{{birthArray[0].name}}</b> and  <b style="cursor: pointer;">{{birthArray.length!=1?birthArray.length-1 + ' other friends':''}} </b> have birthday today</h6>
+        </span>
+     </div>
+    <hr>
+    <div class="rightbarAd">
+        <img class="rightbarAdImage" src="../../assets/media.jpg" width="100%" height="300px">
+    </div>
+    <hr>
+    <h5 style="float: left;">Suggestions</h5><br><br>
+    <div class="row ">
+        <div class="col-md-12 suggestion">
+            <ngx-slick-carousel class="carousel" *ngIf="suggestionArray.length >= 3" [config]="carouselConfig"> 
+                <div *ngIf="suggestionArray.length==0">
+                    No data to display
+                  </div>       
+            <mat-card class="suggetionCard" *ngFor="let img of suggestionArray;let i=index" ngxSlickItem>
+                <a routerLink="/user/myprofile/{{img._id}}">
+                <img *ngIf="img.profilePic!=null" src="{{img.profilePic}}" alt="pic" class="imageCard">
+                <img *ngIf="img.profilePic==null"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt="no image" class="imageCard">
+                <span class="spanCard">{{img.Name | titlecase}}</span>
+                </a>
+                <button  (click)="toggle(img._id,i,img.text)" class="buttonFollow">
+                {{img.text}}
+                </button>            
+            </mat-card>
+        </ngx-slick-carousel>
+        <div *ngIf="suggestionArray.length==2 || suggestionArray.length==1" class="row1">
+        <mat-card class="suggetionCard" *ngFor="let img of suggestionArray;let i=index">
+            <a [routerLink]="'/user/myprofile/'+ img._id">
+               <img *ngIf="img.Profilepic!=null" src="{{img.profilePic}}" alt="pic" class="imageCard">
+            <img *ngIf="img.Profilepic==null"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                alt="no image" class="imageCard">
+            <span class="spanCard">{{img.Name | titlecase}}</span>
+        </a>
+            <button  (click)="toggle(img._id,i,img.text)" class="buttonFollow">
+            {{img.text}}
+         
+            </button>            
+        </mat-card>
+    </div>
+        </div>
+    </div>
+    <div class="rightbarOnlinefriends">
+        <h5 style="float: left;height: fit-content;">Followers</h5>
+        <span (click)="moreFollower()" class="more_followers_show">{{!moreFollowers?'Show More..':'Show Less'}}</span>
+    </div>
+        <div *ngIf="followers.length<=5 && !moreFollowers;else elseBlock" [ngClass]="!moreFollowers?'frndList':'not_frndList'">          
+            <div [ngClass]="!moreFollowers?'rightbarfreindList':'not_rightbarfreindList'" *ngFor="let frnd of followers">              
+                <a [ngClass]="!moreFollowers?'profilePageMenu':'not_profilePageMenu'" [routerLink]='["/user/myprofile/",frnd._id]' >
+                    <img [src]="frnd.Profilepic!=undefined?frnd.Profilepic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'">
+                    <!-- <span class="onlineicon"></span> -->
+                    <h6>{{frnd.Name | titlecase}}</h6>
+                    
+                </a>
+            </div>
+         
+        </div>
+        <ng-template #elseBlock>
+            <div  [ngClass]="!moreFollowers?'frndList':'not_frndList'">       
+            <div [ngClass]="!moreFollowers?'rightbarfreindList':'not_rightbarfreindList'" *ngFor="let frnd of followers">              
+                <span [ngClass]="!moreFollowers?'profilePageMenu':'not_profilePageMenu'"  >
+                    <a [routerLink]='["/user/myprofile/",frnd._id]'>
+                    <img [src]="frnd.Profilepic!=undefined?frnd.Profilepic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'">
+                    <!-- <span class="onlineicon"></span> -->
+                    <h6>{{frnd.Name | titlecase}}</h6>
+                </a>
+                    <button *ngIf="moreFollowers" class="btn btn-outline-danger remove_follower" (click)="removeFollower(frnd)">Remove</button>
+                </span>
+              
+            </div>
+            </div>
+        </ng-template>
+   
+</div>

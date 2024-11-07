@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <h3 class="heading">Build your connections All over the World</h3>
+ </div>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-12">
+            <ngb-carousel >
+                <ng-template ngbSlide *ngFor="let image of images">
+                  <div class="wrapper">
+                    <img [src]="image.src" alt="Random first slide" width="100%" height="100%">
+                  </div>
+                  <div class="carousel-caption">
+                    <h3>{{ image.title }}</h3>
+                    <p>{{ image.short }}</p>
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+         </div>
+     </div>
+ </div>
+ <div class="container-fluid">
+     <div class="row">
+         <div class="col-md-12">
+                <h3 class="text-center m-3 ">Review of Users</h3>
+            <div class="col-md-12 ">
+              <ng-image-slider [images]="imgCollection"></ng-image-slider>
+            </div>
+         </div>
+     </div>
+ </div>
+ <div class="container">
+   <div class="row">
+      <div class="text-center m-2">
+       
+       </div>
+   </div>
+ </div>
+ 

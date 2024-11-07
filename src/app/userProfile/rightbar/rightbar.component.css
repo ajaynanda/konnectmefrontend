@@ -1,0 +1,121 @@
+.container{
+  overflow:hidden
+}
+.rightbarTitle{
+    display: flex;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: rgb(13, 13, 154);
+  }
+  .rightbarTitle span{
+    margin-left: auto;
+    color: black;
+    font-weight: 100;
+    font-size: medium;
+    cursor: pointer;
+  }
+  .rightbarInfo{
+    margin-bottom: 30px;
+  }
+  
+  .rightbarInfoItem{
+    margin-bottom: 10px;
+  }
+  
+  .rightbarInfoKey{
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+  }
+  
+  .rightbarInfoValue{
+    font-weight: 300;
+  }
+  
+  /* .rightbarFollowings{
+    display: flex;
+    max-width: fit-content;
+    flex-wrap: wrap;
+    justify-content:center;
+  } */
+  .rightbarFollowings{
+    display: flex;
+    max-width: -moz-fit-content;
+    flex-wrap: wrap;
+}
+  
+  .rightbarFollowing{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  .not_rightbarFollowing{
+    display: flex;
+    width: 100%;
+}  
+.friends_circle{
+  display: block;
+  height: auto;
+  max-height: 400px;
+  overflow: auto;
+}
+.friends_circle a{
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+}
+.friends_circle button{
+  padding: 2px;
+  margin-left: auto;
+  font-size: small;
+}
+.span_cir{
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  width: 90%;
+}
+.span_cir span{
+  margin-left: 10px;
+
+  display: flex;
+  align-items: center;
+}
+.rightbarFollowing:hover{
+    transform: rotate(360deg);
+  }
+  .rightbarFollowing a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+  }
+  .rightbarFollowing a:hover{
+    color: blue;
+    font-weight:800 ;
+  }
+  .rightbarFollowingName{
+    display: block;
+    padding: 2px;
+    margin: 3px;
+  }
+  .rightbarFollowingImg{
+    object-fit: cover;
+    border-radius:50%;
+  }
+  .peopleFollow{
+   display: flex;
+    font-size: 18px;
+    /* font-weight: 800px; */
+    margin-bottom: 10px;
+    color: rgb(13, 13, 154);
+  }
+  .peopleFollow span{
+    margin-left: auto;
+    color: black;
+    font-weight: 100;
+    font-size: medium;
+    cursor: pointer;
+  }

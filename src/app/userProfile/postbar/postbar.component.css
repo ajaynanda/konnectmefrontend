@@ -1,0 +1,256 @@
+.post {
+    width: 100%;
+    display: flex;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    margin: 8px 1px;
+  }
+  
+  .postWrapper {
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .postTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .postTopLeft {
+    display: flex;
+    align-items: center;
+  }
+  
+  .postProfileImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .postUsername {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 10px;
+  }
+  
+  .postDate{
+      font-size: 12px;
+  }
+  
+  .postCenter{
+    width: 100%;
+    flex-grow: 1; 
+    margin: 20px 0;
+  }
+  .postCenter img {
+    width: 1000px;
+  }
+  .postCenter video{
+    width: 1000px;
+  }
+  .red{
+    color: red;
+  }
+  .white{
+    color:black;
+  }
+  .postImg{
+      margin-top: 20px;
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+  }
+  .like{
+    padding: 5px;
+    margin: 2px;
+  }
+  .postBottom{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  .postBottomLeft{
+      display: flex;
+      align-items: center;   
+  }
+  
+  .likeIcon{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+  
+  .postLikeCounter{
+      font-size: 15px;
+  }
+  .postComment{
+    display: block;
+    margin-top: 10px;
+  }
+  .commentUserInfo{
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 10px;
+  }
+  .postCommentProfileImg{
+    border-radius: 50%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:30px;
+    height: 30px;
+  }
+  .postCommentUsername{
+    padding: 5px;
+  }
+ .commentText{
+  display: flex;
+  align-items: flex-start;
+  justify-content:flex-start;
+  margin-left: 10px;
+ }
+ .commentText textarea{
+  border-radius: 10px;
+  border: 1px solid #e6e4e4;
+  width: 90%;
+  height: 100px;
+  padding: 5px;
+ }
+ .commentText button{
+  position: relative;
+  bottom: -70px;
+  margin-left: auto;
+ }
+ .blink-border {
+  border: 5px solid red;
+  animation: blink 0.5s;
+  animation-iteration-count:5;
+}
+
+@keyframes blink {
+  50% {
+    border-color: red;
+  }
+}
+.commentBox{
+  display: block;
+  border: 1px solid #e8e7e7;
+  margin: auto;
+  margin-top: 10px;
+  box-shadow: #e6e4e4;
+  padding: 5px;
+}
+.commentHead{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.nameComment{
+  padding: 3px;
+  margin-left: 10px;
+}
+.commentData{
+  margin-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+.commentBox {
+  position: relative; /* Needed for dropdown positioning */
+}
+.commentData textarea{
+  border-radius: 10px;
+  border: 1px solid #e6e4e4;
+  width: 90%;
+  height: 100px;
+  padding: 5px;
+}
+.commentData button{
+  position: relative;
+  bottom: -70px;
+  margin-left: auto;
+ }
+ .reply_comment textarea{
+  border-radius: 10px;
+  border: 1px solid #e6e4e4;
+  width: 90%;
+  height: 100px;
+  padding: 5px;
+ }
+ .comment_edit{
+  width: 100%;
+ }
+ .comment_edit .bt{
+  display: block;
+  float: right;
+  margin-right: 100px;
+  font-size: medium;
+  padding: 1px;
+ }
+ .reply{
+  margin-left: 100px;
+  margin-right: 20px;
+ }
+ .bt input{
+  width: fit-content;
+  padding: 4px;
+  margin: 10px;
+  border: 1px solid blue;
+  border-radius: 10px;
+
+ }
+ .bt .btn-off{
+  background-color: transparent;
+ 
+ }
+/* .commentHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+} */
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  display: flex;
+  align-items: baseline;
+  margin-left: auto;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 30%; /* Places dropdown below the button */
+  right: 0;  /* Aligns to the right of the comment box */
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  text-align: left;
+  color: #333;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}

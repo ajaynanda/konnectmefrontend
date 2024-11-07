@@ -1,0 +1,148 @@
+<div class="post" *ngFor="let post of feedPost;let i =index">
+    <div class="postWrapper">
+        <div class="postTop">
+          
+            <div class="postTopLeft">
+                <img src="{{post.profileImg?post.profileImg:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}}" class="postProfileImg" width="50px" height="50px">
+                <span class="postUsername">{{post.Name}}</span>
+                <span class="postDate">{{post.createdAt | date}}</span>
+            </div>
+            <div class="postTopRight">
+
+            </div>
+           
+        </div>
+        
+        <div class="postCenter"> 
+            <span class="postText">{{post.Description}}</span>         
+            <video *ngIf="post.Image.slice(-3) == 'mp4' || post.Image.slice(-3) == 'mkv'"
+                src="../../assets/{{post.Image}}" class="postImg" controls></video>
+            <img *ngIf="post.Image.slice(-3) == 'jpg' || post.Image.slice(-3) == 'png' || post.Image.slice(-4) == 'jpeg'"
+                src="../../assets/{{post.Image}}" class="postImg" alt="yes">
+        </div>
+        <div class="postBottom">
+            <div class="postBottomLeft">
+                <img style="cursor: pointer;" src="../../assets/like.png" (click)="toggle(post._id,i,post)" alt="like icon" width="20px"
+                    height="20x">
+                <!-- <img  src="../../assets/heart.png"  alt="heart icon" width="20px" height="20x"> -->
+                <!-- <span class="like" > 
+                        <i *ngFor="let Likes of post.Likes"  [ngClass]=" Likes.userid==userid? 'fa fa-heart red':'fa fa-heart'"></i>
+                </span> -->
+                <i *ngFor="let Likes of post.Likes" [ngClass]=" postLiked[i] || Likes.userid==userid? 'fa fa-heart red':Likes.userid!=userid && !postLiked[i]?'':'fa fa-regular fa-heart'"></i>
+                <!-- <i [ngClass]="{'fa fa-heart red': post.Likes.some(like => like.userid === userid), 'fa fa-regular fa-heart': !post.Likes.some(like => like.userid === userid)}"></i> -->
+             
+    
+                <span class="postLikeCounter">{{post.Likes.length}} liked</span>
+            </div>
+            <div class="postBottomRight">
+                <span style="cursor: pointer;" (click)="comment(i,post)" class="postCmmentText">{{post.Comments.length}} Comments</span>
+            </div>
+        </div>
+        <!-- <div *ngIf="commentPost && i==index">
+            <div class="postComment">
+                <div class="commentUserInfo">
+                    <img src="{{post.profileImg}}" class="postCommentProfileImg" width="50px" height="50px">
+                    <span class="postCommentUsername">{{post.Name}}</span><br>
+                </div>
+                <form class="commentText" #form="ngForm" (ngSubmit)="commentArray(form,post._id)">
+                    <textarea type="text" name="comment" ngModel placeholder="Type Your comments"></textarea>
+                    <button class="btn btn-primary btn-sm commentButton" type="submit">Comment</button>
+                </form>
+            </div>
+            <div class="commentBox" *ngFor="let comment of post.Comments ;let i=index">
+                <div class="commentData">
+                <img src="{{post.profileImg}}" class="imageComment" width="25px" height="25px"
+                    style="border-radius: 50%;">
+                <span class="nameComment">{{post.Name}}</span>
+                <div class="postTopRight">
+                
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="vertIcon"> 
+           
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu" [hasBackdrop]="false">
+                        <a tabindex="-1" class="menu-item">Edit</a><br>
+                        <a tabindex="-1" class="menu-item">Delete </a> <br> 
+                      </mat-menu>
+                </div><br>
+                 </div>
+              
+                    <p>{{comment.comment}}</p>
+               
+            </div>
+        </div> -->
+        <div *ngIf="postData?._id==post?._id">
+            <div class="postComment">
+                <div class="commentUserInfo">
+                    <img src="{{post.profileImg}}" class="postCommentProfileImg" width="50px" height="50px">
+                    <span class="postCommentUsername">{{post?.Name}}</span><br>
+                </div>
+                <form class="commentText" #form="ngForm" (ngSubmit)="commentArray(form,post._id)">
+                    <textarea type="text" name="comment" #comment="ngModel" ngModel placeholder="Type Your comments"              
+                     required></textarea>                  
+                    <button class="btn btn-primary btn-sm commentButton" type="submit">Comment</button>                
+                </form>
+                <span *ngIf="commentError" style="color: red;font-size:small;">Comment is required</span>
+            </div>
+            <div class="commentBox" *ngFor="let comment of post.Comments ;let i=index">
+                <div class="commentHead">
+                <img src="{{post.profileImg}}" class="imageComment" width="25px" height="25px"
+                    style="border-radius: 50%;">
+                <span class="nameComment">{{post.Name}}</span>
+                <button mat-icon-button class="dropdown-toggle" (click)="toggleDropdown(i,post)"> </button>
+                <div *ngIf="dropdownIndex === i && postData._id==post._id" class="dropdown-menu">
+                    <button *ngIf="userid==post.userid" (click)="openEditComment(post,comment,i)">Edit</button>
+                    <button *ngIf="userid==post.userid" (click)="deleteComment(post._id,comment)">Delete</button>
+                    <button (click)="openReplyComment(post,comment,i)">Reply</button>
+                  </div>              
+            </div>
+                <div class="commentData">
+                    <p *ngIf="commentData?._id !=comment._id">{{comment.comment}}</p>
+                    <div *ngIf="editComments && editIndex===i && postData?._id ===post._id" class="comment_edit">
+                    <textarea  type="text" #edit [(ngModel)]="commentData.comment" placeholder="Type Your comments"                 
+                    required></textarea>
+                    <div class="bt">
+                    <input type="button" class="btn btn-primary" value="Update" (click)="editComment(postData._id,commentData._id,edit)">
+                    <input type="button" class="btn-off" value="Cancel" (click)="cancelEditComment()">
+                </div>
+                </div>
+
+                </div>
+                <div class="reply_comment" *ngIf="addReplys && postData._id==post._id">
+                    <textarea  type="text" #edits placeholder="Type Your comments"                 
+                    required></textarea>
+                    <div class="bt">
+                    <input type="button" class="btn btn-primary" value="Reply" (click)="addReply(postData._id,comment._id,edits)">
+                    <input type="button" class="btn-off" value="Cancel" (click)="cancelReplyComment()">
+                </div>
+                </div>
+                <div class="reply" *ngIf="comment.replies.length>0"> 
+                    <div class="reply_section" *ngFor="let rep of comment.replies;let j=index">
+                        <div class="commentHead">
+                            <img src="{{rep.profileImg}}" class="imageComment" width="25px" height="25px"
+                                style="border-radius: 50%;">
+                            <span class="nameComment">{{rep.Name}}</span>
+                            <button *ngIf="userid==rep.userid" mat-icon-button class="dropdown-toggle" (click)="toggleDropdownReply(j,rep)"> </button>
+                            <div *ngIf="dropdownReplyIndex === j && commentData._id==rep._id" class="dropdown-menu">
+                                <button (click)="openEditReplyComment(post,comment,rep,j)">Edit</button>
+                                <button (click)="deleteReplyComment(post._id,comment._id,rep)">Delete</button>
+                              </div>
+                        </div>
+                            <div class="commentData">
+                                <p *ngIf="replyData?._id!=rep._id">{{rep.comment}}</p>
+                                <div *ngIf="editReplyComments && editReplyIndex===j && replyData?._id ===rep._id" class="comment_edit">
+                                <textarea  type="text" #edit [(ngModel)]="replyData.comment" placeholder="Type Your comments"                 
+                                required></textarea>
+                                <div class="bt">
+                                <input type="button" class="btn btn-primary" value="Update" (click)="editReplyComment(rep._id,comment._id,edit)">
+                                <input type="button" class="btn-off" value="Cancel" (click)="cancelReplyComment()">
+                            </div>
+                            </div>
+            
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

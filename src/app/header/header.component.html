@@ -1,0 +1,57 @@
+
+<div *ngIf="homeheader">
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+            <div class="navbar-header">
+        <a routerLink="/home" class="navbar-brand">KonnectMe</a>
+    </div> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class=" menubar collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav" >
+        <li class="nav-item"><a class="nav-link" routerLink="/membership">Premium Membership</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/policy">Privacy Policy</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/terms">Terms and Conditions</a> </li>
+        <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li>
+    </ul>
+</div>
+</nav>
+</div>
+<div *ngIf="userheader"  >
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="navbar-header">
+        <!-- <span class="bi bi-list" (click)="toggleCollapse()"></span>   -->
+        <a routerLink="" class="navbar-brand">KonnectMe</a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class=" menubar collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="nav navbar-nav">
+        <li><a title="Home" routerLink="/user/dashboard">Home</a></li>
+        <li><a title="View Profile" routerLink="/user/myprofile/{{userid}}">My Profile</a> </li>
+        <li><a title="Logout" (click)="logout()" routerLink="">Logout</a></li>
+    </ul>
+</div>
+</nav>
+</div>
+<div *ngIf="adminheader"  >
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+    <div class="navbar-header">
+        <a routerLink="" class="navbar-brand">KonnectMe</a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class=" menubar collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="nav navbar-nav">
+        <li><a title="Add new Friends" routerLink="/user/dashboard">Konnect</a></li>
+        <li><a routerLink="/user/myprofile">My Profile</a> </li>
+        <li><a >Logout</a></li>
+    </ul>
+</div>
+</nav>
+</div>
+
+<router-outlet></router-outlet>

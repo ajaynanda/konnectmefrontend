@@ -1,0 +1,19 @@
+.closedialog{
+    display: flex;
+    float: right;
+    cursor: pointer;
+}
+.actionButton{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 2px;
+    margin: 5px;
+}
+.actionButton button{
+    margin: 5px;
+}
+.btn-off{
+    border: 1px solid blue;
+    border-radius: 10px;
+}

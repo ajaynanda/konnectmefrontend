@@ -1,0 +1,95 @@
+<div class="container">
+    
+    <h4 class="rightbarTitle">User information</h4>
+    <div class="rightbarInfo">
+        <div class="rightbarInfoItem">
+          <span class="rightbarInfoKey">City:</span>
+          <span class="rightbarInfoValue">{{userdata?.City}}</span>
+        </div>
+        <div class="rightbarInfoItem">
+          <span class="rightbarInfoKey">Current City:</span>
+          <span class="rightbarInfoValue">{{userdata?.City}}</span>
+        </div>
+        <div class="rightbarInfoItem">
+            <span class="rightbarInfoKey">Date of Birth:</span>
+            <span class="rightbarInfoValue">{{userdata?.DateofBirth | date}}</span>
+          </div>
+        <div class="rightbarInfoItem">
+          <span class="rightbarInfoKey">Relationship:</span>
+          <span class="rightbarInfoValue">{{userdata?.Relation}}</span>
+        </div>
+      </div>
+      <div class="rightbarTitle">
+      <h4 >Friends</h4>
+      <span (click)="moreFriends()" class="more_followers_show">{{!moreFriend?'Show More..':'Show Less'}}</span>
+    </div>
+      <div class="rightbarFollowings" *ngIf="frnd.length<=5 && !moreFriend;else elseBlock">
+        <div class="rightbarFollowing" *ngFor="let frnds of frnd">
+       <a [routerLink]='["/user/myprofile/",frnds._id]'> 
+        <img
+            src="{{frnds?.Profilepic?frnds?.Profilepic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}}"
+            alt=""
+            class="rightbarFollowingImg"
+            width="50px"
+            height="50px"      
+          /> 
+          <span class="rightbarFollowingName">{{frnds?.Name | titlecase}}</span></a> 
+        </div>
+
+<hr>
+<br>
+</div>
+<ng-template #elseBlock>
+  <div class="friends_circle">
+  <div [ngClass]="!moreFriend?'rightbarFollowing':'not_rightbarFollowing'" *ngFor="let frnds of frnd">
+    <span class="span_cir">
+    <a [routerLink]='["/user/myprofile/",frnds._id]'> 
+     <img
+         src="{{frnds?.Profilepic?frnds?.Profilepic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}}"
+         alt=""
+         class="rightbarFollowingImg"
+         width="50px"
+         height="50px"
+         
+       /> 
+       <span class="rightbarFollowingName">{{frnds?.Name | titlecase}}</span></a> 
+       <!-- <button *ngIf="moreFriend" class="btn btn-outline-danger remove_follower" (click)="removeFriends(frnd)">Remove</button> -->
+       </span>
+     </div>
+    </div>
+</ng-template>
+<div class="peopleFollow">
+  <h4>Followings</h4>
+  <span (click)="moreFollowings()" class="more_followers_show">{{!moreFollowing?'Show More..':'Show Less'}}</span>
+  </div>
+<div class="rightbarFollowings" *ngIf="followList.length<=5 && !moreFollowing;else elseBlock1">
+  <div class="rightbarFollowing" *ngFor="let following of followList">
+ <a routerLink="/user/myprofile/{{following._id}}"> <img
+      src="{{following.Profilepic?following.Profilepic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}}"
+      alt=""
+      class="rightbarFollowingImg"
+      width="50px"
+      height="50px"   
+    /> 
+    <span class="rightbarFollowingName">{{following.Name | titlecase}}</span></a> 
+  </div>
+  </div>
+  <ng-template #elseBlock1>
+    <div class="friends_circle">
+    <div [ngClass]="!moreFollowing?'rightbarFollowing':'not_rightbarFollowing'" *ngFor="let following of followList">
+      <span class="span_cir">
+        <a routerLink="/user/myprofile/{{following._id}}"> <img
+          src="{{following.Profilepic?following.Profilepic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}}"
+          alt=""
+          class="rightbarFollowingImg"
+          width="50px"
+          height="50px"   
+        /> 
+        <span class="rightbarFollowingName">{{following.Name | titlecase}}</span></a> 
+         <button *ngIf="moreFollowing" class="btn btn-primary remove_follower" (click)="userUnfollow(following._id)">Unfollow</button>
+         </span>
+       </div>
+      </div>
+  </ng-template>
+</div>
+

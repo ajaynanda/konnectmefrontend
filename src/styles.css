@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+    font-family: Roboto;
+    overflow-x: hidden;
+}
+snack-bar-container.success{
+    background-color: green;
+    color: white;
+}
+snack-bar-container.notification{
+    font-size: 20px !important;
+    font-weight: bolder;
+}
+snack-bar-container.error{
+    background-color: red;
+    color: white;
+}
+.slick-prev,
+.slick-next {
+  background-color: #333!important;
+  color: #fff!important;
+  border: none!important;
+  border-radius: 100%!important;
+  cursor: pointer!important;
+}
+.mat-menu-content a{
+    text-decoration: none!important;
+    padding: 3px!important;
+    color: black!important;
+  }
+  .mat-menu-content a:hover{
+    background-color: #d8daf2;
+    /* padding: 3px; */
+  }

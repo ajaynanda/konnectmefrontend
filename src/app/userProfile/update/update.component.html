@@ -1,0 +1,41 @@
+<img class="closedialog" src="../../../assets/close.png" (click)="closeDialog()" width="20px" height="20px"><br>
+<h5 class="text-center p-3 m-2"><b>Edit Your Info</b></h5>
+<div class="container">
+ 
+    <form #updateForm="ngForm" (ngSubmit)="update(updateForm)" >
+        <div class="row">
+            <div class="col-md-6">
+                <label>FirstName</label>
+                <input type="text" class="form-control" required name="fname" ngModel [(ngModel)]="data.Firstname">
+            </div>
+            <div class="col-md-6">
+                <label>LastName</label>
+                <input type="text" class="form-control" required #lname="ngModel" name="lname" [(ngModel)]="data.Lastname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Date of Birth</label>
+                <input type="date" class="form-control" required name="dob" ngModel [(ngModel)]="data.DateofBirth">
+            </div>
+            <div class="col-md-6">
+                <label>City</label>
+                <input type="text" class="form-control" required name="city" ngModel [(ngModel)]="data.City">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Realtionship</label>
+                <input type="text" class="form-control" required name="relation" ngModel [(ngModel)]="data.Relation">
+            </div>
+            <div class="col-md-6">
+                <label>About me</label>
+                <input type="text" class="form-control" required name="description" ngModel [(ngModel)]="data.Aboutme"> 
+            </div>
+        </div>
+        <div class="actionButton">
+            <button [disabled]="updateForm.invalid" type="submit" class="btn btn-primary btn-sm">Update</button>
+            <button type="button" (click)="cancelDialog()" class="btn btn-off btn-sm">Cancel</button>
+        </div>
+    </form>
+</div>

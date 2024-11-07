@@ -1,0 +1,17 @@
+.heading{
+    display: block;
+    margin:5px;
+    text-align: center;
+    color: darkblue;
+    background-color: azure;
+    padding: 30px;
+}
+.container{
+    margin-top: 10px;
+}
+ng-image-slider{
+    display: block;
+    margin:10px auto;
+    width: 1100px;
+     height: 500px;
+}

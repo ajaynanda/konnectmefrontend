@@ -1,0 +1,42 @@
+<div class="share">
+    <form #form="ngForm" (ngSubmit)="submit(form)" enctype="multipart/form-data">
+        <div class="shareWrapper">
+            <div class="shareTop">
+                <img src="../../assets/media.jpg" class="shareProfileImg" width="50px" height="50px">
+                <input type="text" placeholder="What's in your mind" name="desc" ngModel class="shareInput">
+            </div>
+            <hr class="shareHr">
+            <div class="imagePreviewContainer">
+                <img  [src]="imagePreviewSrc" width="200px" height="200px"
+                    class="img-responsive rounded-start imgPreview" *ngIf="imagePreviewSrc && isImageSelected" alt="none">
+                    <video [src]="videoPreview" *ngIf="videoPreview && isVideoSelected" height="200" controls></video>
+                    <button *ngIf="imagePreviewSrc && isImageSelected" class="imgCancel btn btn-primary" (click)="isImageSelected=false">X</button>
+            </div>
+            <div class="shareBottom">
+                <div class="shareOptions">
+                    <label htmlfor="file" class="shareOption">
+                        <span class="shareOptionText"><i style="color:tomato;" class="bi bi-images shareIcon"></i>Photo
+                            or Video</span>
+                        <input style="display:none;" type="file" name="img" ngModel single (change)="onFileChange($event)">
+
+                    </label>
+                    <div class="shareOption">
+                        <span class="shareOptionText"><i style="color:blue;"
+                                class="bi bi-tag-fill shareIcon"></i>Tag</span>
+                    </div>
+                    <div class="shareOption">
+                        <span class="shareOptionText"><i style="color:green;"
+                                class="bi bi-geo-alt-fill shareIcon"></i>Location</span>
+                    </div>
+                    <div class="shareOption">
+                        <span class="shareOptionText"><i style="color:yellow;"
+                                class="bi bi-emoji-smile-fill shareIcon"></i>Feeling</span>
+                    </div>
+                  
+                </div>
+                <button type="submit" class="shareButton">Share</button>
+            </div>
+
+        </div>
+    </form>
+</div>

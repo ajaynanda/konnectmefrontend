@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div  class="row left">
+                <h1 style="color: blue;cursor: pointer;" class="m-5 text-left"><b>Konnect Me</b></h1>
+                <img src="../../assets/media.jpg" class="img-responsive" width="400px" height="400px">
+            </div>
+        </div>
+       <div class="col-md-5">
+        <div class="rowright">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <label>First Name</label>
+            <input type="text" placeholder="Enter First Name" formControlName="fname" name="fname" class="form-control">
+            <label>Last Name</label>
+            <input type="text" placeholder="Enter Last Name" formControlName="lname" name="lname" class="form-control">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter Email" formControlName="email" class="form-control">
+            <span style="color: red;" *ngIf="controls['email'].getError('required')!=null && controls['email'].touched">Enter Email</span>
+            <span style="color: red;" *ngIf="controls['email'].getError('email')!=null && controls['email'].touched">Enter Valid Email</span><br>
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" formControlName="password" name="password" class="form-control">
+            <span style="color: red;" *ngIf="controls['password'].getError('required')!=null && controls['password'].touched">Enter Password</span>
+            <span style="color: red;" *ngIf="controls['password'].getError('minlength')!=null">Password must be atleast 6 characters long</span><br>
+            <label>Confirm Password</label>
+            <input type="password" name="cpassword" formControlName="cpassword" placeholder="Enter Password again" class="form-control">
+            <span style="color: red;" *ngIf="controls['cpassword'].getError('required')!=null && controls['cpassword'].touched">Enter Confirm Password</span>
+            <span style="color: red;" *ngIf="controls['cpassword'].getError('minlength')!=null">Confirm Password must be atleast 6 characters long</span><br>
+            <span style="color: red;" *ngIf="controls['cpassword'].getError('mustmatch')">Password does not match</span>
+            <span>Already have account?<a routerLink='/login'>Login</a></span>
+            <button [disabled]="registerForm.invalid" class="btn btn-success btn-lg ">Register</button> 
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+
