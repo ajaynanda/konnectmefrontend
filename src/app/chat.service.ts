@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private socket = io('http://localhost:5000',);
+  private socket = io(environment.socketUrl);
   public message$: BehaviorSubject<any> = new BehaviorSubject('');
   constructor(private http:HttpClient) { }
   sendMessage(message:any){

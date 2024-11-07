@@ -25,5 +25,6 @@ export const environment = {
   newChat:'addnewchat',
   chatlist:'chatlist',
   sendMessage:'sendmessage',
-  chathistory:'messagechathistory'
+  chathistory:'messagechathistory',
+  socketUrl:'https://konnectmeapi.onrender.com'
 };

@@ -27,6 +27,7 @@ export const environment = {
     newChat:'addnewchat',
     chatlist:'chatlist',
     sendMessage:'sendmessage',
-    chathistory:'messagechathistory'
+    chathistory:'messagechathistory',
+    socketUrl:'http://localhost:5000'
 };
 
