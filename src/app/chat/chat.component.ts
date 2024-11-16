@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NgForm } from '@angular/forms';
 interface User {
   Name: string;
   _id: string; // The ID of the chat user

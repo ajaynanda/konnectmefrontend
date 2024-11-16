@@ -12,6 +12,7 @@ body{
     position: relative;
     font-family: Roboto;
     overflow-x: hidden;
+    max-height: 100vh;
 }
 snack-bar-container.success{
     background-color: green;
@@ -42,3 +43,8 @@ snack-bar-container.error{
     background-color: #d8daf2;
     /* padding: 3px; */
   }
+  .container {
+    max-width: 1320px;
+    height: 60%;
+    padding: 0px!important;
+}

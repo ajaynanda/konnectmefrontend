@@ -2,6 +2,7 @@
 import { Component, OnInit} from '@angular/core';
 import { PostService } from '../postService/post.service';
 import { UserService } from '../user/user.service';
+import { LoaderService } from '../shared/services/loader.service';
 @Component({
   selector: 'app-rightbar',
   templateUrl: './rightbar.component.html',
@@ -26,17 +27,19 @@ export class RightbarComponent implements OnInit {
     "infinite":false
   };
   followStatus: any[]=[];
-  constructor(private userService: UserService, private postService: PostService) {
+  constructor(private userService: UserService, private postService: PostService,private loaderService: LoaderService) {
   }
 
   ngOnInit() {
     this.getUserdata()
+    this.loaderService.setLoader(true)
   }
   getUserdata(){
     this.userService.userByID(this.user._id).subscribe((result:any)=>{
       this.data=result.data
       this.suggestionArray=this.data.userSuggestion 
       this.followers=this.data.Followers  
+      this.loaderService.setLoader(false)
 }) 
   }
    compareDates(){

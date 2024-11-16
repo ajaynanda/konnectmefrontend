@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostService } from '../../postService/post.service';
-import { invalid } from '@angular/compiler/src/render3/view/util';
 @Component({
   selector: 'app-postbars',
   templateUrl: './postbar.component.html',
@@ -10,6 +9,7 @@ import { invalid } from '@angular/compiler/src/render3/view/util';
 export class PostbarsComponent implements OnInit {
 likes:Boolean=false
 count:any=0
+
 feedPost:any
 commentError:boolean=false
   userid: any;
@@ -229,5 +229,13 @@ deleteReplyComment(postid:any,commentid:any,rep: any){
 }
  replyToComment(comment: any) {
    console.log("Replying to comment:", comment);
+ }
+ deletePost(post:any){
+  this.postservice.deletePost(post._id).subscribe((res)=>{
+    console.log(res,"reponses");
+    this.getUserPost()
+  },(err=>{
+    console.log(err);  
+  }))
  }
 }

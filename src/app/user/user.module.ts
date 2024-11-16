@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ChatComponent } from '../chat/chat.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+// import { LoaderComponent } from '../loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     LeftbarComponent,
     RightbarComponent,
     PostbarComponent,
-    ChatComponent
+    ChatComponent,
+    // LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -34,8 +38,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     MatDialogModule,
     MatCardModule,
+    SharedModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     SlickCarouselModule,
     MatMenuModule,
     MatFormFieldModule,

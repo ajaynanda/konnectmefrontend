@@ -1,3 +1,4 @@
+
 <div class="post" *ngFor="let post of feedPost;let i =index">
     <div class="postWrapper">
         <div class="postTop">
@@ -15,10 +16,14 @@
         
         <div class="postCenter"> 
             <span class="postText">{{post.Description}}</span>         
-            <video *ngIf="post.Image.slice(-3) == 'mp4' || post.Image.slice(-3) == 'mkv'"
+            <!-- <video *ngIf="post.Image.slice(-3) == 'mp4' || post.Image.slice(-3) == 'mkv'"
                 src="../../assets/{{post.Image}}" class="postImg" controls></video>
             <img *ngIf="post.Image.slice(-3) == 'jpg' || post.Image.slice(-3) == 'png' || post.Image.slice(-4) == 'jpeg'"
-                src="../../assets/{{post.Image}}" class="postImg" alt="yes">
+                src="../../assets/{{post.Image}}" class="postImg" alt="yes"> -->
+                <video *ngIf="post.Image.slice(-3) == 'mp4' || post.Image.slice(-3) == 'mkv'"
+                src="{{ post.url ? post.url : '../../assets/' + post.Image }}" class="postImg" controls></video>
+            <img *ngIf="post.Image.slice(-3) == 'jpg' || post.Image.slice(-3) == 'png' || post.Image.slice(-4) == 'jpeg'"
+            src="{{ post.url ? post.url : '../../assets/' + post.Image }}" class="postImg" alt="no image">
         </div>
         <div class="postBottom">
             <div class="postBottomLeft">

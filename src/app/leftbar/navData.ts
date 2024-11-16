@@ -15,7 +15,7 @@ export const navData=[
         label:'Profile'
     },
     {
-        routerLink:'/user/chat',
+        routerLink:'/user/dashboard/chat',
         icon:'bi bi-chat-fill',
         label:'Chat'
     },
@@ -36,11 +36,11 @@ export const navData=[
     // },
 ]
 export const navProfileData=[
-    {
-        routerLink:'/user/dashboard',
-        icon:'bi bi-house-fill',
-        label:'Dashboard'
-    },
+    // {
+    //     routerLink:'/user/dashboard',
+    //     icon:'bi bi-house-fill',
+    //     label:'Home'
+    // },
    
     {
         // routerLink:'/myprofile/update/'+JSON.parse(localStorage.getItem('KMuser') || '{}')._id,
@@ -52,9 +52,9 @@ export const navProfileData=[
         icon:'bi bi-lock-fill',
         label:'Change password'
     },
-    {
-        routerLink:'/settings',
-        icon:'bi bi-gear-fill',
-        label:'Settings'
-    }
+    // {
+    //     routerLink:'/settings',
+    //     icon:'bi bi-gear-fill',
+    //     label:'Settings'
+    // }
 ]

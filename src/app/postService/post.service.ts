@@ -21,6 +21,9 @@ export class PostService {
   createpost(id:number,postData:any){
   return   this.http.post(`${environment.createPost}/${id}`,postData)
   }
+  deletePost(id:number){
+    return this.http.delete(`${environment.deletePost}/${id}`)
+  }
   comment(userid:number,id:number,commentData:any){
    return  this.http.post(`${environment.commentPost}/${userid}/${id}`,commentData)
   }

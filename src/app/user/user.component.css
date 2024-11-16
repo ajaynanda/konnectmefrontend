@@ -1,0 +1,36 @@
+.leftBar{
+    transition: 0.5s ease-in-out;
+    z-index: 1;
+    margin-top: 69px;
+    padding: 0px;
+}
+.rightBar{
+    transition: 0.5s ease-in-out;
+    overflow: auto;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #798dba #f4f4f4; /* For Firefox */
+    max-height: 100vh;
+    margin-top: 69px;
+}
+.centerBar{
+    transition: 0.5s ease-in-out;
+    overflow: auto;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #798dba #f4f4f4; /* For Firefox */
+    border-radius: 4px; /* Rounded corners */
+    scroll-behavior: smooth;
+   
+    max-height: 100vh;
+    padding-left: 0px;
+    margin-top: 69px;
+}
+
+.blur{
+    filter: blur(1px);
+    pointer-events: none;
+}
+@media (max-width:768px){
+    .leftBar{
+        width: -100px;
+    }
+}

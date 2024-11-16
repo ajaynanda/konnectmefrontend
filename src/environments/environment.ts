@@ -11,6 +11,7 @@ export const environment = {
     like:'like',
     postbyuserid:'postbyuserid',
     createPost:'userpost',
+    deletePost:'deletepost',
     commentPost:'comment',
     allUser:'alluser',
     userByID:'userbyid',
@@ -28,6 +29,10 @@ export const environment = {
     chatlist:'chatlist',
     sendMessage:'sendmessage',
     chathistory:'messagechathistory',
-    socketUrl:'http://localhost:5000'
+    socketUrl:'http://localhost:5000',
+     AWS_ACCESS_KEY:'AKIAZ6L3DB2TH46CJ5WN',
+     AWS_KEY:'DXadDLL9Co80Vb+3OmCknsiVoqZaInEMxNF5qox3',
+     AWS_ACCESS_KEY2:'AKIAZ6L3DB2TDT62V6JD',
+  AWS_KEY2:'xPJ18yOdtb5CKXXersHVjjdNc0SqPrkoQVptIHsB'
 };
 

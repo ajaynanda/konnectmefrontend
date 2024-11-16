@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostService } from '../postService/post.service';
+import { LoaderService } from '../shared/services/loader.service';
 @Component({
   selector: 'app-postbar',
   templateUrl: './postbar.component.html',
@@ -10,6 +11,7 @@ export class PostbarComponent implements OnInit {
 likes?:boolean
 count:any=0
 feedPost:any
+
   userid: any;
   commentPost: boolean=false;
   index: any;
@@ -25,9 +27,10 @@ feedPost:any
   editReplyComments:boolean=false
   dropdownIndex: number | null = null; 
   dropdownReplyIndex:number | null =null;
-  constructor(private postservice:PostService) { }
+  constructor(private postservice:PostService,private loaderService:LoaderService) { }
 
   ngOnInit(): void {
+  this.loaderService.setLoader(true)
    const user=JSON.parse( localStorage.getItem("KMuser") || '{}')
    console.log(user._id);
    this.userid=user._id
@@ -38,8 +41,8 @@ feedPost:any
     this.postservice.timeline(this.userid).subscribe((res:any)=>{
       console.log(res.data);
       this.feedPost=res.data
+      this.loaderService.setLoader(false)
       this.getLikes(this.feedPost)
-      // console.log(this.feedPost[2].Likes[0].userid,"Likes")
      })
   }
   toggle(id:any,index:any,post:any){

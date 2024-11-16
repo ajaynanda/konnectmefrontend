@@ -1,14 +1,28 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn:"root"
 })
 export class UserService{
-  userChanged:BehaviorSubject<any>=new BehaviorSubject<any>(null)
+  userChanged:BehaviorSubject<any>=new BehaviorSubject<any>(null);
+  sidebar:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(true);
+  currenturl:BehaviorSubject<string>=new BehaviorSubject<string>('/user/dashboard');
   constructor(private http:HttpClient){}
+  getUrl(){
+    return this.currenturl.asObservable()
+  }
+  setUrl(url:string){
+    return this.currenturl.next(url)
+  }
+  getSideBar(){
+    return this.sidebar.asObservable()
+  }
+  setSideBar(side:boolean){
+    return this.sidebar.next(side)
+  }
 user(){
   return   this.http.get(`${environment.Alluser}`)
 }

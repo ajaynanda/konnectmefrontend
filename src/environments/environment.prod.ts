@@ -9,6 +9,7 @@ export const environment = {
   like:'like',
   postbyuserid:'postbyuserid',
   createPost:'userpost',
+  deletePost:'deletepost',
   commentPost:'comment',
   allUser:'alluser',
   userByID:'userbyid',

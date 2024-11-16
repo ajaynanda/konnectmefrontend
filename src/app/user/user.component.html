@@ -1,17 +1,27 @@
-<div class="container-fluid text-center">
+<app-loader *ngIf="loaderState" [loaderState]="loaderState" ></app-loader>
+<div class="container-fluid text-center" [ngClass]="loaderState?'blur':''">
+   
     <div class="row">
-        <div class="col-md-2">
+        
+        <div class="leftBar" [ngClass]="sidebar ? 'col-md-2' : 'col-md-1'" [ngStyle]="{width:sidebar?'15%':'5%'}">
             <app-leftbar></app-leftbar> 
         </div>
-        <div class="col-md-6">
-            <app-sharebar *ngIf="currentUrl!='/user/chat'"></app-sharebar>
-            <app-postbar *ngIf="currentUrl!='/user/chat'"></app-postbar>
-            <app-chat *ngIf="currentUrl=='/user/chat'"></app-chat>
+   <ng-container  *ngIf="currentUrl!='/user/dashboard/chat';else chat">
+        <div class="centerBar" [ngClass]="sidebar?'col-md-6':'col-md-7'" >
+            <app-sharebar ></app-sharebar>
+            <app-postbar ></app-postbar>
+            <!-- <app-chat *ngIf="currentUrl=='/user/dashboard/chat'"></app-chat> -->
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 rightBar">
             <app-rightbar></app-rightbar>
         </div>
+   </ng-container>
+    <ng-template #chat>
+        <div class="col-md-10">
+        <app-chat></app-chat>
+    </div>
+    </ng-template>
     </div>
 </div>
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->

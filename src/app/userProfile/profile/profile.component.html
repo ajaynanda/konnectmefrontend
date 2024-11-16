@@ -1,8 +1,9 @@
-<div class="profile">
+<app-loader *ngIf="loaderState" [loaderState]="loaderState" ></app-loader>
+<div class="profile" [ngClass]="loaderState?'blur':''">
     <div class="row">
         <!-- Sidebar -->
-        <div class="leftBar col-md-2">
-            <app-leftbars [collapsed]="collapsed" [profile]="profile"></app-leftbars>
+        <div class="leftBar" [ngClass]="sidebar?'col-md-2':'col-md-1'" [ngStyle]="{width:sidebar?'15%':'5%'}">
+            <app-leftbars></app-leftbars>
         </div>
 
         <!-- Main content area -->
@@ -24,7 +25,7 @@
             <!-- Profile feed section -->
             <div class="profileFeed row">
                 <!-- Postbar area -->
-                <div class="centerBar col-md-8">
+                <div class="centerBar col-md-8" >
                     <app-postbars  [userpost]="userPost"></app-postbars>
                 </div>
 

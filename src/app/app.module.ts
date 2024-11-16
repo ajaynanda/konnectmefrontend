@@ -37,7 +37,6 @@ import { MatMenuModule } from '@angular/material/menu';
     TermsComponent,
     PolicyComponent,
     MembershipComponent,
-    
     ChangePasswordComponent,
           PasswordComponent,
           ForgotpasswordComponent,

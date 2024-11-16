@@ -1,57 +1,73 @@
 
-<div *ngIf="homeheader">
+<div *ngIf="homeheader && currentUrl!='/login'" class="header">
     <nav class="navbar navbar-expand-md bg-light navbar-light">
-            <div class="navbar-header">
-        <a routerLink="/home" class="navbar-brand">KonnectMe</a>
-    </div> 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class=" menubar collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav" >
-        <li class="nav-item"><a class="nav-link" routerLink="/membership">Premium Membership</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/policy">Privacy Policy</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/terms">Terms and Conditions</a> </li>
-        <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li>
-    </ul>
-</div>
-</nav>
-</div>
-<div *ngIf="userheader"  >
+      <a routerLink="/home" class="navbar-brand">KonnectMe</a>
+      
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="isCollapsed = !isCollapsed"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div [ngbCollapse]="isCollapsed" class="menubar collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/membership">Premium Membership</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/policy">Privacy Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/terms">Terms and Conditions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Register</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+<div *ngIf="userheader" class="user_header">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <div class="navbar-header">
-        <!-- <span class="bi bi-list" (click)="toggleCollapse()"></span>   -->
-        <a routerLink="" class="navbar-brand">KonnectMe</a>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <div class="navbar-header">
+        <a routerLink="/user/dashboard" class="navbar-brand">KonnectMe</a>
+      </div>
+      <button class="navbar-toggler" type="button" (click)="isCollapsedUser = !isCollapsedUser">
         <i class="fas fa-bars"></i>
-    </button>
-    <div class=" menubar collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="nav navbar-nav">
-        <li><a title="Home" routerLink="/user/dashboard">Home</a></li>
-        <li><a title="View Profile" routerLink="/user/myprofile/{{userid}}">My Profile</a> </li>
-        <li><a title="Logout" (click)="logout()" routerLink="">Logout</a></li>
-    </ul>
-</div>
-</nav>
-</div>
-<div *ngIf="adminheader"  >
+      </button>
+      <div [ngbCollapse]="isCollapsedUser" class="menubar collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav">
+          <li><a title="Home" routerLink="/user/dashboard">Home</a></li>
+          <li><a title="View Profile" [routerLink]="['/user/myprofile', userid]">My Profile</a></li>
+          <li><a title="Logout" (click)="logout()" routerLink="">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  
+  <div *ngIf="adminheader" class="admin_header">
     <nav class="navbar navbar-expand-md bg-light navbar-light">
-    <div class="navbar-header">
+      <div class="navbar-header">
         <a routerLink="" class="navbar-brand">KonnectMe</a>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      </div>
+      <button class="navbar-toggler" type="button" (click)="isCollapsedAdmin = !isCollapsedAdmin">
         <i class="fas fa-bars"></i>
-    </button>
-    <div class=" menubar collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="nav navbar-nav">
-        <li><a title="Add new Friends" routerLink="/user/dashboard">Konnect</a></li>
-        <li><a routerLink="/user/myprofile">My Profile</a> </li>
-        <li><a >Logout</a></li>
-    </ul>
-</div>
-</nav>
-</div>
-
+      </button>
+      <div [ngbCollapse]="isCollapsedAdmin" class="menubar collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav">
+          <li><a title="Add new Friends" routerLink="/user/dashboard">Konnect</a></li>
+          <li><a routerLink="/user/myprofile">My Profile</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 <router-outlet></router-outlet>

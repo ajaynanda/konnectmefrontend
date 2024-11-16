@@ -11,16 +11,19 @@
     padding: 10px;
     width: 100%;
   }
-  
-  .postTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .menu-icon {
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
   }
-  
+  .mat-menu-panel{
+    min-height: 0px!important;
+  }
+
   .postTopLeft {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   
   .postProfileImg {
@@ -45,12 +48,12 @@
     flex-grow: 1; 
     margin: 20px 0;
   }
-  .postCenter img {
+  /* .postCenter img {
     width: 1000px;
   }
   .postCenter video{
     width: 1000px;
-  }
+  } */
   .red{
     color: red;
   }

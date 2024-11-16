@@ -10,18 +10,21 @@ import { FormsModule } from '@angular/forms';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
   declarations: [
     ProfileComponent,
     RightbarsComponent,
    LeftbarsComponent,
     PostbarsComponent,
-   UpdateComponent,
+   UpdateComponent
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
    FormsModule,
+   SharedModule,
   NgImageSliderModule,
   MatMenuModule,
   MatIconModule

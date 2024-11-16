@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { TermsComponent } from './terms/terms.component';
 import { ForgotpasswordComponent } from './password/forgotpassword/forgotpassword.component';
 import { OtpverifyComponent } from './password/otpverify/otpverify.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -23,11 +24,11 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {
     path:'user',
-    loadChildren:()=>import('./user/user.module').then(x=>x.UserModule)
+    loadChildren:()=>import('./user/user.module').then(x=>x.UserModule),canActivate:[AuthGuard]
   },
   {
     path:'myprofile',
-    loadChildren:()=>import('./userProfile/profile.module').then(x=>x.ProfileModule)
+    loadChildren:()=>import('./userProfile/profile.module').then(x=>x.ProfileModule),canActivate:[AuthGuard]
   }
 ];
 
