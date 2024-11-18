@@ -10,8 +10,8 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
-    const commonurl='http://localhost:5000/'
-    // const commonurl='https://konnectsmeapi.onrender.com/'
+    // const commonurl='http://localhost:5000/'
+    const commonurl='https://konnectsmeapi.onrender.com/'
     const token = localStorage.getItem('KMtoken')
     let newRequest=request.clone({
       setHeaders:{'authorization':'Bearer '+token},

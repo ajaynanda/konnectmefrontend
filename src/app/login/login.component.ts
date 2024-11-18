@@ -34,9 +34,8 @@ authenticated=false
       }else{
         localStorage.setItem('_v',JSON.stringify(result.user.user.Email))
         localStorage.setItem('_vt',JSON.stringify(result.user.user.verificationToken))
-        // this.route.navigate(['/login'])    
-       
-        window.open('http://localhost:4200/login')
+        // this.route.navigate(['/login'])        
+        window.open('https://konnectsme.netlify.app/login','_self')
       }
     },(err=>{
       console.log(err);
@@ -49,6 +48,8 @@ authenticated=false
     }else{
       this.email=''
     }
+    console.log(this.email,"k");
+    
     this.service.Alluser().subscribe((result:any)=>{
       console.log(result)
     })
