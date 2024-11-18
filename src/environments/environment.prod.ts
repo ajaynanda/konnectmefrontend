@@ -10,6 +10,7 @@ export const environment = {
   postbyuserid:'postbyuserid',
   createPost:'userpost',
   deletePost:'deletepost',
+  sendEmail:'sendemailtoverify',
   commentPost:'comment',
   allUser:'alluser',
   userByID:'userbyid',
