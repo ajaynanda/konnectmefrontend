@@ -26,7 +26,7 @@ export class LeftbarComponent implements OnInit {
       this.collapsed = false;
     }
   }
-  constructor(private userService:UserService,private router:Router) { }
+  constructor(private userService:UserService) { }
 @Input() profile=false
 navdata=navData
 navProfile=navProfileData
@@ -38,8 +38,7 @@ sidebarShow=false
     })
     this.userService.getUrl().subscribe((res)=>{
       this.currentUrl=res
-      console.log(this.currentUrl,"ig");
-      
+      console.log(this.currentUrl,"ig");     
     })
     // console.log(this.navProfile);
     console.log(this.collapsed);

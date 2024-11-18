@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostService } from '../../postService/post.service';
 @Component({
   selector: 'app-postbars',
   templateUrl: './postbar.component.html',
-  styleUrls: ['./postbar.component.css']
+  styleUrls: ['./postbar.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class PostbarsComponent implements OnInit {
 likes:Boolean=false
@@ -54,7 +55,7 @@ liked(index:number,post:any){
      console.log(res.data.Success)
      this.likes=true
      console.log(this.likes)
-    //  this.feedPosts()
+     
    }
    else{this.likes=false
     //  this.feedPosts()

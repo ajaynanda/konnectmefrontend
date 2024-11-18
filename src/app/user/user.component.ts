@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
     })
     this.currentUrl = this.router.url;
     console.log('Initial URL:', this.currentUrl);
-    
+    this.userService.setUrl(this.currentUrl)
     // Listen for changes in the URL
     this.router.events
       .pipe(filter((event):event is NavigationEnd => event instanceof NavigationEnd))

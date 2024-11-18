@@ -43,8 +43,12 @@ snack-bar-container.error{
     background-color: #d8daf2;
     /* padding: 3px; */
   }
-  .container {
+  /* .container {
     max-width: 1320px;
     height: 60%;
     padding: 0px!important;
+} */
+.mem_container{
+  margin-top: 100px!important;
+  
 }

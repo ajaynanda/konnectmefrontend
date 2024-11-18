@@ -1,4 +1,7 @@
 
+.container{
+    padding: 0;
+}
 .sidenav{
     background-color: #263238;
     transition:all .5s ease ;
@@ -43,7 +46,7 @@
     border: none;
 }
 .sidenav-collapsed{
-    width: 16.5625rem;
+    width: 15.5625rem;
 }
 .sidenav-nav{
     list-style: none;

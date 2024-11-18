@@ -2,6 +2,7 @@
     /* max-width: 1320px; */
     display: flex;
     height: 50%;
+    padding: 0;
 }
 .sidenav{
     background-color: #263238;

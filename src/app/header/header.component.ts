@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ isCollapsedUser = true;
 isCollapsedAdmin = true;
   userid: any;
   currentUrl: string='';
-  constructor(private router:Router) {
+  constructor(private router:Router,private service:AuthService) {
     const token = localStorage.getItem('KMtoken')
     if(token){
       this.userheader=true
@@ -32,6 +33,15 @@ isCollapsedAdmin = true;
    }
 
   ngOnInit(): void {
+    this.service.getHeaderState().subscribe((res)=>{
+      if(res=='user' || localStorage.getItem('KMtoken')){
+        this.userheader=true
+      this.homeheader=false
+      }else if(res=='home' || !localStorage.getItem('KMtoken')){
+        this.userheader=false
+      this.homeheader=true
+      }
+    })
     if(this.userheader){
     this.userid=  JSON.parse(localStorage.getItem('KMuser') || '{}')._id
     }
@@ -41,6 +51,7 @@ isCollapsedAdmin = true;
   localStorage.removeItem('KMtoken')
   this.userheader=false
   this.homeheader=true
+  this.service.setHeaderState('home')
   this.router.navigate(['/login'])
 }
 

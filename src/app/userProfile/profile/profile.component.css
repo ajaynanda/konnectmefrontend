@@ -51,7 +51,7 @@
 /* Layout adjustments for responsiveness */
 .leftBar {
   transition: 0.5s ease-in-out;
-  margin-top: 69px;
+  margin-top: 68px;
   /* min-height: 100vw; */
 }
 
@@ -63,6 +63,7 @@
   scrollbar-color: #798dba #f4f4f4; /* For Firefox */
   border-radius: 4px; /* Rounded corners */
   scroll-behavior: smooth;
+  padding: 0;
 }
 
 .rightBar {
@@ -70,6 +71,7 @@
   transition: 0.5s ease-in-out;
   max-height: 100vh;
   overflow: auto;
+  padding: 0;
 }
 .blur{
   filter: blur(1px);

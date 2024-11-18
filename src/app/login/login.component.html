@@ -8,7 +8,7 @@
         </div>
        <div class="col-md-5">
         <div class="rowright">
-        <form [formGroup]="LoginForm" (ngSubmit)="login()">
+        <form [formGroup]="LoginForm" (ngSubmit)="login()" *ngIf="email=='';else emailverify">
             <label>Email</label>
             <input type="email" name="email" formControlName="email" placeholder="Email" class="form-control">
             <span style="color: red;" *ngIf="controls['email'].getError('required')!=null && controls['email'].touched">Enter Email</span>
@@ -21,6 +21,16 @@
             <span>Don't have account?<a routerLink='/register'> Register</a> Now</span>
             <button [disabled]="LoginForm.invalid" type="submit" class="btn btn-success btn-lg ">Login</button> 
         </form>
+        <ng-template #emailverify>
+            <div *ngIf="!emailsend;else sends">
+           <input disabled class="form-control" type="email" [(ngModel)]="email"> 
+           <button style="width: fit-content;" type="button" class="btn btn-success btn-lg" (click)="verifyEmail()">Verify Email</button>        
+        </div>
+        <ng-template #sends>
+            <span>Please click the Link send you in Email</span>
+            <button (click)="reLogin()" class="btn btn-success">ok</button>
+        </ng-template>
+        </ng-template>
         </div>
     </div>
     </div>

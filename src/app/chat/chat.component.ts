@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { MatDialog } from '@angular/material/dialog';
+import { LoaderService } from '../shared/services/loader.service';
 interface User {
   Name: string;
   _id: string; // The ID of the chat user
@@ -31,9 +32,10 @@ export class ChatComponent implements OnInit {
   newSelectedUser:String=''
   user = JSON.parse(localStorage.getItem('KMuser') || '{}');
   newUsers: any;
-  constructor(private chatService:ChatService,private dialog:MatDialog) { }
+  constructor(private chatService:ChatService,private dialog:MatDialog,private loaderService:LoaderService) { }
 
   ngOnInit(): void {
+    this.loaderService.setLoader(true)
     this.chatService.getNewMessage().subscribe((message:any) => {
       if(message){
         this.messagesArr.push(message);
@@ -56,6 +58,7 @@ export class ChatComponent implements OnInit {
     this.chatService.chatList(this.user._id).subscribe((res:any)=>{
       console.log(res,"user chats");
       this.newUsers=res.data
+      this.loaderService.setLoader(false)
     })
   }
   filterUsers(event:any): void {
