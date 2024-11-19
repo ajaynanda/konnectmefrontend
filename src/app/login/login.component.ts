@@ -56,13 +56,11 @@ authenticated=false
   }
 verifyEmail(){
   // window.open(`http://localhost:5000/verifyemail?token=${JSON.parse(localStorage.getItem('_vt') || '{}')}`, '_blank');
-  console.log(this.email,"em");
-  
   let form=new FormData()
   form.append('email',this.email)
   this.service.sendEmail(form).subscribe((res)=>{
-    console.log(res,"res");
     this.emailsend=true
+    window.open('https://konnectsme.netlify.app/login','_self')
   },(err=>{
     console.log(err);
     

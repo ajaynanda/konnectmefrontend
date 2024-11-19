@@ -7,6 +7,7 @@
 .rightBar{
     transition: 0.5s ease-in-out;
     overflow: auto;
+    overflow-x: hidden;
     scrollbar-width: thin; /* For Firefox */
     scrollbar-color: #798dba #f4f4f4; /* For Firefox */
     max-height: 100vh;
@@ -16,6 +17,7 @@
 .centerBar{
     transition: 0.5s ease-in-out;
     overflow: auto;
+    overflow-x: hidden;
     scrollbar-width: thin; /* For Firefox */
     scrollbar-color: #798dba #f4f4f4; /* For Firefox */
     border-radius: 4px; /* Rounded corners */
