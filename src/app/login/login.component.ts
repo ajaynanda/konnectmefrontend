@@ -60,7 +60,7 @@ verifyEmail(){
   form.append('email',this.email)
   this.service.sendEmail(form).subscribe((res)=>{
     this.emailsend=true
-    window.open('https://konnectsme.netlify.app/login','_self')
+    // window.open('https://konnectsme.netlify.app/login','_self')
   },(err=>{
     console.log(err);
     
