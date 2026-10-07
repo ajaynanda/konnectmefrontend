@@ -38,13 +38,17 @@ export class SharebarComponent implements OnInit {
 
   
  async submit(data: NgForm) {
+  console.log(data, "share data")
     const id = JSON.parse(localStorage.getItem('KMuser') || '{}')._id
     const formdata = new FormData
     const uploadedFileUrl = await this.upload();
-    if (uploadedFileUrl) {
+    // if (uploadedFileUrl) {
       formdata.append('img', this.filename); 
       formdata.append('desc', data.value.desc);
-      formdata.append('url',uploadedFileUrl.location)
+      if (this.filename) {
+        formdata.append('url',uploadedFileUrl.location)
+      }
+      
       this.postService.createpost(id, formdata).subscribe((res) => {
         console.log(res);
         data.reset();
@@ -53,9 +57,9 @@ export class SharebarComponent implements OnInit {
         this.videoPreview = '';
         this.isVideoSelected = false;
       });
-    } else {
-      console.log("Upload failed, cannot proceed with post creation");
-    }
+    // } else {
+    //   console.log("Upload failed, cannot proceed with post creation");
+    // }
   }
   upload():Promise<any | null>{
     return new Promise((resolve,reject)=>{

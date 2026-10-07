@@ -17,7 +17,7 @@
                 <div *ngIf="suggestionArray.length==0">
                     No data to display
                   </div>       
-            <mat-card class="suggetionCard" *ngFor="let img of suggestionArray;let i=index" ngxSlickItem>
+            <mat-card appearance="outlined" class="suggetionCard" *ngFor="let img of suggestionArray;let i=index" ngxSlickItem>
                 <a routerLink="/user/myprofile/{{img._id}}">
                 <img *ngIf="img.profilePic!=null" src="{{img.profilePic}}" alt="pic" class="imageCard">
                 <img *ngIf="img.profilePic==null"
@@ -31,7 +31,7 @@
             </mat-card>
         </ngx-slick-carousel>
         <div *ngIf="suggestionArray.length==2 || suggestionArray.length==1" class="row1">
-        <mat-card class="suggetionCard" *ngFor="let img of suggestionArray;let i=index">
+        <mat-card appearance="outlined" class="suggetionCard" *ngFor="let img of suggestionArray;let i=index">
             <a [routerLink]="'/user/myprofile/'+ img._id">
                <img *ngIf="img.Profilepic!=null" src="{{img.profilePic}}" alt="pic" class="imageCard">
             <img *ngIf="img.Profilepic==null"

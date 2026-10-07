@@ -16,7 +16,7 @@
     background-color: transparent;
     border: none;
   }
-  .mat-menu-panel{
+  .mat-mdc-menu-panel{
     min-height: 0px!important;
   }
 
