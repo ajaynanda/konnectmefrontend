@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/notification.service';
 import { UserService } from 'src/app/user/user.service';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/user/user.service';
 export class ChangePasswordComponent implements OnInit {
   id: any;
 
-  constructor(private dialogRef:MatDialogRef<ChangePasswordComponent>,private userService:UserService,private fb:FormBuilder,private notification:NotificationService) { }
+  constructor(private dialogRef:MatDialogRef<ChangePasswordComponent>,private userService:UserService,private fb:UntypedFormBuilder,private notification:NotificationService) { }
 
   ngOnInit(): void {
     this.id=JSON.parse( localStorage.getItem("KMuser") || '{}')._id
@@ -21,9 +21,9 @@ export class ChangePasswordComponent implements OnInit {
 this.dialogRef.close(ChangePasswordComponent)
   }
   passwordForm=this.fb.group({
-    opassword:new FormControl('',[Validators.required,Validators.minLength(6)]),
-    npassword:new FormControl('',[Validators.required,Validators.minLength(6)]),
-    cpassword:new FormControl('',[Validators.required,Validators.minLength(6)])
+    opassword:new UntypedFormControl('',[Validators.required,Validators.minLength(6)]),
+    npassword:new UntypedFormControl('',[Validators.required,Validators.minLength(6)]),
+    cpassword:new UntypedFormControl('',[Validators.required,Validators.minLength(6)])
   },{
     validators:this.mustmatch("npassword", "cpassword")
   })
@@ -41,7 +41,7 @@ this.dialogRef.close(ChangePasswordComponent)
     this.dialogRef.close(ChangePasswordComponent)
   }
   mustmatch(password:any,cpassword:any){
-    return (formGroup:FormGroup)=>{
+    return (formGroup:UntypedFormGroup)=>{
       const passwordcontrol=formGroup.controls[password]
       const cpasswordcontrol=formGroup.controls[cpassword]
       if(cpasswordcontrol.errors && !cpasswordcontrol.errors['mustmatch']){
