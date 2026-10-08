@@ -14,7 +14,7 @@ import { TermsComponent } from './terms/terms.component';
 import { PolicyComponent } from './policy/policy.component';
 import { MembershipComponent } from './membership/membership.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TokenInterceptor } from './token.interceptor';
 import { CommonModule } from '@angular/common';
 import { ChangePasswordComponent } from './userProfile/change-password/change-password.component';
@@ -26,41 +26,31 @@ import { OtpverifyComponent } from './password/otpverify/otpverify.component';
 import {MatIconModule} from '@angular/material/icon';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatMenuModule } from '@angular/material/menu';
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    TermsComponent,
-    PolicyComponent,
-    MembershipComponent,
-    ChangePasswordComponent,
-          PasswordComponent,
-          ForgotpasswordComponent,
-          OtpverifyComponent,
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    NgbModule, 
-    NgImageSliderModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-   MatSnackBarModule,
-MatIconModule,
-SlickCarouselModule,
-MatMenuModule,
-
-   
-  ],
-
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        TermsComponent,
+        PolicyComponent,
+        MembershipComponent,
+        ChangePasswordComponent,
+        PasswordComponent,
+        ForgotpasswordComponent,
+        OtpverifyComponent,
+    ],
+    bootstrap: [AppComponent], imports: [CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        NgbModule,
+        NgImageSliderModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatIconModule,
+        SlickCarouselModule,
+        MatMenuModule], providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
