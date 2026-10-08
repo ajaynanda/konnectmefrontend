@@ -1,6 +1,7 @@
 [build]
-  publish = "dist/angular"
-  command = "ng build"
+  command = "npm run build"
+  publish = "dist/angular/browser"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
