@@ -1,1 +1,3 @@
-<span class="loader_state" *ngIf="loaderState"><mat-spinner ></mat-spinner></span>
+@if (loaderState) {
+  <span class="loader_state"><mat-spinner ></mat-spinner></span>
+}
