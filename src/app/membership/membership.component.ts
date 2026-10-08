@@ -44,8 +44,7 @@ import { Component, OnInit } from '@angular/core';
     margin:10px;
     color:darkred;
   }
-  `],
-    standalone: false
+  `]
 })
 export class MembershipComponent implements OnInit {
 

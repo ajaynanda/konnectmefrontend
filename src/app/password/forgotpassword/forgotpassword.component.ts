@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, UntypedFormBuilder, UntypedFormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, UntypedFormBuilder, UntypedFormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { NotificationService } from 'src/app/notification.service';
@@ -7,7 +7,7 @@ import { NotificationService } from 'src/app/notification.service';
     selector: 'app-forgotpassword',
     templateUrl: './forgotpassword.component.html',
     styleUrls: ['./forgotpassword.component.css'],
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule]
 })
 export class ForgotpasswordComponent implements OnInit {
 

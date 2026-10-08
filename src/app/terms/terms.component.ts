@@ -13,8 +13,7 @@ import { Component, OnInit } from '@angular/core';
     h1{
       color:darkred;
     }
-  `],
-    standalone: false
+  `]
 })
 export class TermsComponent implements OnInit {
 

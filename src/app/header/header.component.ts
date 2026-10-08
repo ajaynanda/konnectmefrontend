@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
-    standalone: false
+    imports: [RouterLink, NgbCollapse, RouterOutlet]
 })
 export class HeaderComponent implements OnInit {
 homeheader:Boolean=true

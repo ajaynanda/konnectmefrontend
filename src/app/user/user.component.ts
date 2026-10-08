@@ -3,12 +3,19 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { UserService } from './user.service';
 import { LoaderService } from '../shared/services/loader.service';
+import { LoaderComponent } from '../loader/loader.component';
+import { NgClass, NgStyle } from '@angular/common';
+import { LeftbarComponent } from '../leftbar/leftbar.component';
+import { SharebarComponent } from '../sharebar/sharebar.component';
+import { PostbarComponent } from '../postbar/postbar.component';
+import { RightbarComponent } from '../rightbar/rightbar.component';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.css'],
-    standalone: false
+    imports: [LoaderComponent, NgClass, NgStyle, LeftbarComponent, SharebarComponent, PostbarComponent, RightbarComponent, ChatComponent]
 })
 export class UserComponent implements OnInit {
   currentUrl: any;

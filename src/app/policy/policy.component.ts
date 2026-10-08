@@ -18,8 +18,7 @@ import { Component, OnInit } from '@angular/core';
       color:blue;
       font-size:20px;
     }
-  `],
-    standalone: false
+  `]
 })
 export class PolicyComponent implements OnInit {
 

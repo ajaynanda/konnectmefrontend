@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/notification.service';
 import { UserService } from 'src/app/user/user.service';
@@ -8,7 +8,7 @@ import { UserService } from 'src/app/user/user.service';
     selector: 'app-change-password',
     templateUrl: './change-password.component.html',
     styleUrls: ['./change-password.component.css'],
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule]
 })
 export class ChangePasswordComponent implements OnInit {
   id: any;

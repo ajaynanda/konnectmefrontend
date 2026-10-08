@@ -5,12 +5,13 @@ import { UpdateComponent } from '../update/update.component';
 import { UserService } from 'src/app/user/user.service';
 import { ChangePasswordComponent} from '../change-password/change-password.component';
 import {Router} from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-leftbars',
     templateUrl: './leftbars.component.html',
     styleUrls: ['./leftbars.component.css'],
-    standalone: false
+    imports: [NgClass]
 })
 export class LeftbarsComponent implements OnInit {
   navdata=navData

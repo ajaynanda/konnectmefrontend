@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { PostService } from '../postService/post.service';
 import { environment } from 'src/environments/environment';
 import AWSS3UploadAshClient from 'aws-s3-upload-ash'
@@ -9,7 +9,7 @@ import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
     selector: 'app-sharebar',
     templateUrl: './sharebar.component.html',
     styleUrls: ['./sharebar.component.css'],
-    standalone: false
+    imports: [FormsModule]
 })
 export class SharebarComponent implements OnInit {
   imagePreviewSrc: string = ''

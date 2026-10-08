@@ -2,6 +2,10 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoaderService } from '../shared/services/loader.service';
+import { FormsModule } from '@angular/forms';
+import { NgClass, DatePipe } from '@angular/common';
+import { NgSelectComponent } from '@ng-select/ng-select';
+import { MatButton } from '@angular/material/button';
 interface User {
   Name: string;
   _id: string; // The ID of the chat user
@@ -16,7 +20,7 @@ interface User {
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.css'],
-    standalone: false
+    imports: [FormsModule, NgClass, NgSelectComponent, MatButton, DatePipe]
 })
 
 

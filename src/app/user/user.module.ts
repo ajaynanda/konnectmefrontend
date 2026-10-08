@@ -20,25 +20,15 @@ import { ChatComponent } from '../chat/chat.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 // import { LoaderComponent } from '../loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    SharebarComponent,
-    LeftbarComponent,
-    RightbarComponent,
-    PostbarComponent,
-    ChatComponent,
-    // LoaderComponent
-  ],
-  imports: [
+    imports: [
     CommonModule,
     UserRoutingModule,
     FormsModule,
     MatDialogModule,
     MatCardModule,
-    SharedModule,
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -46,9 +36,13 @@ import { SharedModule } from '../shared/shared.module';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
-    NgSelectModule
-    
-  ],
-
+    NgSelectModule,
+    UserComponent,
+    SharebarComponent,
+    LeftbarComponent,
+    RightbarComponent,
+    PostbarComponent,
+    ChatComponent
+],
 })
 export class UserModule { }

@@ -3,11 +3,15 @@ import { Component, OnInit} from '@angular/core';
 import { PostService } from '../postService/post.service';
 import { UserService } from '../user/user.service';
 import { LoaderService } from '../shared/services/loader.service';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatCard } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
+import { NgClass, TitleCasePipe } from '@angular/common';
 @Component({
     selector: 'app-rightbar',
     templateUrl: './rightbar.component.html',
     styleUrls: ['./rightbar.component.css'],
-    standalone: false
+    imports: [SlickCarouselModule, MatCard, RouterLink, NgClass, TitleCasePipe]
 })
 export class RightbarComponent implements OnInit {
   suggestionArray:any=[];
