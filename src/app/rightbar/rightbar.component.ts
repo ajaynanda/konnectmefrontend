@@ -4,9 +4,10 @@ import { PostService } from '../postService/post.service';
 import { UserService } from '../user/user.service';
 import { LoaderService } from '../shared/services/loader.service';
 @Component({
-  selector: 'app-rightbar',
-  templateUrl: './rightbar.component.html',
-  styleUrls: ['./rightbar.component.css']
+    selector: 'app-rightbar',
+    templateUrl: './rightbar.component.html',
+    styleUrls: ['./rightbar.component.css'],
+    standalone: false
 })
 export class RightbarComponent implements OnInit {
   suggestionArray:any=[];

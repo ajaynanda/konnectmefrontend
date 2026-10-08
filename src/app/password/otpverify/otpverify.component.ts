@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-otpverify',
-  templateUrl: './otpverify.component.html',
-  styleUrls: ['./otpverify.component.css']
+    selector: 'app-otpverify',
+    templateUrl: './otpverify.component.html',
+    styleUrls: ['./otpverify.component.css'],
+    standalone: false
 })
 export class OtpverifyComponent implements OnInit {
 

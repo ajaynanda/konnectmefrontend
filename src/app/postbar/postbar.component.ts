@@ -3,9 +3,10 @@ import { NgForm } from '@angular/forms';
 import { PostService } from '../postService/post.service';
 import { LoaderService } from '../shared/services/loader.service';
 @Component({
-  selector: 'app-postbar',
-  templateUrl: './postbar.component.html',
-  styleUrls: ['./postbar.component.css']
+    selector: 'app-postbar',
+    templateUrl: './postbar.component.html',
+    styleUrls: ['./postbar.component.css'],
+    standalone: false
 })
 export class PostbarComponent implements OnInit {
 likes?:boolean

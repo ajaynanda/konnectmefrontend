@@ -7,9 +7,10 @@ interface sideNavToggle{
   collapsed:boolean
 }
 @Component({
-  selector: 'app-leftbar',
-  templateUrl: './leftbar.component.html',
-  styleUrls: ['./leftbar.component.css']
+    selector: 'app-leftbar',
+    templateUrl: './leftbar.component.html',
+    styleUrls: ['./leftbar.component.css'],
+    standalone: false
 })
 export class LeftbarComponent implements OnInit {
   isMobileView = false;

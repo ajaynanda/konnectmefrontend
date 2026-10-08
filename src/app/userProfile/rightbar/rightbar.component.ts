@@ -3,10 +3,11 @@ import { Observable, of } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-rightbars',
-  templateUrl: './rightbar.component.html',
-  styleUrls: ['./rightbar.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+    selector: 'app-rightbars',
+    templateUrl: './rightbar.component.html',
+    styleUrls: ['./rightbar.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RightbarsComponent implements OnInit {
 @Input() userdata:any

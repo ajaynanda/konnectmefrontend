@@ -7,9 +7,10 @@ import { ChangePasswordComponent} from '../change-password/change-password.compo
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-leftbars',
-  templateUrl: './leftbars.component.html',
-  styleUrls: ['./leftbars.component.css']
+    selector: 'app-leftbars',
+    templateUrl: './leftbars.component.html',
+    styleUrls: ['./leftbars.component.css'],
+    standalone: false
 })
 export class LeftbarsComponent implements OnInit {
   navdata=navData

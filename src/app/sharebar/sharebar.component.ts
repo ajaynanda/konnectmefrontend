@@ -6,9 +6,10 @@ import AWSS3UploadAshClient from 'aws-s3-upload-ash'
 import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
 
 @Component({
-  selector: 'app-sharebar',
-  templateUrl: './sharebar.component.html',
-  styleUrls: ['./sharebar.component.css']
+    selector: 'app-sharebar',
+    templateUrl: './sharebar.component.html',
+    styleUrls: ['./sharebar.component.css'],
+    standalone: false
 })
 export class SharebarComponent implements OnInit {
   imagePreviewSrc: string = ''

@@ -13,9 +13,10 @@ interface User {
   repProfilePic?: string; // Profile picture of the other user in the chat (optional)
 }
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+    selector: 'app-chat',
+    templateUrl: './chat.component.html',
+    styleUrls: ['./chat.component.css'],
+    standalone: false
 })
 
 

@@ -4,10 +4,11 @@ import { PostService } from 'src/app/postService/post.service';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProfileComponent implements OnInit {
   profile: boolean = true

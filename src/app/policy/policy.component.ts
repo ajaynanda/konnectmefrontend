@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-policy',
-  templateUrl: './policy.component.html',
-  styles: [`
+    selector: 'app-policy',
+    templateUrl: './policy.component.html',
+    styles: [`
     h1{
       color:darkred;
       margin:30px ;
@@ -18,7 +18,8 @@ import { Component, OnInit } from '@angular/core';
       color:blue;
       font-size:20px;
     }
-  `]
+  `],
+    standalone: false
 })
 export class PolicyComponent implements OnInit {
 

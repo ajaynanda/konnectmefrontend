@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@a
 import { NgForm } from '@angular/forms';
 import { PostService } from '../../postService/post.service';
 @Component({
-  selector: 'app-postbars',
-  templateUrl: './postbar.component.html',
-  styleUrls: ['./postbar.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+    selector: 'app-postbars',
+    templateUrl: './postbar.component.html',
+    styleUrls: ['./postbar.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PostbarsComponent implements OnInit {
 likes:Boolean=false

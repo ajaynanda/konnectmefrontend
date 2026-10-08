@@ -5,9 +5,10 @@ import { UserService } from './user.service';
 import { LoaderService } from '../shared/services/loader.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.css'],
+    standalone: false
 })
 export class UserComponent implements OnInit {
   currentUrl: any;
