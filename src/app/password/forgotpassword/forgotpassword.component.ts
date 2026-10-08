@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, UntypedFormBuilder, UntypedFormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { NotificationService } from 'src/app/notification.service';
 @Component({
-  selector: 'app-forgotpassword',
-  templateUrl: './forgotpassword.component.html',
-  styleUrls: ['./forgotpassword.component.css']
+    selector: 'app-forgotpassword',
+    templateUrl: './forgotpassword.component.html',
+    styleUrls: ['./forgotpassword.component.css'],
+    imports: [FormsModule, ReactiveFormsModule]
 })
 export class ForgotpasswordComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private route:Router,private authService:AuthService,private notification:NotificationService) {
+  constructor(private fb:UntypedFormBuilder,private route:Router,private authService:AuthService,private notification:NotificationService) {
 
   }
   forgotForm=this.fb.group({
-    email:new FormControl('',[Validators.email,Validators.required])
+    email:new UntypedFormControl('',[Validators.email,Validators.required])
   })
 
    

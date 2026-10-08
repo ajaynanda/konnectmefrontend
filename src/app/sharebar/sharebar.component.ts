@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { PostService } from '../postService/post.service';
 import { environment } from 'src/environments/environment';
 import AWSS3UploadAshClient from 'aws-s3-upload-ash'
 import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
 
 @Component({
-  selector: 'app-sharebar',
-  templateUrl: './sharebar.component.html',
-  styleUrls: ['./sharebar.component.css']
+    selector: 'app-sharebar',
+    templateUrl: './sharebar.component.html',
+    styleUrls: ['./sharebar.component.css'],
+    imports: [FormsModule]
 })
 export class SharebarComponent implements OnInit {
   imagePreviewSrc: string = ''
@@ -38,13 +39,17 @@ export class SharebarComponent implements OnInit {
 
   
  async submit(data: NgForm) {
+  console.log(data, "share data")
     const id = JSON.parse(localStorage.getItem('KMuser') || '{}')._id
     const formdata = new FormData
     const uploadedFileUrl = await this.upload();
-    if (uploadedFileUrl) {
+    // if (uploadedFileUrl) {
       formdata.append('img', this.filename); 
       formdata.append('desc', data.value.desc);
-      formdata.append('url',uploadedFileUrl.location)
+      if (this.filename) {
+        formdata.append('url',uploadedFileUrl.location)
+      }
+      
       this.postService.createpost(id, formdata).subscribe((res) => {
         console.log(res);
         data.reset();
@@ -53,9 +58,9 @@ export class SharebarComponent implements OnInit {
         this.videoPreview = '';
         this.isVideoSelected = false;
       });
-    } else {
-      console.log("Upload failed, cannot proceed with post creation");
-    }
+    // } else {
+    //   console.log("Upload failed, cannot proceed with post creation");
+    // }
   }
   upload():Promise<any | null>{
     return new Promise((resolve,reject)=>{

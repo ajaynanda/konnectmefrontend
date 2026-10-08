@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-terms',
-  templateUrl: './terms.component.html',
-  styles: [`
+    selector: 'app-terms',
+    templateUrl: './terms.component.html',
+    styles: [`
     span{
       font-size:20px;
     }

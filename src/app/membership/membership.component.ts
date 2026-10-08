@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-membership',
-  templateUrl: './membership.component.html',
-  styles: [`
+    selector: 'app-membership',
+    templateUrl: './membership.component.html',
+    styles: [`
   .col-md-7{
     text-align:center;
   }

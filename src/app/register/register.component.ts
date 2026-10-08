@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
+    imports: [FormsModule, ReactiveFormsModule, RouterLink]
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb:FormBuilder, private service:AuthService,private _Router:Router) { }
+  constructor(private fb:UntypedFormBuilder, private service:AuthService,private _Router:Router) { }
   registerForm=this.fb.group({
-    fname:new FormControl('',Validators.required),
-    lname:new FormControl('',[Validators.required]),
-    email:new FormControl('',[Validators.required,Validators.email]),
-    password:new FormControl('',[Validators.required,Validators.minLength(6)]),
-    cpassword:new FormControl('',[Validators.required,Validators.minLength(6)]),
+    fname:new UntypedFormControl('',Validators.required),
+    lname:new UntypedFormControl('',[Validators.required]),
+    email:new UntypedFormControl('',[Validators.required,Validators.email]),
+    password:new UntypedFormControl('',[Validators.required,Validators.minLength(6)]),
+    cpassword:new UntypedFormControl('',[Validators.required,Validators.minLength(6)]),
     },
     {
       validators:this.mustmatch("password", "cpassword")
@@ -33,7 +34,7 @@ this.service.Register(this.registerForm.value).subscribe((result:any)=>{
 })
 }
 mustmatch(password:any,cpassword:any){
-  return (formGroup:FormGroup)=>{
+  return (formGroup:UntypedFormGroup)=>{
     const passwordcontrol=formGroup.controls[password]
     const cpasswordcontrol=formGroup.controls[cpassword]
     if(cpasswordcontrol.errors && !cpasswordcontrol.errors['mustmatch']){

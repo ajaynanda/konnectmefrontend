@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { PostService } from '../postService/post.service';
 import { LoaderService } from '../shared/services/loader.service';
+import { NgClass, DatePipe } from '@angular/common';
+import { MatIconButton } from '@angular/material/button';
 @Component({
-  selector: 'app-postbar',
-  templateUrl: './postbar.component.html',
-  styleUrls: ['./postbar.component.css']
+    selector: 'app-postbar',
+    templateUrl: './postbar.component.html',
+    styleUrls: ['./postbar.component.css'],
+    imports: [NgClass, FormsModule, MatIconButton, DatePipe]
 })
 export class PostbarComponent implements OnInit {
 likes?:boolean

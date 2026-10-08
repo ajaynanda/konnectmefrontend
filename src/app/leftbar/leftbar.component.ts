@@ -2,14 +2,16 @@ import { Component, Input, OnInit, Output ,EventEmitter, HostListener} from '@an
 import { navData, navProfileData } from './navData';
 import { UserService } from '../user/user.service';
 import { Router, RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
 interface sideNavToggle{
   screenWidth:number,
   collapsed:boolean
 }
 @Component({
-  selector: 'app-leftbar',
-  templateUrl: './leftbar.component.html',
-  styleUrls: ['./leftbar.component.css']
+    selector: 'app-leftbar',
+    templateUrl: './leftbar.component.html',
+    styleUrls: ['./leftbar.component.css'],
+    imports: [NgClass, RouterLink]
 })
 export class LeftbarComponent implements OnInit {
   isMobileView = false;

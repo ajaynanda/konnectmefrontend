@@ -8,8 +8,8 @@ describe('OtpverifyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OtpverifyComponent ]
-    })
+    imports: [OtpverifyComponent]
+})
     .compileComponents();
   });
 

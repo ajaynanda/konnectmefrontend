@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
+import { RouterLink } from '@angular/router';
+import { NgClass, TitleCasePipe, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-rightbars',
-  templateUrl: './rightbar.component.html',
-  styleUrls: ['./rightbar.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+    selector: 'app-rightbars',
+    templateUrl: './rightbar.component.html',
+    styleUrls: ['./rightbar.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterLink, NgClass, TitleCasePipe, DatePipe]
 })
 export class RightbarsComponent implements OnInit {
 @Input() userdata:any

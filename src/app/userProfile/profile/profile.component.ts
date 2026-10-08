@@ -2,12 +2,18 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from 'src/app/postService/post.service';
 import { UserService } from 'src/app/user/user.service';
+import { LoaderComponent } from '../../loader/loader.component';
+import { NgClass, NgStyle, TitleCasePipe } from '@angular/common';
+import { LeftbarsComponent } from '../leftbars/leftbars.component';
+import { PostbarsComponent } from '../postbar/postbar.component';
+import { RightbarsComponent } from '../rightbar/rightbar.component';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [LoaderComponent, NgClass, NgStyle, LeftbarsComponent, PostbarsComponent, RightbarsComponent, TitleCasePipe]
 })
 export class ProfileComponent implements OnInit {
   profile: boolean = true

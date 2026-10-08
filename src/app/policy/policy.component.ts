@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-policy',
-  templateUrl: './policy.component.html',
-  styles: [`
+    selector: 'app-policy',
+    templateUrl: './policy.component.html',
+    styles: [`
     h1{
       color:darkred;
       margin:30px ;

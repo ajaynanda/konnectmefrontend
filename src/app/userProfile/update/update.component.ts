@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/notification.service';
 import { UserService } from 'src/app/user/user.service';
+import { FormsModule } from '@angular/forms';
 @Component({
-  selector: 'app-update',
-  templateUrl: './update.component.html',
-  styleUrls: ['./update.component.css']
+    selector: 'app-update',
+    templateUrl: './update.component.html',
+    styleUrls: ['./update.component.css'],
+    imports: [FormsModule]
 })
 export class UpdateComponent implements OnInit {
 data:any

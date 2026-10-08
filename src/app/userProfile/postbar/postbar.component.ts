@@ -1,11 +1,15 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { PostService } from '../../postService/post.service';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
+import { NgClass, DatePipe } from '@angular/common';
 @Component({
-  selector: 'app-postbars',
-  templateUrl: './postbar.component.html',
-  styleUrls: ['./postbar.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+    selector: 'app-postbars',
+    templateUrl: './postbar.component.html',
+    styleUrls: ['./postbar.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, NgClass, FormsModule, DatePipe]
 })
 export class PostbarsComponent implements OnInit {
 likes:Boolean=false
