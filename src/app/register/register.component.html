@@ -1,50 +1,299 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-7">
-      <div  class="row left">
-        <h1 style="color: blue;cursor: pointer;" class="m-5 text-left"><b>Konnect Me</b></h1>
-        <img src="../../assets/media.jpg" class="img-responsive" width="400px" height="400px">
+<div class="register-page">
+
+  <!-- Left Panel: Brand & Visual -->
+  <div class="register-left">
+    <div class="brand-section">
+      <div class="brand-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="url(#logoGradReg)"/>
+            <path d="M12 20 C12 14 28 14 28 20 C28 26 12 26 12 20Z" fill="white" opacity="0.9"/>
+            <circle cx="14" cy="20" r="3" fill="white"/>
+            <circle cx="26" cy="20" r="3" fill="white"/>
+            <defs>
+              <linearGradient id="logoGradReg" x1="0" y1="0" x2="40" y2="40">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="brand-name">KonnectMe</span>
+      </div>
+
+      <div class="brand-tagline">
+        <h1>Start your journey<br/><span class="highlight-text">in seconds</span></h1>
+        <p>Create your free account and join a community of millions sharing what matters most.</p>
       </div>
     </div>
-    <div class="col-md-5">
-      <div class="rowright">
-        <form [formGroup]="registerForm" (ngSubmit)="register()">
-          <label>First Name</label>
-          <input type="text" placeholder="Enter First Name" formControlName="fname" name="fname" class="form-control">
-          <label>Last Name</label>
-          <input type="text" placeholder="Enter Last Name" formControlName="lname" name="lname" class="form-control">
-          <label>Email</label>
-          <input type="email" name="email" placeholder="Enter Email" formControlName="email" class="form-control">
-          @if (controls['email'].getError('required')!=null && controls['email'].touched) {
-            <span style="color: red;">Enter Email</span>
-          }
-          @if (controls['email'].getError('email')!=null && controls['email'].touched) {
-            <span style="color: red;">Enter Valid Email</span>
-            }<br>
-            <label>Password</label>
-            <input type="password" placeholder="Enter Password" formControlName="password" name="password" class="form-control">
-            @if (controls['password'].getError('required')!=null && controls['password'].touched) {
-              <span style="color: red;">Enter Password</span>
-            }
-            @if (controls['password'].getError('minlength')!=null) {
-              <span style="color: red;">Password must be atleast 6 characters long</span>
-              }<br>
-              <label>Confirm Password</label>
-              <input type="password" name="cpassword" formControlName="cpassword" placeholder="Enter Password again" class="form-control">
-              @if (controls['cpassword'].getError('required')!=null && controls['cpassword'].touched) {
-                <span style="color: red;">Enter Confirm Password</span>
-              }
-              @if (controls['cpassword'].getError('minlength')!=null) {
-                <span style="color: red;">Confirm Password must be atleast 6 characters long</span>
-                }<br>
-                @if (controls['cpassword'].getError('mustmatch')) {
-                  <span style="color: red;">Password does not match</span>
-                }
-                <span>Already have account?<a routerLink='/login'>Login</a></span>
-                <button [disabled]="registerForm.invalid" class="btn btn-success btn-lg ">Register</button>
-              </form>
-            </div>
-          </div>
+
+    <!-- Feature Pills -->
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <span class="feature-title">10M+ Active Members</span>
+          <span class="feature-desc">A thriving community waiting for you</span>
         </div>
       </div>
 
+      <div class="feature-item">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #06b6d4, #0ea5e9);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <span class="feature-title">Real-time Messaging</span>
+          <span class="feature-desc">Chat instantly with friends & connections</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <span class="feature-title">Private & Secure</span>
+          <span class="feature-desc">Your data is always under your control</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <span class="feature-title">It's 100% Free</span>
+          <span class="feature-desc">No hidden fees, no credit card required</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"KonnectMe changed how I stay in touch with people. It's the best social platform I've used."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">R</div>
+        <div>
+          <span class="author-name">Riya Sharma</span>
+          <span class="author-handle">&#64;riya.s · Mumbai</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+  </div>
+
+  <!-- Right Panel: Register Form -->
+  <div class="register-right">
+    <div class="form-wrapper">
+
+      <div class="form-header">
+        <h2>Create your account ✨</h2>
+        <p>Get started for free — no credit card needed.</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="register-form">
+
+        <!-- Name Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname-input">First name</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              <input
+                id="fname-input"
+                type="text"
+                formControlName="fname"
+                placeholder="First name"
+                class="form-input"
+                [class.input-error]="controls['fname'].getError('required') && controls['fname'].touched"
+              >
+            </div>
+            @if (controls['fname'].getError('required') != null && controls['fname'].touched) {
+              <span class="error-msg">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                First name is required
+              </span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="lname-input">Last name</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              <input
+                id="lname-input"
+                type="text"
+                formControlName="lname"
+                placeholder="Last name"
+                class="form-input"
+                [class.input-error]="controls['lname'].getError('required') && controls['lname'].touched"
+              >
+            </div>
+            @if (controls['lname'].getError('required') != null && controls['lname'].touched) {
+              <span class="error-msg">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                Last name is required
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="reg-email-input">Email address</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,12 2,6"/>
+              </svg>
+            </span>
+            <input
+              id="reg-email-input"
+              type="email"
+              formControlName="email"
+              placeholder="you@example.com"
+              class="form-input"
+              [class.input-error]="(controls['email'].getError('required') || controls['email'].getError('email')) && controls['email'].touched"
+            >
+          </div>
+          @if (controls['email'].getError('required') != null && controls['email'].touched) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Email is required
+            </span>
+          }
+          @if (controls['email'].getError('email') != null && controls['email'].touched) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Please enter a valid email address
+            </span>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="reg-password-input">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input
+              id="reg-password-input"
+              type="password"
+              formControlName="password"
+              placeholder="Min. 6 characters"
+              class="form-input"
+              [class.input-error]="(controls['password'].getError('required') || controls['password'].getError('minlength')) && controls['password'].touched"
+            >
+          </div>
+          @if (controls['password'].getError('required') != null && controls['password'].touched) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Password is required
+            </span>
+          }
+          @if (controls['password'].getError('minlength') != null) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Must be at least 6 characters
+            </span>
+          }
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="cpassword-input">Confirm password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input
+              id="cpassword-input"
+              type="password"
+              formControlName="cpassword"
+              placeholder="Re-enter password"
+              class="form-input"
+              [class.input-error]="(controls['cpassword'].getError('required') || controls['cpassword'].getError('minlength') || controls['cpassword'].getError('mustmatch')) && controls['cpassword'].touched"
+            >
+          </div>
+          @if (controls['cpassword'].getError('required') != null && controls['cpassword'].touched) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Please confirm your password
+            </span>
+          }
+          @if (controls['cpassword'].getError('minlength') != null) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Must be at least 6 characters
+            </span>
+          }
+          @if (controls['cpassword'].getError('mustmatch')) {
+            <span class="error-msg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              Passwords do not match
+            </span>
+          }
+        </div>
+
+        <!-- Terms notice -->
+        <p class="terms-notice">
+          By creating an account, you agree to our
+          <a routerLink="/terms" class="terms-link">Terms of Service</a> and
+          <a routerLink="/policy" class="terms-link">Privacy Policy</a>.
+        </p>
+
+        <!-- Submit -->
+        <button [disabled]="registerForm.invalid" type="submit" class="btn-register">
+          <span>Create Account</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <div class="form-footer">
+        <p>Already have an account? <a routerLink="/login" class="login-link">Sign in</a></p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

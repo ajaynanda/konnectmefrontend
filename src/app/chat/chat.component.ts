@@ -1,11 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { MatDialog } from '@angular/material/dialog';
-import { LoaderService } from '../shared/services/loader.service';
 import { FormsModule } from '@angular/forms';
-import { NgClass, DatePipe } from '@angular/common';
-import { NgSelectComponent } from '@ng-select/ng-select';
-import { MatButton } from '@angular/material/button';
+import { DatePipe } from '@angular/common';
+import { NgLabelTemplateDirective, NgNotFoundTemplateDirective, NgOptionTemplateDirective, NgSelectComponent } from '@ng-select/ng-select';
+import { RouterLink } from '@angular/router';
 interface User {
   Name: string;
   _id: string; // The ID of the chat user
@@ -16,11 +15,18 @@ interface User {
   repName?: string; // Name of the other user in the chat (optional)
   repProfilePic?: string; // Profile picture of the other user in the chat (optional)
 }
+
+interface ChatCandidate {
+  _id: string;
+  Name: string;
+  Profilepic?: string;
+  hasConversation?: boolean;
+}
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.css'],
-    imports: [FormsModule, NgClass, NgSelectComponent, MatButton, DatePipe]
+    imports: [FormsModule, NgSelectComponent, NgOptionTemplateDirective, NgLabelTemplateDirective, NgNotFoundTemplateDirective, DatePipe, RouterLink]
 })
 
 
@@ -30,17 +36,20 @@ export class ChatComponent implements OnInit {
   searchTerm: string = '';
   // messages: {} = {};
   messagesArr:any[]=[];
-  selectedUser: User | any = null;
+  selectedUser: User | null = null;
   newMessage: string = '';
-  filteredUsers: User[] = [...this.users];
+  filteredUsers: User[] = [];
   searchText: string = '';
-  newSelectedUser:String=''
-  user = JSON.parse(localStorage.getItem('KMuser') || '{}');
-  newUsers: any;
-  constructor(private chatService:ChatService,private dialog:MatDialog,private loaderService:LoaderService) { }
+  newSelectedUser: string | null = null;
+  readonly user = JSON.parse(localStorage.getItem('KMuser') || '{}');
+  newUsers: ChatCandidate[] = [];
+  private availableChatCandidates: ChatCandidate[] = [];
+  private existingChatCandidates: ChatCandidate[] = [];
+  loadingNewUsers = false;
+  newUsersError = '';
+  constructor(private readonly chatService:ChatService,private readonly dialog:MatDialog) { }
 
   ngOnInit(): void {
-    this.loaderService.setLoader(true)
     this.chatService.getNewMessage().subscribe((message:any) => {
       if(message){
         this.messagesArr.push(message);
@@ -53,27 +62,57 @@ export class ChatComponent implements OnInit {
   }
   getUserbyid(){
     this.chatService.userByID(this.user._id).subscribe((result:any)=>{
-      // this.filteredUsers=result.data.chatList 
-      this.users=result.data.chatList
-      console.log(this.users,"usg");
-      
-}) 
-  }
-  getUser(){
-    this.chatService.chatList(this.user._id).subscribe((res:any)=>{
-      console.log(res,"user chats");
-      this.newUsers=res.data
-      this.loaderService.setLoader(false)
+      const conversations = result?.data?.chatList || [];
+      this.users = conversations;
+      this.filteredUsers = [...this.users]
+      this.existingChatCandidates = conversations
+        .filter((conversation: any) => conversation?.repID && conversation.repID !== this.user._id)
+        .map((conversation: any) => ({
+          _id: conversation.repID,
+          Name: conversation.repName || conversation.Name,
+          Profilepic: conversation.repProfilePic,
+          hasConversation: true
+        }));
+      this.refreshNewChatCandidates();
     })
   }
+  getUser(){
+    this.loadingNewUsers = true;
+    this.newUsersError = '';
+    this.chatService.chatList(this.user._id).subscribe((res:any)=>{
+      const users = Array.isArray(res?.data) ? res.data : [];
+      this.availableChatCandidates = users
+        .filter((candidate: any) => candidate?._id && candidate._id !== this.user._id)
+        .map((candidate: any) => ({
+          _id: candidate._id,
+          Name: candidate.Name || `${candidate.Firstname || ''} ${candidate.Lastname || ''}`.trim(),
+          Profilepic: candidate.Profilepic
+        }));
+      this.refreshNewChatCandidates();
+      this.loadingNewUsers = false;
+    }, (error) => {
+      this.loadingNewUsers = false;
+      this.newUsersError = 'Could not load people. Please try again.';
+      console.error('Unable to load chat recipients', error);
+    })
+  }
+
+  get availableNewUserCount(): number {
+    return this.newUsers.filter((candidate) => !candidate.hasConversation).length;
+  }
+
+  private refreshNewChatCandidates(): void {
+    const newCandidateIds = new Set(this.availableChatCandidates.map((candidate) => candidate._id));
+    this.newUsers = [
+      ...this.availableChatCandidates,
+      ...this.existingChatCandidates.filter((candidate) => !newCandidateIds.has(candidate._id))
+    ];
+  }
   filterUsers(event:any): void {
-    if(event.target.value==''){
-      this.filteredUsers = this.users 
-    }
+    const query = (event.target.value || '').trim().toLowerCase()
     this.filteredUsers = this.users.filter((user:any) =>
-      user.repName.toLowerCase().includes(this.searchText.toLowerCase())
-    );
-    this.users=this.filteredUsers
+      (user.repName || '').toLowerCase().includes(query)
+    )
   }
   selectUser(user: User): void {
     this.selectedUser = user;
@@ -95,34 +134,43 @@ export class ChatComponent implements OnInit {
   }
   startNewChat(): void {
     this.selectedUser = null;
-    // this.newMessage = '';
-   this.dialog.open(this.chatDialogTemplate, {
-    width: '50%'
-  });
+    this.newSelectedUser = null;
+    this.dialog.open(this.chatDialogTemplate, {
+      width: 'min(520px, 94vw)',
+      maxWidth: '94vw',
+      panelClass: 'chat-new-dialog',
+      backdropClass: 'chat-dialog-backdrop'
+    });
+  }
+
+  closeNewChatDialog(): void {
+    this.dialog.closeAll();
   }
   sendMessage(): void {
   console.log(this.selectedUser,"user");
-  
-    if (this.newMessage.trim() && this.selectedUser) {
+
+    const recipientId = this.selectedUser?.repID;
+    const messageText = this.newMessage.trim();
+    if (messageText && this.selectedUser && recipientId) {
       // this.messages[this.selectedUser.id].push(this.newMessage);
       let message={
         userid:this.user._id,
-        reciepientID:this.selectedUser.repID,
-        msg:this.newMessage,
+        reciepientID:recipientId,
+        msg:messageText,
         messagedBy:this.user,
         messageTime:new Date(),
         isSeen:false
       }
       const formdata=new FormData()
       formdata.append('userid', this.user._id);
-      formdata.append('reciepientID', this.selectedUser.repID);
-      formdata.append('msg', this.newMessage);
+      formdata.append('reciepientID', recipientId);
+      formdata.append('msg', messageText);
       formdata.append('messagedBy',  JSON.stringify(this.user));
       formdata.append('messageTime', new Date().toISOString());
       formdata.append('isSeen', 'false'); 
       this.chatService.sendMessage(message);
       this.newMessage = '';
-      this.chatService.sendMessages(this.selectedUser.chatID,formdata).subscribe((res:any)=>{
+      this.chatService.sendMessages(this.selectedUser.chatID, formdata, this.user._id, recipientId).subscribe((res:any)=>{
         console.log(res,"res");
         
       })

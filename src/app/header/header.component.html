@@ -1,57 +1,88 @@
 
-@if (homeheader ) {
-  <div class="header">
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-      <a routerLink="/home" class="navbar-brand">KonnectMe</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        (click)="isCollapsed = !isCollapsed"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div [ngbCollapse]="isCollapsed" class="menubar collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/membership">Premium Membership</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/policy">Privacy Policy</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/terms">Terms and Conditions</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Register</a>
-          </li>
-        </ul>
+@if (homeheader) {
+  <header class="header km-header">
+    <nav class="navbar navbar-expand-lg km-navbar">
+      <div class="container-fluid px-lg-5 px-3">
+        <a routerLink="/home" class="navbar-brand km-brand">
+          <span class="km-brand-icon"><i class="bi bi-diagram-3-fill"></i></span>
+          <span class="km-brand-name">Konnect<span class="km-brand-accent">Me</span></span>
+        </a>
+
+        <button
+          class="navbar-toggler km-toggler"
+          type="button"
+          (click)="isCollapsed = !isCollapsed"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse km-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto km-nav-links">
+            <li class="nav-item">
+              <a class="nav-link km-nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isCollapsed = true">
+                <i class="bi bi-grid-fill me-1 km-nav-icon"></i> Overview
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link km-nav-link" routerLink="/membership" routerLinkActive="active" (click)="isCollapsed = true">
+                <i class="bi bi-gem me-1 km-nav-icon"></i> Membership
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link km-nav-link" routerLink="/policy" routerLinkActive="active" (click)="isCollapsed = true">
+                <i class="bi bi-shield-check me-1 km-nav-icon"></i> Privacy Policy
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link km-nav-link" routerLink="/terms" routerLinkActive="active" (click)="isCollapsed = true">
+                <i class="bi bi-file-text me-1 km-nav-icon"></i> Terms
+              </a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2 km-auth-actions">
+            <a routerLink="/login" class="km-btn km-btn-ghost" (click)="isCollapsed = true">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </a>
+            <a routerLink="/register" class="km-btn km-btn-primary" (click)="isCollapsed = true">
+              <span>Join Free</span>
+              <i class="bi bi-arrow-right-short ms-1"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
-  </div>
+  </header>
 }
 @if (userheader) {
-  <div class="user_header">
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-      <div class="navbar-header">
-        <a routerLink="/user/dashboard" class="navbar-brand">KonnectMe</a>
+  <div class="user_header km-user-header-bar">
+    <!-- Brand -->
+    <a routerLink="/user/dashboard" class="km-user-brand">
+      <span class="km-user-brand-icon"><i class="bi bi-diagram-3-fill"></i></span>
+      <span class="km-user-brand-name">KonnectMe</span>
+    </a>
+
+    <!-- Search bar (center) -->
+    <div class="km-user-search">
+      <i class="bi bi-search km-search-icon"></i>
+      <input type="text" class="km-search-input" placeholder="Search KonnectMe...">
+    </div>
+
+    <!-- Right nav -->
+    <div class="km-user-nav">
+      <a routerLink="/user/dashboard" class="km-user-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a [routerLink]="['/user/myprofile', userid]" class="km-user-nav-link" routerLinkActive="active">My Profile</a>
+      <a (click)="logout()" class="km-user-nav-link km-logout-link" style="cursor:pointer;">Logout</a>
+      <!-- <button class="km-notif-btn" title="Notifications">
+        <i class="bi bi-bell-fill"></i>
+        <span class="km-notif-badge">3</span>
+      </button> -->
+      <div class="km-header-avatar" [routerLink]="['/user/myprofile', userid]">
+        {{ userName ? userName.charAt(0).toUpperCase() : 'U' }}
       </div>
-      <button class="navbar-toggler" type="button" (click)="isCollapsedUser = !isCollapsedUser">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div [ngbCollapse]="isCollapsedUser" class="menubar collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="nav navbar-nav">
-          <li><a title="Home" routerLink="/user/dashboard">Home</a></li>
-          <li><a title="View Profile" [routerLink]="['/user/myprofile', userid]">My Profile</a></li>
-          <li><a title="Logout" (click)="logout()" routerLink="">Logout</a></li>
-        </ul>
-      </div>
-    </nav>
+    </div>
   </div>
 }
 

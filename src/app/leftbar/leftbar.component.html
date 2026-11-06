@@ -1,23 +1,37 @@
 <div class="container">
-  @if (!profile) {
-    <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
-      <div class="logo-container">
-        <span class="logo bi bi-list" (click)="toggleCollapse()"></span>
-        <!-- <div class="logo-text" *ngIf="collapsed">KonnectMe</div> -->
-      </div>
+  <div class="sidenav">
+
+      <!-- Toggle button at top -->
+      <button class="toggle-btn"  [title]="collapsed ? 'Collapse' : 'Expand'">
+        <i class="bi bi-layout-sidebar-reverse"></i>
+      </button>
+
+      <!-- Navigation links — always show icon, show label when space -->
       <ul class="sidenav-nav">
         @for (data of navdata; track data) {
           <li class="sidenav-nav-item">
-            <a class="sidenav-nav-link" [ngClass]="this.currentUrl==data.routerLink?'url_active':''" [routerLink]="data.routerLink" (click)="changePage(data)">
+            <a
+              class="sidenav-nav-link"
+              [routerLink]="data.routerLink"
+              routerLinkActive="url_active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [title]="data.label"
+            >
               <i class="sidenav-link-icon" [class]="data.icon"></i>
-              @if (collapsed) {
-                <span class="sidenav-link-text">{{data.label}}</span>
-              }
+              <span class="sidenav-link-text">{{ data.label }}</span>
             </a>
           </li>
         }
       </ul>
-    </div>
-  }
 
+      <!-- User avatar at bottom -->
+      <div class="sidenav-bottom">
+        <div class="user-mini">
+          <div class="user-avatar">
+            {{ userName ? userName[0].toUpperCase() : 'U' }}
+          </div>
+        </div>
+      </div>
+
+  </div>
 </div>

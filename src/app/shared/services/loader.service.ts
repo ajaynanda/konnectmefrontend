@@ -5,12 +5,22 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoaderService {
-loaderState:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false)
-  constructor() { }
+  private readonly loaderState = new BehaviorSubject<boolean>(false);
+  private activeRequests = 0;
+
+  constructor() {}
+
   getLoader(){
     return this.loaderState.asObservable()
   }
-  setLoader(value:boolean){
-    this.loaderState.next(value)
+
+  beginRequest(): void {
+    this.activeRequests += 1;
+    this.loaderState.next(true);
+  }
+
+  endRequest(): void {
+    this.activeRequests = Math.max(0, this.activeRequests - 1);
+    this.loaderState.next(this.activeRequests > 0);
   }
 }

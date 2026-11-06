@@ -1,24 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { PostService } from '../postService/post.service';
-import { LoaderService } from '../shared/services/loader.service';
-import { NgClass, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { MatIconButton } from '@angular/material/button';
+import { EmptyStateComponent } from '../shared/components/empty-state/empty-state.component';
 @Component({
     selector: 'app-postbar',
     templateUrl: './postbar.component.html',
     styleUrls: ['./postbar.component.css'],
-    imports: [NgClass, FormsModule, MatIconButton, DatePipe]
+    imports: [ FormsModule, MatIconButton, DatePipe, EmptyStateComponent]
 })
-export class PostbarComponent implements OnInit {
-likes?:boolean
-count:any=0
+export class PostbarComponent implements OnInit, OnChanges {
+  readonly defaultProfileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+  currentUser: any = {};
+
+  /** When provided, the component displays these posts instead of fetching the timeline. */
+  @Input() userpost: any;
+  @Input() emptyStateTitle = 'No Posts Available';
+  @Input() emptyStateSubtitle = 'When you or people you follow share something, posts will appear here.';
+
+  @Input() profileUserId: string | number | null = null;
+  @Input() savedPostIds: string[] = [];
+  @Output() userpostChange = new EventEmitter<any[]>();
+  @Output() refreshRequested = new EventEmitter<void>();
+  @Output() savedPostIdsChange = new EventEmitter<string[]>();
+
+  /** Whether the component is being used on a profile page (enables delete button). */
+  @Input() isProfileMode = false;
+
 feedPost:any
 
   userid: any;
   commentPost: boolean=false;
   index: any;
-  postLiked: any[]=[];
+  pendingLikes = new Set<string>();
+  pendingSaves = new Set<string>();
   editComments: boolean=false;
   commentError:boolean=false
   addReplys:boolean=false
@@ -30,71 +46,119 @@ feedPost:any
   editReplyComments:boolean=false
   dropdownIndex: number | null = null; 
   dropdownReplyIndex:number | null =null;
-  constructor(private postservice:PostService,private loaderService:LoaderService) { }
+  constructor(private postservice:PostService, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-  this.loaderService.setLoader(true)
    const user=JSON.parse( localStorage.getItem("KMuser") || '{}')
+    this.currentUser = user;
    console.log(user._id);
    this.userid=user._id
-  this.feedPosts()
-  
+
+   if (this.userpost) {
+     // Profile mode: posts are passed in via @Input
+     this.feedPost = this.userpost;
+   } else {
+     // Home feed mode: fetch from timeline
+     this.feedPosts();
+   }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userpost'] && !changes['userpost'].firstChange) {
+      this.feedPost = this.userpost;
+    }
   }
   feedPosts(){
     this.postservice.timeline(this.userid).subscribe((res:any)=>{
       console.log(res.data);
       this.feedPost=res.data
-      this.loaderService.setLoader(false)
-      this.getLikes(this.feedPost)
+      this.changeDetector.markForCheck();
      })
   }
-  toggle(id:any,index:any,post:any){
-    this.postLiked[index]=!this.postLiked[index]
-      this.liked(index,id)
-  }
-  getLikes(post:any){
-    let elID:any[]=[]
-    post.forEach((element:any) => {
-    const lk=  element.Likes.filter((x:any)=>{
-      if(x.userid==this.userid){
-       elID.push(x)
-        return true
-      }else{
-        return false
-      } 
-    }) 
-      return elID
+  toggle(id:any){
+    const postId = String(id);
+    if (this.pendingLikes.has(postId)) {
+      return;
+    }
+
+    this.pendingLikes.add(postId);
+    this.postservice.like(this.userid,id).subscribe({
+      next: () => this.refreshPosts(),
+      error: (err) => {
+        console.error(err);
+        this.pendingLikes.delete(postId);
+        this.changeDetector.markForCheck();
+      },
+      complete: () => {
+        this.pendingLikes.delete(postId);
+        this.changeDetector.markForCheck();
+      }
     });
   }
-liked(index:number,post:any){
-  // console.log(post,"post")
- this.index=index
- this.postservice.like(this.userid,post).subscribe((res:any)=>{
-  // console.log(res,"resk");
-  if (res.data.Success) {
-    console.log(res.data.Success)
-    this.likes=true
-    console.log(this.likes)
-    this.feedPosts()
+
+  isLikedByCurrentUser(post: any): boolean {
+    return (post.Likes || []).some((like: any) => String(like.userid) === String(this.userid));
   }
-  else{this.likes=false
-    this.feedPosts()
+
+  isSaved(post: any): boolean {
+    return this.savedPostIds.includes(String(post._id));
   }
-  
- })
-}
+
+  toggleSaved(post: any): void {
+    const postId = String(post._id);
+    if (this.pendingSaves.has(postId)) {
+      return;
+    }
+
+    this.pendingSaves.add(postId);
+    const request = this.isSaved(post)
+      ? this.postservice.unsavePost(this.userid, postId)
+      : this.postservice.savePost(this.userid, postId);
+    request.subscribe({
+      next: () => {
+        this.savedPostIds = this.isSaved(post)
+          ? this.savedPostIds.filter((savedId) => savedId !== postId)
+          : [...this.savedPostIds, postId];
+        this.savedPostIdsChange.emit(this.savedPostIds);
+        this.pendingSaves.delete(postId);
+        this.changeDetector.markForCheck();
+      },
+      error: (err) => {
+        console.error(err);
+        this.pendingSaves.delete(postId);
+        this.changeDetector.markForCheck();
+      }
+    });
+  }
+
+  refreshPosts(): void {
+    if (this.isProfileMode && this.profileUserId !== null) {
+      this.refreshRequested.emit();
+      return;
+    }
+
+    this.feedPosts();
+  }
 commentArray(comments:NgForm,postid:number){
-  console.log(comments.value);
-    this.commentPost=true
-    console.log(this.userid,postid);
-    const formdata=new FormData
-    formdata.append('comment',comments.value.comment)
-    this.postservice.comment(this.userid,postid,comments.value).subscribe((res:any)=>{
-      console.log(res);
-      this.feedPosts()
-    },(err)=>{
-      console.log(err);   
-    })
+  const text = comments.value.comment?.trim();
+  if (!text) {
+    this.commentError = true;
+    return;
+  }
+
+  this.commentError = false;
+  this.postservice.comment(this.userid,postid,{
+    ...comments.value,
+    comment: text,
+    Name: this.currentUser.Name || `${this.currentUser.Firstname || ''} ${this.currentUser.Lastname || ''}`.trim(),
+    profileImg: this.currentUser.Profilepic || ''
+  }).subscribe({
+    next: () => {
+      comments.resetForm();
+      this.refreshPosts();
+    },
+    error: (err) => console.log(err)
+  });
 }
 // comment(index:number){
 //   this.index=index
@@ -165,7 +229,7 @@ comment(index:any,post:any){
     this.commentData=null
     this.dropdownIndex=null
     this.editComments=false
-    this.feedPosts()
+    this.refreshPosts()
    },(err)=>{
       console.log(err);
       
@@ -175,7 +239,7 @@ comment(index:any,post:any){
  editReplyComment(repid:any,commentid:any,edits:any){
   this.postservice.editReplyComment(this.postData._id,commentid,repid,{comment:edits.value}).subscribe((res)=>{
     // console.log(res,"response edioits"); 
-    this.feedPosts()
+    this.refreshPosts()
     this.editReplyComments=false
     this.replyData=null
     this.dropdownReplyIndex=null
@@ -203,7 +267,7 @@ addReply(postid:number,commentid:number,edits:any){
   this.postservice.addReplyComment(postid,commentid,data).subscribe((result)=>{
     console.log(result)
     this.replyData=null
-    this.feedPosts()
+    this.refreshPosts()
   })
 }
 cancelReplyComment(){
@@ -227,10 +291,19 @@ deleteReplyComment(postid:any,commentid:any,rep: any){
       this.editReplyComments=true
       this.replyData=null
       this.dropdownReplyIndex=null
-      this.feedPosts()     
+      this.refreshPosts()
   })
 }
  replyToComment(comment: any) {
    console.log("Replying to comment:", comment);
+ }
+
+ deletePost(post: any) {
+   this.postservice.deletePost(post._id).subscribe({
+     next: () => {
+       this.refreshPosts();
+     },
+     error: (err) => console.log(err)
+   });
  }
 }

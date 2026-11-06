@@ -1,4 +1,13 @@
 
+@if (!userpost || userpost.length === 0) {
+  <app-empty-state
+    icon="bi-camera"
+    title="No Posts Yet"
+    subtitle="Share your first post and it will appear here."
+    size="md">
+  </app-empty-state>
+}
+
 @for (post of userpost; track post) {
   <div class="post">
     <div class="postWrapper">

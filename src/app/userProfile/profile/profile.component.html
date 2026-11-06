@@ -1,34 +1,203 @@
-@if (loaderState) {
-  <app-loader [loaderState]="loaderState" ></app-loader>
-}
-<div class="profile" [ngClass]="loaderState?'blur':''">
+<div class="profile">
   <div class="row">
     <!-- Sidebar -->
-    <div class="leftBar" [ngClass]="sidebar?'col-md-2':'col-md-1'" [ngStyle]="{width:sidebar?'15%':'5%'}">
-      <app-leftbars></app-leftbars>
+    <div class="leftBar">
+      <app-leftbar [profile]="true"></app-leftbar>
     </div>
 
     <!-- Main content area -->
-    <div class="mainContent col-md-10">
-      <!-- Profile top section with cover and profile images -->
-      <div class="profileTop">
+    <div class="mainContent">
+      <section class="profileTop">
         <div class="profileCover">
-          <img class="profileCoverImg img-fluid" src="../../../assets/koneticon.jpg" alt="coverimg">
-          <img class="profileUserImg"
-            [src]="userData?.Profilepic ? userData?.Profilepic : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'"
-            alt="profile-img">
-            <div class="profileInfo">
-              <h4 class="profileInfoName">{{userData?.Firstname | titlecase}} {{userData?.Lastname | titlecase}}</h4>
-              <p class="profileInfoDesc">{{userData?.Aboutme}}</p>
-            </div>
-          </div>
+          <img
+            class="profileCoverImg"
+            [src]="userData?.Coverpic?.url || userData?.Coverpic || 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2000&q=85'"
+            alt="Profile cover">
         </div>
 
-        <!-- Profile feed section -->
+        <div class="profileDetails">
+          <div class="profileIdentity">
+            <img
+              class="profileUserImg"
+              [src]="userData?.Profilepic || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'"
+              alt="Profile">
+
+            <div class="profileInfo">
+              <h1 class="profileInfoName">
+                {{ userData?.Firstname | titlecase }} {{ userData?.Lastname | titlecase }}
+                @if (userData?.verified) {
+                  <i class="bi bi-patch-check-fill verifiedBadge" aria-label="Verified account"></i>
+                }
+              </h1>
+              <p class="profileInfoDesc">{{ userData?.Aboutme || 'Welcome to my profile.' }}</p>
+            </div>
+
+            <div class="profileActions">
+              <button class="editProfileButton" type="button" (click)="openEditProfile()"><i class="bi bi-pencil-fill"></i> Edit Profile</button>
+              <!-- <button class="secondaryProfileButton" type="button"><i class="bi bi-share"></i> Share</button>
+              <button class="moreProfileButton" type="button" aria-label="More profile options"><i class="bi bi-three-dots"></i></button> -->
+            </div>
+          </div>
+
+          <div class="profileMeta">
+            @if (userData?.City) {
+              <span><i class="bi bi-geo-alt"></i>{{ userData.City }}</span>
+            }
+            @if (userData?.createdAt) {
+              <span><i class="bi bi-calendar3"></i>Joined {{ userData.createdAt | date:'MMMM yyyy' }}</span>
+            }
+          </div>
+
+          <div class="profileStats" aria-label="Profile statistics">
+            <div><strong>{{ userPost.length }}</strong><span>Posts</span></div>
+            <div><strong>{{ userData?.Followers?.length || 0 }}</strong><span>Followers</span></div>
+            <div><strong>{{ userData?.Followings?.length || 0 }}</strong><span>Following</span></div>
+          </div>
+
+          <nav class="profileTabs" aria-label="Profile sections">
+            <button class="profileTab" [class.active]="activeTab === 'posts'" type="button" (click)="selectTab('posts')">Posts</button>
+            <button class="profileTab" [class.active]="activeTab === 'about'" type="button" (click)="selectTab('about')">About</button>
+            <button class="profileTab" [class.active]="activeTab === 'media'" type="button" (click)="selectTab('media')">Photos &amp; Media</button>
+            <button class="profileTab" [class.active]="activeTab === 'connections'" type="button" (click)="selectTab('connections')">Connections</button>
+            <button class="profileTab" [class.active]="activeTab === 'liked'" type="button" (click)="selectTab('liked')">Liked</button>
+          </nav>
+        </div>
+      </section>
+
         <div class="profileFeed row">
-          <!-- Postbar area -->
-          <div class="centerBar col-md-8" >
-            <app-postbars  [userpost]="userPost"></app-postbars>
+          <div class="centerBar col-md-8">
+            @if (profileTabError) {
+              <p class="profileTabError" role="alert">{{ profileTabError }}</p>
+            }
+
+            @if (activeTab === 'posts' || activeTab === 'liked') {
+              <app-postbar
+                [userpost]="visiblePosts"
+                [profileUserId]="userid"
+                [isProfileMode]="true"
+                [savedPostIds]="savedPostIds"
+                [emptyStateTitle]="activeTab === 'liked' ? 'No Liked Posts' : 'No Posts Yet'"
+                [emptyStateSubtitle]="activeTab === 'liked' ? 'Posts you like will appear here.' : 'Share your first post and it will appear here.'"
+                (refreshRequested)="refreshCurrentTab()"
+                (savedPostIdsChange)="updateSavedPostIds($event)">
+              </app-postbar>
+            }
+
+            @if (activeTab === 'about') {
+              <section class="profileContentCard aboutCard">
+                <header class="profileContentHeader">
+                  <h2>About {{ userData?.Firstname || 'this user' }}</h2>
+                </header>
+                <div class="aboutDescription">
+                  <h3>Introduction</h3>
+                  <p>{{ userData?.Aboutme || 'No introduction has been added yet.' }}</p>
+                </div>
+                <div class="aboutDetails">
+                  <div class="aboutDetail">
+                    <span class="aboutDetailIcon"><i class="bi bi-person"></i></span>
+                    <span><small>Name</small><strong>{{ userData?.Firstname }} {{ userData?.Lastname }}</strong></span>
+                  </div>
+                  @if (userData?.City) {
+                    <div class="aboutDetail">
+                      <span class="aboutDetailIcon"><i class="bi bi-geo-alt"></i></span>
+                      <span><small>City</small><strong>{{ userData.City }}</strong></span>
+                    </div>
+                  }
+                  @if (userData?.DateofBirth) {
+                    <div class="aboutDetail">
+                      <span class="aboutDetailIcon"><i class="bi bi-calendar3"></i></span>
+                      <span><small>Date of birth</small><strong>{{ userData.DateofBirth | date:'MMM d, y' }}</strong></span>
+                    </div>
+                  }
+                  @if (userData?.Relation) {
+                    <div class="aboutDetail">
+                      <span class="aboutDetailIcon"><i class="bi bi-heart"></i></span>
+                      <span><small>Relationship</small><strong>{{ userData.Relation }}</strong></span>
+                    </div>
+                  }
+                  @if (userData?.createdAt) {
+                    <div class="aboutDetail">
+                      <span class="aboutDetailIcon"><i class="bi bi-calendar-check"></i></span>
+                      <span><small>Joined</small><strong>{{ userData.createdAt | date:'MMMM y' }}</strong></span>
+                    </div>
+                  }
+                </div>
+              </section>
+            }
+
+            @if (activeTab === 'media') {
+              <section class="profileContentCard">
+                <header class="profileContentHeader">
+                  <h2>Photos &amp; Media</h2>
+                  @if (isOwnProfile) {
+                    <button class="mediaSavedLink" type="button" [class.active]="mediaSection === 'saved'"
+                      (click)="selectMediaSection(mediaSection === 'saved' ? 'photos' : 'saved')">
+                      <i class="bi bi-bookmark"></i>{{ mediaSection === 'saved' ? 'Posted media' : 'Saved items' }}
+                    </button>
+                  }
+                </header>
+                @if (mediaSection === 'photos') {
+                  <div class="profileMediaGrid">
+                    @for (media of profileMedia; track media._id) {
+                      <article class="profileMediaCard">
+                        @if (isVideoPost(media)) {
+                          <video [src]="mediaSource(media)" controls preload="metadata"></video>
+                        } @else {
+                          <img [src]="mediaSource(media)" [alt]="media.Description || 'Profile post image'">
+                        }
+                        @if (media.Description) {
+                          <p>{{ media.Description }}</p>
+                        }
+                      </article>
+                    } @empty {
+                      <p class="profileEmptyState">Photos and videos shared by {{ userData?.Firstname || 'this user' }} will appear here.</p>
+                    }
+                  </div>
+                } @else {
+                  <app-postbar
+                    [userpost]="visiblePosts"
+                    [profileUserId]="userid"
+                    [isProfileMode]="true"
+                    [savedPostIds]="savedPostIds"
+                    emptyStateTitle="No Saved Posts"
+                    emptyStateSubtitle="Save posts from the menu to find them here."
+                    (refreshRequested)="refreshCurrentTab()"
+                    (savedPostIdsChange)="updateSavedPostIds($event)">
+                  </app-postbar>
+                }
+              </section>
+            }
+
+            @if (activeTab === 'connections') {
+              <section class="profileContentCard">
+                <header class="profileContentHeader">
+                  <h2>Connections</h2>
+                </header>
+                <nav class="connectionTabs" aria-label="Connection types">
+                  <button type="button" [class.active]="connectionSection === 'followers'" (click)="selectConnectionSection('followers')">
+                    Followers <span>{{ userData?.Followers?.length || 0 }}</span>
+                  </button>
+                  <button type="button" [class.active]="connectionSection === 'following'" (click)="selectConnectionSection('following')">
+                    Following <span>{{ userData?.Followings?.length || 0 }}</span>
+                  </button>
+                  <button type="button" [class.active]="connectionSection === 'friends'" (click)="selectConnectionSection('friends')">
+                    Friends <span>{{ userData?.Friends?.length || 0 }}</span>
+                  </button>
+                </nav>
+                <div class="connectionPeople">
+                  @for (person of connectionPeople; track person._id) {
+                    <a class="connectionPerson" [routerLink]="['/user/myprofile/', person._id]">
+                      <img [src]="person.Profilepic || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'"
+                        [alt]="personName(person)">
+                      <span><strong>{{ personName(person) | titlecase }}</strong><small>KonnectMe member</small></span>
+                      <i class="bi bi-chevron-right"></i>
+                    </a>
+                  } @empty {
+                    <p class="profileEmptyState">No {{ connectionSection }} to show yet.</p>
+                  }
+                </div>
+              </section>
+            }
           </div>
 
           <!-- Right sidebar area -->

@@ -10,6 +10,10 @@ export const environment = {
     timeline:'timeline',
     like:'like',
     postbyuserid:'postbyuserid',
+    likedPosts:'likedposts',
+    savedPosts:'savedposts',
+    savePost:'savepost',
+    unsavePost:'unsavepost',
     createPost:'userpost',
     deletePost:'deletepost',
     commentPost:'comment',
@@ -36,4 +40,3 @@ export const environment = {
     AWS_ACCESS_KEY2:'AKIAZ6L3DB2TDT62V6JD',
     AWS_KEY2:'xPJ18yOdtb5CKXXersHVjjdNc0SqPrkoQVptIHsB'
 };
-

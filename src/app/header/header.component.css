@@ -1,53 +1,341 @@
-.user_header{
-    position: fixed;
-    margin-bottom: 20px;
-    z-index: 1000;
-    width: 100%;
-}
-.admin_header{
-    position: fixed;
-    margin-bottom: 20px;
-    z-index: 1000;
-    width: 100%;
-}
-.header{
-    position: fixed;
-    margin-bottom: 20px;
-    z-index: 1000;
-    width: 100%;
-    top: 0;
-}
-.navbar{
-    display: flex;
-    width: 100%;
-    margin-bottom: 0px;
-}
-li{
-    padding: 5px;
-}
-a{
-    padding: 5px;
-    text-decoration: none;
-    color:whitesmoke;
-    font-size: large;
-    font-weight: bold;
+/* Modern Pre-login Header */
+.km-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.menubar .navbar-nav{
-    margin-left: auto;
-    margin-right: 30px;
+.km-navbar {
+  padding: 0.85rem 0;
 }
-.fa-bars{
-    color: white;
-    border: none;
+
+.km-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 0;
 }
-.navbar-brand{
-    font-size: 35px;
-    color:#ffffff;
+
+.km-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
 }
-.navbar-brand:hover{  
-    color:#cdcdcd;
+
+.km-brand-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
 }
-a:hover{
-    color:#3c3cbb;
+
+.km-brand-accent {
+  color: #38bdf8;
 }
+
+.km-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 1.4rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.km-toggler:focus {
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+}
+
+.km-nav-links {
+  gap: 8px;
+}
+
+.km-nav-link {
+  color: #94a3b8 !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.km-nav-icon {
+  font-size: 0.95rem;
+  color: #64748b;
+  transition: color 0.2s ease;
+}
+
+.km-nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.km-nav-link:hover .km-nav-icon {
+  color: #38bdf8;
+}
+
+.km-nav-link.active {
+  color: #ffffff !important;
+  background: rgba(37, 99, 235, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+  font-weight: 600 !important;
+}
+
+.km-nav-link.active .km-nav-icon {
+  color: #38bdf8;
+}
+
+.km-auth-actions {
+  display: flex;
+  align-items: center;
+}
+
+.km-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.km-btn-ghost {
+  color: #cbd5e1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.km-btn-ghost:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.km-btn-primary {
+  color: #ffffff;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.km-btn-primary:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ===== MODERN USER HEADER ===== */
+.user_header,
+.admin_header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Modern header bar */
+.km-user-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 68px;
+  padding: 0 24px;
+  background: #1a1d2e;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+}
+
+/* Brand */
+.km-user-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+  min-width: 160px;
+}
+
+.km-user-brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+}
+
+.km-user-brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Search bar */
+.km-user-search {
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 8px 18px;
+  transition: all 0.2s;
+}
+
+.km-user-search:focus-within {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(99,102,241,0.5);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+
+.km-search-icon {
+  color: #94a3b8;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.km-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.km-search-input::placeholder {
+  color: #64748b;
+}
+
+/* Right nav */
+.km-user-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.km-user-nav-link {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.km-user-nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.07);
+}
+
+.km-user-nav-link.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.km-logout-link { color: #94a3b8; }
+.km-logout-link:hover { color: #f87171; background: rgba(239,68,68,0.1); }
+
+/* Notification button */
+.km-notif-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.07);
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-left: 4px;
+}
+
+.km-notif-btn:hover {
+  background: rgba(255,255,255,0.12);
+  color: #e2e8f0;
+}
+
+.km-notif-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  background: #ef4444;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Header avatar */
+.km-header-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 6px;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: opacity 0.2s;
+}
+
+.km-header-avatar:hover { opacity: 0.85; }
+
+.fa-bars {
+  color: white;
+  border: none;
+}
