@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
 import { RouterLink } from '@angular/router';
-import { NgClass, TitleCasePipe, DatePipe } from '@angular/common';
+import { TitleCasePipe, DatePipe } from '@angular/common';
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
 
 @Component({
     selector: 'app-rightbars',
     templateUrl: './rightbar.component.html',
     styleUrls: ['./rightbar.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, NgClass, TitleCasePipe, DatePipe]
+    imports: [RouterLink, TitleCasePipe, DatePipe, EmptyStateComponent]
 })
-export class RightbarsComponent implements OnInit {
+  export class RightbarsComponent implements OnInit, OnChanges {
 @Input() userdata:any
   frnd: any=[];
   followList:any=[]
@@ -20,13 +20,19 @@ export class RightbarsComponent implements OnInit {
 
   constructor(private userService:UserService,private cf:ChangeDetectorRef) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userdata'] && this.userdata?._id) {
+      this.getList();
+    }
+  }
+
   ngOnInit(): void {
  this.userService.userChanged.subscribe((data)=>{
       if(data!=null){ 
          this.userdata=data
          this.cf.detectChanges()
         }
-       if(this.userdata?._id) this.getList()
+      if(this.userdata?._id) this.getList()
     })
   }
   getList(){

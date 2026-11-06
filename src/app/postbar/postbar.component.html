@@ -1,3 +1,11 @@
+@if (!feedPost || feedPost.length === 0) {
+  <app-empty-state
+    icon="bi-file-earmark-text"
+    [title]="emptyStateTitle"
+    [subtitle]="emptyStateSubtitle"
+    size="md">
+  </app-empty-state>
+}
 
 @for (post of feedPost; track post; let i = $index) {
   <div class="post">
@@ -5,10 +13,31 @@
       <div class="postTop">
         <div class="postTopLeft">
           <img src="{{post.profileImg?post.profileImg:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}}" class="postProfileImg" width="50px" height="50px">
-          <span class="postUsername">{{post.Name}}</span>
-          <span class="postDate">{{post.createdAt | date}}</span>
+          <div class="postUserInfo">
+            <div class="postUserNameRow">
+              <span class="postUsername">{{post.Name}}</span>
+              <i class="bi bi-patch-check-fill postVerified"></i>
+            </div>
+            <div class="postMetaRow">
+              <span class="postDate">{{post.createdAt | date:"MMM d, y 'at' h:mm a" }}</span>
+              <!-- <span class="postVisibility"><i class="bi bi-globe2"></i> Public</span> -->
+            </div>
+          </div>
         </div>
         <div class="postTopRight">
+          <button class="postOptionsBtn" title="More options" (click)="post._showMenu = !post._showMenu"><i class="bi bi-three-dots"></i></button>
+          @if (post._showMenu) {
+            <div class="postOptionsDropdown">
+              @if (isProfileMode && userid === post.userid) {
+                <button (click)="deletePost(post); post._showMenu = false"><i class="bi bi-trash3"></i> Delete</button>
+              }
+              <button [disabled]="pendingSaves.has(post._id)" (click)="toggleSaved(post); post._showMenu = false">
+                <i [class]="isSaved(post) ? 'bi bi-bookmark-check-fill' : 'bi bi-bookmark'"></i>
+                {{ isSaved(post) ? 'Remove from saved' : 'Save post' }}
+              </button>
+              <button (click)="post._showMenu = false"><i class="bi bi-flag"></i> Report</button>
+            </div>
+          }
         </div>
       </div>
       <div class="postCenter">
@@ -26,23 +55,36 @@
             src="{{ post.url ? post.url : '../../assets/' + post.Image }}" class="postImg" alt="no image">
           }
         </div>
+        <!-- Like counts row -->
+        <div class="postStatsRow">
+          <div class="postLikeEmojis">
+            <span class="likeEmoji">👍</span><span class="likeEmoji likeEmoji--heart">❤️</span>
+            <span class="postLikeCounter">{{post.Likes?.length || 0}} Likes</span>
+          </div>
+          <div class="postStatsRight">
+            <span style="cursor:pointer;" (click)="comment(i,post)" class="postStatLink">{{post.Comments?.length || 0}} comments</span>
+          </div>
+        </div>
+
+        <!-- Action bar -->
         <div class="postBottom">
-          <div class="postBottomLeft">
-            <img style="cursor: pointer;" src="../../assets/like.png" (click)="toggle(post._id,i,post)" alt="like icon" width="20px"
-              height="20x">
-              <!-- <img  src="../../assets/heart.png"  alt="heart icon" width="20px" height="20x"> -->
-              <!-- <span class="like" >
-              <i *ngFor="let Likes of post.Likes"  [ngClass]=" Likes.userid==userid? 'fa fa-heart red':'fa fa-heart'"></i>
-            </span> -->
-            @for (Likes of post.Likes; track Likes) {
-              <i [ngClass]=" postLiked[i] || Likes.userid==userid? 'fa fa-heart red':Likes.userid!=userid && !postLiked[i]?'':'fa fa-regular fa-heart'"></i>
-            }
-            <!-- <i [ngClass]="{'fa fa-heart red': post.Likes.some(like => like.userid === userid), 'fa fa-regular fa-heart': !post.Likes.some(like => like.userid === userid)}"></i> -->
-            <span class="postLikeCounter">{{post.Likes.length}} liked</span>
-          </div>
-          <div class="postBottomRight">
-            <span style="cursor: pointer;" (click)="comment(i,post)" class="postCmmentText">{{post.Comments.length}} Comments</span>
-          </div>
+          <button class="postActionBtn" [class.postActionBtn--liked]="isLikedByCurrentUser(post)"
+            [disabled]="pendingLikes.has(post._id)" (click)="toggle(post._id)">
+            <i [class]="isLikedByCurrentUser(post) ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
+            Like
+          </button>
+          <button class="postActionBtn" (click)="comment(i,post)">
+            <i class="bi bi-chat-square-text"></i>
+            Comment
+          </button>
+          <button class="postActionBtn">
+            <i class="bi bi-share"></i>
+            Share
+          </button>
+          <button class="postActionBtn" [disabled]="pendingSaves.has(post._id)" (click)="toggleSaved(post)">
+            <i [class]="isSaved(post) ? 'bi bi-bookmark-check-fill' : 'bi bi-bookmark'"></i>
+            {{ isSaved(post) ? 'Saved' : 'Save' }}
+          </button>
         </div>
         <!-- <div *ngIf="commentPost && i==index">
         <div class="postComment">
@@ -76,25 +118,45 @@
         @if (postData?._id==post?._id) {
           <div>
             <div class="postComment">
-              <div class="commentUserInfo">
-                <img src="{{post.profileImg}}" class="postCommentProfileImg" width="50px" height="50px">
-                <span class="postCommentUsername">{{post?.Name}}</span><br>
-              </div>
               <form class="commentText" #form="ngForm" (ngSubmit)="commentArray(form,post._id)">
-                <textarea type="text" name="comment" #comment="ngModel" ngModel placeholder="Type Your comments"
-                required></textarea>
-                <button class="btn btn-primary btn-sm commentButton" type="submit">Comment</button>
+                <img
+                  [src]="currentUser?.Profilepic || defaultProfileImage"
+                  class="postCommentProfileImg"
+                  alt="Your profile">
+                <div class="commentComposer">
+                  <textarea
+                    name="comment"
+                    #comment="ngModel"
+                    ngModel
+                    rows="2"
+                    maxlength="1000"
+                    placeholder="Write a comment..."
+                    aria-label="Write a comment"
+                    required></textarea>
+                  <div class="commentComposerFooter">
+                    @if (commentError || (comment.invalid && comment.touched)) {
+                      <span class="commentValidation">Please enter a comment.</span>
+                    } @else {
+                      <span class="commentHint">Be kind and respectful</span>
+                    }
+                    <button class="commentButton" type="submit" [disabled]="form.invalid">
+                      <i class="bi bi-send-fill" aria-hidden="true"></i>
+                      <span>Comment</span>
+                    </button>
+                  </div>
+                </div>
               </form>
-              @if (commentError) {
-                <span style="color: red;font-size:small;">Comment is required</span>
-              }
             </div>
             @for (comment of post.Comments ; track comment; let i = $index) {
               <div class="commentBox">
                 <div class="commentHead">
-                  <img src="{{post.profileImg}}" class="imageComment" width="25px" height="25px"
-                    style="border-radius: 50%;">
-                    <span class="nameComment">{{post.Name}}</span>
+                  <img
+                    [src]="comment.profileImg || defaultProfileImage"
+                    class="imageComment"
+                    width="25px"
+                    height="25px"
+                    [alt]="comment.Name || 'Comment author'">
+                    <span class="nameComment">{{comment.Name || 'Member'}}</span>
                     <button mat-icon-button class="dropdown-toggle" (click)="toggleDropdown(i,post)"> </button>
                     @if (dropdownIndex === i && postData._id==post._id) {
                       <div class="dropdown-menu">

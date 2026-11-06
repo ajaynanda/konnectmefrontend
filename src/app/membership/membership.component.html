@@ -1,79 +1,287 @@
-<div class="mem_container container">
-    <div class="row">
-        <div class="col-md-7">
-            <img src="../../assets/koneticon.jpg" width="500px" height="500px" class="img-responsive" style="margin: auto;">
-        </div>
-        <div class="col-md-5">
-            <h2>Why You Need <br>KonnectMe Membership</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Membership Levels</h1>
-            <p>We have created multiple membership levels depending on your status with the Pacific Group Golf Club.</p>
-        </div>
-        <div class="col-md-12">
-            <h1>Guests Membership</h1>
-            <p>This membership level is the default level for all contacts. As a guest, you will be including in our mailing list, be able to sign up for Events, keep your contact information up to date and more.
+<div class="km-mem-wrapper">
+  <!-- HERO HEADER -->
+  <section class="km-mem-hero">
+    <div class="container">
+      <div class="km-pill-badge">
+        <i class="bi bi-gem"></i>
+        <span>Transparent Creator Economics</span>
+      </div>
 
-                Cost for this membership level is Free.</p>
-        </div>
-        <div class="col-md-12">
-            <h1>Silver Membership</h1>
-            <p>This is membership in the Pacific Group Golf Club. As a Full Member, you have selected Pacific Group as the only or primary golf club. You can sign up with other clubs as a secondary member, but Pacific Group will be the primary. 
-            </p>
-        </div>
-        <div class="col-md-12">
-            <h1>Golden Membership</h1>
-            <p>As a Multi-Member, you have all the same benefits as a Full Member, but you are already a primary member at another golf club, and you have joined Pacific Group Golf Club as a secondary member. 
-            </p>
-        </div>
+      <h1 class="km-hero-title mb-3">
+        Simple, Honest Plans. <br>
+        <span class="km-text-gradient">Zero Commission On Your Work.</span>
+      </h1>
+
+      <p class="km-hero-subtitle">
+        Choose the orbit that suits your reach. From casual discovery to global studio teams, enjoy uncompressed media, distraction-free feeds, and 0% platform transaction fees.
+      </p>
+
+      <!-- Billing Toggle -->
+      <div class="km-toggle-container">
+        <button 
+          class="km-toggle-btn" 
+          [class.active]="billingCycle === 'monthly'"
+          (click)="setBillingCycle('monthly')">
+          Monthly Billing
+        </button>
+        <button 
+          class="km-toggle-btn" 
+          [class.active]="billingCycle === 'annual'"
+          (click)="setBillingCycle('annual')">
+          Annual Billing
+          <span class="km-discount-badge">Save 20%</span>
+        </button>
+      </div>
     </div>
-        <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <h3>Guests Plan</h3>
-                        <ul>
-                            <li>Limited Events</li>
-                            <li>Access to live sessions</li>
-                            <li>Chat to Strangers</li>
-                            <li>Posts Authorization</li>  
-                        </ul>
-                        <h4>FREE</h4>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <h3>Silver Plan</h3>
-                        <ul>
-                            <li>UnLimited Events</li>
-                            <li>Access to live sessions</li>
-                            <li>Chat to Strangers</li>
-                            <li>Posts Authorization</li>
-                            <li>One on One Interactions with VIP</li> 
-                            <li>Access to Film Chat</li> 
-                            <li>Unlimited Group Acess</li>
-                        </ul>
-                        <h4>INR 499/-</h4>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <h3>Golden Plan</h3>
-                        <ul>
-                            <li>UnLimited Events</li>
-                            <li>Access to live sessions</li>
-                            <li>Chat to Strangers</li>
-                            <li>Posts Authorization</li>
-                            <li>One on One Interactions with VIP</li> 
-                            <li>Access to Film Chat</li> 
-                            <li>Unlimited Group Acess</li>
-                            <li>VIP Membership</li>
-                            <li>VIP Friends Access</li>
-                        </ul>
-                        <h4>INR 999/-</h4>
-                    </div>
-                </div>
+  </section>
+
+  <!-- CARDS SECTION -->
+  <section class="km-cards-section">
+    <div class="container">
+      <div class="row g-4 align-items-stretch justify-content-center">
+        <!-- Tier 1: Free Explorer -->
+        <div class="col-lg-4 col-md-6">
+          <div class="km-tier-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="km-tier-icon">
+                <i class="bi bi-compass"></i>
+              </div>
+              <h3 class="km-tier-name">Free Explorer</h3>
+              <p class="km-tier-desc">Perfect for casual discovery, connecting with friends, and following creative circles.</p>
+
+              <div class="km-price-wrap">
+                <span class="km-price-val">$0</span>
+                <span class="km-price-sub">/ forever</span>
+              </div>
+
+              <ul class="km-feature-list">
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Uncompressed chronological feed</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Up to 500 active network connections</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Direct 1-on-1 encrypted messaging</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Spatial audio rooms (listen-only)</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Standard community profile</li>
+              </ul>
+            </div>
+
+            <a routerLink="/register" class="km-btn-tier km-btn-outline-tier">
+              Get Started Free
+            </a>
+          </div>
         </div>
-  
+
+        <!-- Tier 2: Pro Creator (Popular) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="km-tier-card km-tier-popular h-100 d-flex flex-column justify-content-between">
+            <span class="km-badge-popular">Most Popular</span>
+            <div>
+              <div class="km-tier-icon">
+                <i class="bi bi-star-fill text-primary"></i>
+              </div>
+              <h3 class="km-tier-name">Pro Creator</h3>
+              <p class="km-tier-desc">For visual creators, photographers, and independent founders building momentum.</p>
+
+              <div class="km-price-wrap">
+                <span class="km-price-val">
+                  {{ billingCycle === 'annual' ? '$9.60' : '$12' }}
+                </span>
+                <span class="km-price-sub">/ month</span>
+              </div>
+
+              <ul class="km-feature-list">
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Unlimited lossless 4K</strong> portfolio galleries</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>Unlimited</strong> network connections & followers</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Verified creator badge & custom domain</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Host unlimited spatial audio rooms</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> <strong>0% platform fee</strong> peer tipping & contracts</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> High-resolution EXIF & metadata tools</li>
+              </ul>
+            </div>
+
+            <a routerLink="/register" class="km-btn-tier km-btn-popular">
+              Start 14-Day Free Trial
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Global Studio -->
+        <div class="col-lg-4 col-md-6">
+          <div class="km-tier-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="km-tier-icon">
+                <i class="bi bi-building"></i>
+              </div>
+              <h3 class="km-tier-name">Global Studio</h3>
+              <p class="km-tier-desc">For creative agencies, production studios, and distributed tech teams.</p>
+
+              <div class="km-price-wrap">
+                <span class="km-price-val">
+                  {{ billingCycle === 'annual' ? '$39' : '$49' }}
+                </span>
+                <span class="km-price-sub">/ month</span>
+              </div>
+
+              <ul class="km-feature-list">
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Everything in Pro for up to <strong>10 team seats</strong></li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Dedicated organization channel & job board</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Advanced API access & webhook events</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Multi-track studio audio broadcasting</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i> Dedicated account concierge & 24/7 SLA</li>
+              </ul>
+            </div>
+
+            <a routerLink="/register" class="km-btn-tier km-btn-outline-tier">
+              Get Studio Access
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATRIX COMPARISON TABLE -->
+  <section class="km-matrix-section">
+    <div class="container">
+      <div class="km-matrix-header">
+        <span class="km-matrix-eyebrow">Detailed Breakdown</span>
+        <h2 class="km-matrix-title">Feature Comparison Matrix</h2>
+      </div>
+
+      <div class="km-table-wrapper">
+        <table class="km-compare-table">
+          <thead>
+            <tr>
+              <th style="width: 40%;">Capability</th>
+              <th style="width: 20%;">Free Explorer</th>
+              <th style="width: 20%; background: #eff6ff; color: #1d4ed8;">Pro Creator</th>
+              <th style="width: 20%;">Global Studio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Category: Media & Feed -->
+            <tr class="km-category-header">
+              <td colspan="4">Media & Visual Showcase</td>
+            </tr>
+            <tr>
+              <td>Feed Resolution Quality</td>
+              <td>1080p Standard</td>
+              <td style="background: #f8fafc; font-weight: 600;">Lossless 4K Raw</td>
+              <td>Lossless 4K Raw</td>
+            </tr>
+            <tr>
+              <td>Portfolio Upload Limit</td>
+              <td>10 projects/mo</td>
+              <td style="background: #f8fafc; font-weight: 600;">Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>EXIF Metadata Tools</td>
+              <td><i class="bi bi-dash text-secondary"></i></td>
+              <td style="background: #f8fafc;"><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+              <td><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+            </tr>
+
+            <!-- Category: Audio & Networking -->
+            <tr class="km-category-header">
+              <td colspan="4">Audio Studios & Mesh Networking</td>
+            </tr>
+            <tr>
+              <td>Network Connections</td>
+              <td>Up to 500</td>
+              <td style="background: #f8fafc; font-weight: 600;">Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Spatial Audio Rooms</td>
+              <td>Listen Only</td>
+              <td style="background: #f8fafc; font-weight: 600;">Host 48kHz Studios</td>
+              <td>Multi-track Host + 10 seats</td>
+            </tr>
+            <tr>
+              <td>Direct Client Encrypted Messaging</td>
+              <td><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+              <td style="background: #f8fafc;"><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+              <td><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+            </tr>
+
+            <!-- Category: Monetization & Identity -->
+            <tr class="km-category-header">
+              <td colspan="4">Monetization & Creator Identity</td>
+            </tr>
+            <tr>
+              <td>Platform Commission Fee</td>
+              <td>0%</td>
+              <td style="background: #f8fafc; font-weight: 600; color: #16a34a;">0% Guaranteed</td>
+              <td style="color: #16a34a; font-weight: 600;">0% Guaranteed</td>
+            </tr>
+            <tr>
+              <td>Verified Creator Badge</td>
+              <td><i class="bi bi-dash text-secondary"></i></td>
+              <td style="background: #f8fafc;"><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+              <td><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+            </tr>
+            <tr>
+              <td>Custom Domain Profile</td>
+              <td><i class="bi bi-dash text-secondary"></i></td>
+              <td style="background: #f8fafc;"><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+              <td><i class="bi bi-check-lg text-primary fw-bold"></i></td>
+            </tr>
+            <tr>
+              <td>Dedicated Team Seats</td>
+              <td>1</td>
+              <td style="background: #f8fafc;">1</td>
+              <td style="font-weight: 600;">Up to 10 Seats</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISK FREE BANNER -->
+  <section class="py-5">
+    <div class="container">
+      <div class="km-guarantee-banner d-flex flex-wrap justify-content-between align-items-center gap-4">
+        <div>
+          <div class="km-pill-badge bg-white text-dark mb-2">
+            <i class="bi bi-shield-check text-success"></i> 100% Risk Free
+          </div>
+          <h3 class="km-guarantee-title">14-Day Full Satisfaction Guarantee</h3>
+          <p class="km-guarantee-desc mb-0">
+            Try Pro Creator or Studio with complete peace of mind. Cancel anytime with a single click in your dashboard. Zero awkward questions.
+          </p>
+        </div>
+        <div>
+          <a routerLink="/register" class="km-btn-tier km-btn-popular px-5 py-3 fs-6">
+            Get Started Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="km-faq-section">
+    <div class="container">
+      <div class="km-faq-header">
+        <span class="km-matrix-eyebrow">Got Questions?</span>
+        <h2 class="km-matrix-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          @for (faq of faqs; track faq.q) {
+            <div class="km-faq-card">
+              <h5 class="km-faq-question">
+                <i class="bi bi-question-circle text-primary"></i>
+                {{ faq.q }}
+              </h5>
+              <p class="km-faq-answer">
+                {{ faq.a }}
+              </p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

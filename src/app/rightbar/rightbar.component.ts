@@ -2,16 +2,15 @@
 import { Component, OnInit} from '@angular/core';
 import { PostService } from '../postService/post.service';
 import { UserService } from '../user/user.service';
-import { LoaderService } from '../shared/services/loader.service';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { MatCard } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
-import { NgClass, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
+import { EmptyStateComponent } from '../shared/components/empty-state/empty-state.component';
 @Component({
     selector: 'app-rightbar',
     templateUrl: './rightbar.component.html',
     styleUrls: ['./rightbar.component.css'],
-    imports: [SlickCarouselModule, MatCard, RouterLink, NgClass, TitleCasePipe]
+    imports: [SlickCarouselModule, RouterLink, TitleCasePipe, EmptyStateComponent]
 })
 export class RightbarComponent implements OnInit {
   suggestionArray:any=[];
@@ -32,19 +31,17 @@ export class RightbarComponent implements OnInit {
     "infinite":false
   };
   followStatus: any[]=[];
-  constructor(private userService: UserService, private postService: PostService,private loaderService: LoaderService) {
+  constructor(private userService: UserService, private postService: PostService) {
   }
 
   ngOnInit() {
     this.getUserdata()
-    this.loaderService.setLoader(true)
   }
   getUserdata(){
     this.userService.userByID(this.user._id).subscribe((result:any)=>{
       this.data=result.data
       this.suggestionArray=this.data.userSuggestion 
       this.followers=this.data.Followers  
-      this.loaderService.setLoader(false)
 }) 
   }
    compareDates(){

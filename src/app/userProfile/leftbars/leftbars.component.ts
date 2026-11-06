@@ -24,9 +24,9 @@ export class LeftbarsComponent implements OnInit {
   constructor(private dialog:MatDialog,private userService:UserService,private router:Router) { }
 
   ngOnInit() {
-    this.userService.getSideBar().subscribe((res)=>{
-      this.collapsed=res
-    })
+    // this.userService.getSideBar().subscribe((res)=>{
+    //   this.collapsed=res
+    // })
     const user=JSON.parse( localStorage.getItem("KMuser") || '{}')
     this.userService.userByID(user._id).subscribe((result)=>{
       this.userdata=result
@@ -40,16 +40,20 @@ export class LeftbarsComponent implements OnInit {
    })
    }else if(label=='Change password'){
     this.dialog.open(ChangePasswordComponent,{
-      width: '50%',
-      data:this.userdata 
+      width: 'min(560px, 94vw)',
+      maxWidth: '94vw',
+      maxHeight: '90vh',
+      panelClass: 'change-password-panel',
+      backdropClass: 'change-password-backdrop',
+      data:this.userdata
    })
    }else{
     this.router.navigate(['/user/dashboard'])
    } 
   }
-  toggleCollapse(){
-    this.collapsed=!this.collapsed
-    this.userService.setSideBar(this.collapsed)
-  }
+  // toggleCollapse(){
+  //   this.collapsed=!this.collapsed
+  //   this.userService.setSideBar(this.collapsed)
+  // }
   
 }

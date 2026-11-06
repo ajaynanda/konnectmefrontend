@@ -1,0 +1,427 @@
+/* KonnectMe Membership & Pricing Styles */
+:host {
+  display: block;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+}
+
+.km-mem-wrapper {
+  background-color: #f8fafc;
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+/* =========================================
+   HERO HEADER
+   ========================================= */
+.km-mem-hero {
+  background: radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+              #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 4.5rem 0 3.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.km-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+}
+
+.km-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.km-text-gradient {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.km-hero-subtitle {
+  font-size: 1.15rem;
+  color: #475569;
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto 2rem;
+}
+
+/* Billing Toggle */
+.km-toggle-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.km-toggle-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-toggle-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+}
+
+.km-discount-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  margin-left: 4px;
+}
+
+/* =========================================
+   CARDS GRID
+   ========================================= */
+.km-cards-section {
+  padding: 3.5rem 0 5rem;
+}
+
+.km-tier-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 2.5rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.km-tier-card:hover {
+  transform: translateY(-5px);
+  border-color: #cbd5e1;
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.1);
+}
+
+.km-tier-popular {
+  border-color: #2563eb;
+  box-shadow: 0 16px 40px -10px rgba(37, 99, 235, 0.22);
+  transform: scale(1.03);
+}
+
+.km-tier-popular:hover {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.km-badge-popular {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.km-tier-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.km-tier-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.km-tier-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  min-height: 44px;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.km-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.km-price-val {
+  font-size: 2.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+}
+
+.km-price-sub {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.km-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.km-feature-list li {
+  font-size: 0.92rem;
+  color: #334155;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+}
+
+.km-btn-tier {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 0.96rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.km-btn-popular {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.km-btn-popular:hover {
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+  transform: translateY(-2px);
+}
+
+.km-btn-outline-tier {
+  background: #ffffff;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1;
+}
+
+.km-btn-outline-tier:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   FEATURE MATRIX TABLE
+   ========================================= */
+.km-matrix-section {
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 5rem 0;
+}
+
+.km-matrix-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.km-matrix-eyebrow {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #eff6ff;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.km-matrix-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.km-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.km-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+}
+
+.km-compare-table th {
+  padding: 18px 22px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.km-compare-table td {
+  padding: 16px 22px;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.km-compare-table tr:hover td {
+  background: #f8fafc;
+}
+
+.km-category-header td {
+  background: #f1f5f9 !important;
+  font-weight: 800;
+  color: #1e293b;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 22px;
+}
+
+/* =========================================
+   FAQ SECTION
+   ========================================= */
+.km-faq-section {
+  padding: 5rem 0;
+  background: #f8fafc;
+}
+
+.km-faq-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.km-faq-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.km-faq-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.km-faq-question {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.km-faq-answer {
+  font-size: 0.94rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* =========================================
+   GUARANTEE BANNER
+   ========================================= */
+.km-guarantee-banner {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-radius: 20px;
+  padding: 3rem;
+  color: #ffffff;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.25);
+  margin-bottom: 4rem;
+}
+
+.km-guarantee-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.km-guarantee-desc {
+  font-size: 1rem;
+  color: #94a3b8;
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .km-hero-title {
+    font-size: 2.3rem;
+  }
+  .km-tier-popular {
+    transform: none;
+  }
+  .km-tier-popular:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .km-hero-title {
+    font-size: 1.85rem;
+  }
+  .km-tier-card {
+    padding: 1.75rem;
+  }
+  .km-guarantee-banner {
+    padding: 2rem 1.25rem;
+  }
+}

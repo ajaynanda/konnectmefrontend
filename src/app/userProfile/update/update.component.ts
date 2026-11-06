@@ -1,9 +1,10 @@
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/notification.service';
 import { UserService } from 'src/app/user/user.service';
 import { FormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 @Component({
     selector: 'app-update',
     templateUrl: './update.component.html',
@@ -11,16 +12,34 @@ import { FormsModule } from '@angular/forms';
     imports: [FormsModule]
 })
 export class UpdateComponent implements OnInit {
-data:any
+  data: any = {};
   id: any;
-  constructor(private dialogRef:MatDialogRef<UpdateComponent>,@Inject(MAT_DIALOG_DATA) private userdata:any,private userService:UserService,private notification:NotificationService) {}
+  activeTab: 'basic' | 'account' | 'privacy' = 'basic';
+  readonly defaultCover = 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=85';
+  readonly defaultAvatar = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+  constructor(
+    private dialogRef: MatDialogRef<UpdateComponent>,
+    @Inject(MAT_DIALOG_DATA) private userdata: any,
+    private userService: UserService,
+    private notification: NotificationService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.data=this.userdata.data
+    this.data = { ...(this.userdata?.data || {}) };
     this.id=JSON.parse( localStorage.getItem("KMuser") || '{}')._id
   }
 closeDialog(){
   this.dialogRef.close(UpdateComponent)
+}
+openChangePassword(): void {
+  this.dialog.open(ChangePasswordComponent, {
+    width: 'min(560px, 94vw)',
+    maxWidth: '94vw',
+    maxHeight: '90vh',
+    panelClass: 'change-password-panel',
+    backdropClass: 'change-password-backdrop'
+  });
 }
 update(updated:any){
 console.log(updated.value);

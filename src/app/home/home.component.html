@@ -1,39 +1,465 @@
-<div class="container">
-  <h3 class="heading">Build your connections All over the World</h3>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <ngb-carousel >
-        @for (image of images; track image) {
-          <ng-template ngbSlide>
-            <div class="wrapper">
-              <img [src]="image.src" alt="Random first slide" width="100%" height="100%">
+<div class="km-landing-wrapper">
+  <!-- HERO SECTION -->
+  <section class="km-hero-section">
+    <div class="km-hero-glow km-glow-1"></div>
+    <div class="km-hero-glow km-glow-2"></div>
+    
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+        <!-- Hero Left Column: Copy & Actions -->
+        <div class="col-lg-6">
+          <div class="km-badge-pill mb-3">
+            <span class="km-badge-dot"></span>
+            <span>Next-Generation Creator & Professional Network</span>
+          </div>
+          
+          <h1 class="km-hero-title mb-4">
+            Connect Without Noise. <br>
+            <span class="km-text-gradient">Build Authentic Momentum.</span>
+          </h1>
+          
+          <p class="km-hero-subtitle mb-4">
+            Discover authentic creators, collaborate across 130+ countries, and share moments in an ultra-crisp, distraction-free space engineered for meaningful momentum.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 mb-5 km-cta-group">
+            <a routerLink="/register" class="km-btn-main km-btn-glow">
+              <span>Join KonnectMe Free</span>
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+            <a href="#features-hub" class="km-btn-outline">
+              <i class="bi bi-compass me-2"></i>
+              <span>Explore Features</span>
+            </a>
+          </div>
+
+          <!-- Social Proof Avatars -->
+          <div class="km-trust-badge d-flex align-items-center gap-3">
+            <div class="km-avatar-stack">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Creator avatar" class="km-avatar-item">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Creator avatar" class="km-avatar-item">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Creator avatar" class="km-avatar-item">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" alt="Creator avatar" class="km-avatar-item">
             </div>
-            <div class="carousel-caption">
-              <h3>{{ image.title }}</h3>
-              <p>{{ image.short }}</p>
+            <div>
+              <div class="d-flex align-items-center gap-1 text-warning mb-1">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span class="ms-1 fw-bold text-dark">4.9/5</span>
+              </div>
+              <p class="km-trust-text mb-0">Trusted by <strong>450,000+ creators</strong> across 130 countries</p>
             </div>
-          </ng-template>
-        }
-      </ngb-carousel>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3 class="text-center m-3 ">Review of Users</h3>
-      <div class="col-md-12 ">
-        <ng-image-slider [images]="imgCollection"></ng-image-slider>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Interactive Stitch Orbit Visual Card -->
+        <div class="col-lg-6">
+          <div class="km-hero-visual-card">
+            <div class="km-glass-card-header d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2">
+                <span class="km-window-dot dot-red"></span>
+                <span class="km-window-dot dot-yellow"></span>
+                <span class="km-window-dot dot-green"></span>
+                <span class="km-window-title ms-2">Global Orbit Graph</span>
+              </div>
+              <span class="km-live-tag"><i class="bi bi-record-fill me-1 text-danger"></i> Live Sync</span>
+            </div>
+
+            <!-- Post / Orbit Preview -->
+            <div class="km-hero-card-media position-relative">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" alt="Lossless Landscape" class="img-fluid km-media-cover">
+              <div class="km-media-overlay-badge">
+                <i class="bi bi-camera-fill me-1 text-primary"></i>
+                <span>Lossless 4K • Raw tones captured at 21:40</span>
+              </div>
+            </div>
+
+            <div class="km-hero-card-content p-4">
+              <!-- Creator Info -->
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Elena Rostova" class="km-creator-thumb">
+                  <div>
+                    <h6 class="mb-0 fw-bold km-creator-name">Elena Rostova <i class="bi bi-patch-check-fill text-primary ms-1"></i></h6>
+                    <span class="km-creator-sub">Principal Architect • Stockholm, Sweden</span>
+                  </div>
+                </div>
+                <span class="km-network-match-pill"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> 98% Match</span>
+              </div>
+
+              <!-- Orbit Floating Notification -->
+              <div class="km-orbit-toast mb-3">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="km-orbit-icon"><i class="bi bi-broadcast"></i></span>
+                  <div class="flex-grow-1">
+                    <p class="mb-0 fw-semibold km-toast-title">Kenji T. accepted your project sync</p>
+                    <span class="km-toast-sub">Tokyo ⇄ Stockholm • Aligned on WebGL & Generative UI</span>
+                  </div>
+                  <span class="badge bg-primary-subtle text-primary">2m ago</span>
+                </div>
+              </div>
+
+              <!-- Engagement Stats -->
+              <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                <div class="d-flex gap-4 km-card-actions">
+                  <span><i class="bi bi-heart-fill text-danger me-1"></i> 1,482</span>
+                  <span><i class="bi bi-chat-dots-fill text-primary me-1"></i> 194</span>
+                  <span><i class="bi bi-share-fill text-secondary me-1"></i> 86</span>
+                </div>
+                <span class="km-card-tag">#Architecture #Lossless</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="text-center m-2">
+  </section>
 
+  <!-- METRICS BAR -->
+  <section class="km-stats-section py-4">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        @for (stat of stats; track stat.label) {
+          <div class="col-lg-3 col-6">
+            <div class="km-stat-card d-flex align-items-center gap-3">
+              <div class="km-stat-icon">
+                <i class="bi" [ngClass]="stat.icon"></i>
+              </div>
+              <div>
+                <h3 class="km-stat-val mb-0">{{ stat.value }}</h3>
+                <span class="km-stat-lbl">{{ stat.label }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- FEATURE CAROUSEL (ENHANCED NGB-CAROUSEL) -->
+  <section class="km-carousel-section py-5">
+    <div class="container">
+      <div class="km-section-header text-center mb-5">
+        <span class="km-section-eyebrow">Visual Excellence</span>
+        <h2 class="km-section-title">Designed for Lossless Moments</h2>
+        <p class="km-section-desc">Experience fluid multimedia curation rendered with zero loss in resolution.</p>
+      </div>
+
+      <div class="km-carousel-frame">
+        <ngb-carousel>
+          @for (image of images; track image.title) {
+            <ng-template ngbSlide>
+              <div class="km-slide-wrapper">
+                <img [src]="image.src" [alt]="image.title" class="km-slide-img">
+                <div class="km-slide-gradient"></div>
+                <div class="carousel-caption km-custom-caption text-start">
+                  <span class="km-slide-badge mb-2 d-inline-block">{{ image.short }}</span>
+                  <h3 class="km-slide-title">{{ image.title }}</h3>
+                  <div class="mt-3">
+                    <a routerLink="/register" class="km-btn-main btn-sm">Join the Network</a>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          }
+        </ngb-carousel>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUE PILLARS -->
+  <section id="features-hub" class="km-features-section py-5">
+    <div class="container py-4">
+      <div class="km-section-header text-center mb-5">
+        <span class="km-section-eyebrow">Engineered For Depth</span>
+        <h2 class="km-section-title">Designed for Real Connection, Not Doomscrolling</h2>
+        <p class="km-section-desc">
+          Traditional platforms monetize agitation. KonnectMe is purposefully designed around high-signal professional networks, creators, and focused project workspaces.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        @for (feat of features; track feat.title) {
+          <div class="col-lg-6 col-md-6">
+            <div class="km-feature-card h-100">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="km-feat-icon-box">
+                  <i class="bi" [ngClass]="feat.icon"></i>
+                </div>
+                <span class="km-feat-badge">{{ feat.badge }}</span>
+              </div>
+              <h4 class="km-feat-title mb-2">{{ feat.title }}</h4>
+              <p class="km-feat-desc mb-3">{{ feat.description }}</p>
+              <div class="km-feat-highlight">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <span>{{ feat.highlight }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SHOWCASE TABS -->
+  <section class="km-experience-section py-5">
+    <div class="container py-4">
+      <div class="km-section-header text-center mb-5">
+        <span class="km-section-eyebrow">Living Ecosystem</span>
+        <h2 class="km-section-title">Everything You Need To Thrive</h2>
+        <p class="km-section-desc">An all-in-one hub connecting visual showcases, audio rooms, and encrypted collaborations.</p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+        <button 
+          class="km-tab-btn" 
+          [class.active]="activeTab === 'visual'"
+          (click)="setActiveTab('visual')">
+          <i class="bi bi-camera2 me-2"></i> Visual Feed
+        </button>
+        <button 
+          class="km-tab-btn" 
+          [class.active]="activeTab === 'rooms'"
+          (click)="setActiveTab('rooms')">
+          <i class="bi bi-broadcast-pin me-2"></i> Spatial Rooms
+        </button>
+        <button 
+          class="km-tab-btn" 
+          [class.active]="activeTab === 'portfolio'"
+          (click)="setActiveTab('portfolio')">
+          <i class="bi bi-person-badge me-2"></i> Creator Profile
+        </button>
+        <button 
+          class="km-tab-btn" 
+          [class.active]="activeTab === 'privacy'"
+          (click)="setActiveTab('privacy')">
+          <i class="bi bi-shield-check me-2"></i> Zero Ad Tracking
+        </button>
+      </div>
+
+      <!-- Tab Content Panels -->
+      <div class="km-tab-content-card">
+        @if (activeTab === 'visual') {
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+              <span class="km-tab-eyebrow">Curated Visual Feed</span>
+              <h3 class="km-tab-heading mb-3">Lossless 4K Portfolios & Zero Algorithmic Traps</h3>
+              <p class="km-tab-text mb-4">
+                Share photography, 3D renderings, and project mockups exactly as you designed them. Our custom renderer preserves colorspaces and crisp micro-textures without noisy compression.
+              </p>
+              <ul class="km-check-list mb-4">
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Chronological feeds with zero algorithmic de-ranking</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> 100% loss-free image viewing for verified photographers</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Integrated EXIF & metadata inspection for creators</li>
+              </ul>
+              <a routerLink="/register" class="km-btn-main">Get Your Creator Feed</a>
+            </div>
+            <div class="col-lg-6">
+              <div class="km-tab-preview-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80" alt="Lossless Feed" class="img-fluid rounded-4 shadow-lg">
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === 'rooms') {
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+              <span class="km-tab-eyebrow">Real-Time Spatial Audio</span>
+              <h3 class="km-tab-heading mb-3">Drop Into Spontaneous Creative Jam Sessions</h3>
+              <p class="km-tab-text mb-4">
+                Host global audio spaces spanning 24 timezones with ultra-low latency WebRTC. Listen in or take the mic with 48kHz studio-grade fidelity.
+              </p>
+              <ul class="km-check-list mb-4">
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Spatial sound positioning for natural conversational flow</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Async recordings automatically synced to community boards</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Zero registration required for invited listeners</li>
+              </ul>
+              <a routerLink="/register" class="km-btn-main">Explore Audio Rooms</a>
+            </div>
+            <div class="col-lg-6">
+              <div class="km-tab-preview-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1000&q=80" alt="Audio Studio" class="img-fluid rounded-4 shadow-lg">
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === 'portfolio') {
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+              <span class="km-tab-eyebrow">Living Portfolio Card</span>
+              <h3 class="km-tab-heading mb-3">Your Digital Identity, Reimagined</h3>
+              <p class="km-tab-text mb-4">
+                Every KonnectMe profile is a living portfolio card. Showcase high-resolution visual art, open-source repositories, and audio sessions simultaneously while keeping conversations in an uncluttered stream.
+              </p>
+              <ul class="km-check-list mb-4">
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Custom domain profiles (e.g., yourname.konnectme.com)</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Peer-to-peer tip jar with 0% platform transaction fee</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Verified identity badges and license attribution</li>
+              </ul>
+              <a routerLink="/register" class="km-btn-main">Claim Your Username</a>
+            </div>
+            <div class="col-lg-6">
+              <div class="km-tab-preview-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80" alt="Portfolio Profile" class="img-fluid rounded-4 shadow-lg">
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === 'privacy') {
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+              <span class="km-tab-eyebrow">Privacy-First Architecture</span>
+              <h3 class="km-tab-heading mb-3">Zero Trackers. Zero Ad Brokers. 100% Respect.</h3>
+              <p class="km-tab-text mb-4">
+                We will never sell your browsing history, monetize your emotional state, or flood your feed with sponsored rage-bait. Our subscriptions align our business directly with your experience.
+              </p>
+              <ul class="km-check-list mb-4">
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Client-side encryption on all direct dispatches</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Full data export and instant permanent account deletion</li>
+                <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Transparent open-source verification protocols</li>
+              </ul>
+              <a routerLink="/policy" class="km-btn-main">Read Privacy Manifesto</a>
+            </div>
+            <div class="col-lg-6">
+              <div class="km-tab-preview-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80" alt="Privacy First" class="img-fluid rounded-4 shadow-lg">
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY REVIEWS & TESTIMONIALS -->
+  <section class="km-testimonials-section py-5">
+    <div class="container py-4">
+      <div class="km-section-header text-center mb-5">
+        <span class="km-section-eyebrow">Global Voices</span>
+        <h2 class="km-section-title">What Global Members Say</h2>
+        <p class="km-section-desc">Real stories from creators and teams building momentum every day.</p>
+      </div>
+
+      <div class="row g-4 mb-5">
+        @for (review of testimonials; track review.name) {
+          <div class="col-lg-4 col-md-6">
+            <div class="km-testimonial-card h-100 d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center gap-1 text-warning mb-3">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="km-testimonial-quote mb-4">
+                  "{{ review.quote }}"
+                </p>
+              </div>
+
+              <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                <img [src]="review.avatar" [alt]="review.name" class="km-reviewer-img">
+                <div>
+                  <h6 class="mb-0 fw-bold km-reviewer-name">{{ review.name }}</h6>
+                  <span class="km-reviewer-role">{{ review.role }} • {{ review.location }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Preserved Slider for Community Gallery -->
+      <div class="km-gallery-slider-box mt-4 p-4 rounded-4">
+        <h5 class="text-center mb-3 fw-bold text-dark">
+          <i class="bi bi-images text-primary me-2"></i> Community Spotlight Gallery
+        </h5>
+        <div class="km-slider-container">
+          <ng-image-slider [images]="imgCollection"></ng-image-slider>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / MEMBERSHIP PREVIEW -->
+  <section class="km-pricing-section py-5">
+    <div class="container py-4">
+      <div class="km-section-header text-center mb-5">
+        <span class="km-section-eyebrow">Transparent Tiers</span>
+        <h2 class="km-section-title">Choose Your Networking Orbit</h2>
+        <p class="km-section-desc">
+          Start free forever, or upgrade for unlimited 4K galleries, custom domain profiles, and priority mesh reach.
+        </p>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        @for (tier of pricingTiers; track tier.name) {
+          <div class="col-lg-4 col-md-6">
+            <div class="km-pricing-card h-100 d-flex flex-column justify-content-between" [class.km-pricing-popular]="tier.popular">
+              <div>
+                @if (tier.popular) {
+                  <div class="km-popular-badge">Most Popular</div>
+                }
+                <div class="d-flex justify-content-between align-items-baseline mb-2">
+                  <h4 class="km-tier-name mb-0">{{ tier.name }}</h4>
+                </div>
+                <p class="km-tier-desc mb-3">{{ tier.description }}</p>
+
+                <div class="d-flex align-items-baseline gap-1 mb-4">
+                  <span class="km-tier-price">{{ tier.price }}</span>
+                  <span class="km-tier-period">/ {{ tier.period }}</span>
+                </div>
+
+                <ul class="km-tier-features mb-4">
+                  @for (feat of tier.features; track feat) {
+                    <li>
+                      <i class="bi bi-check2-circle text-primary me-2"></i>
+                      <span>{{ feat }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <a [routerLink]="tier.btnRoute" class="km-btn-main w-100 text-center" [class.km-btn-secondary]="!tier.popular">
+                {{ tier.btnText }}
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSION CTA BANNER -->
+  <section class="km-cta-banner-section py-5">
+    <div class="container">
+      <div class="km-cta-banner text-center p-5 rounded-4 position-relative overflow-hidden">
+        <div class="km-cta-bg-glow"></div>
+        <div class="position-relative z-1">
+          <span class="km-cta-pill mb-3 d-inline-block">Get Started in Under 60 Seconds</span>
+          <h2 class="km-cta-title mb-3">Join 450,000+ Creators Building the Future</h2>
+          <p class="km-cta-desc mb-4 mx-auto">
+            Experience high-signal discussions, lossless visual galleries, and direct collaboration. No algorithms. No outrage. Just genuine momentum.
+          </p>
+          <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a routerLink="/register" class="km-btn-main km-btn-large">
+              <span>Create Free Account</span>
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+            <a routerLink="/login" class="km-btn-outline-white km-btn-large">
+              <i class="bi bi-box-arrow-in-right me-2"></i>
+              <span>Sign In</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

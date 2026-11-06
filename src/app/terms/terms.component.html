@@ -1,39 +1,273 @@
-<div class="container p-2 " style="margin-top: 20px;">
-    <h1 style="text-align: center;">Terms And Conditions</h1>
-</div>
-<div class="container p-3" style="text-align: center;margin-left: auto;margin-right: auto;margin-top: 20px;">
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-md-12" style="margin-top: 20px;">
-            <h3>Social media terms and conditions</h3>
-            <span>The terms, conditions and policies that apply to specific social networks, such as Facebook or Twitter, also apply to the KonnectMe profiles they host. We recommend that you familiarise yourself with those terms and conditions before participating in the Community and we disclaim any liability associated with your use of those services, or for your failure to view or comply with their terms, conditions and policies. Where there is a conflict between these Rules and the terms and conditions of the relevant social media channels, the social media channels’ terms and conditions will prevail.</span>
+<div class="km-terms-wrapper">
+  <!-- HERO HEADER -->
+  <section class="km-terms-hero">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <div class="km-breadcrumb">
+          <a routerLink="/home"><i class="bi bi-house-door-fill me-1"></i> Home</a>
+          <span>/</span>
+          <span>Legal & Trust</span>
+          <span>/</span>
+          <span class="text-dark fw-semibold">Terms of Service</span>
         </div>
-        <div class="col-md-12" style="margin-top: 20px;">
-            <h3>Moderation of the community</h3>
-            <span>We strive to create dialogue with users of our Community and encourage you to share content via the Community in accordance with these Rules (Contribution). To help us do that, we try to monitor the Community during normal UK business hours (9am-5pm GMT, Monday to Friday, excluding UK public holidays). We will try to check that all submissions to the Community comply with our acceptable use standards described below (Acceptable Use Standards) as soon as reasonably practicable after publication.
+      </nav>
 
-                If in our opinion an individual makes use of the Community in breach of these Rules, we reserve the right to remove, or to disable access to, any Contribution, and to terminate, suspend or change the conditions of their access to the Community without prior warning. We also reserve the right to bring legal proceedings against any individual for a breach of the Rules, or take such other action as we reasonably deem appropriate.
-                
-                We expressly exclude our liability for any loss or damage arising from the use of the Community by any person in contravention of these Rules. While we try to moderate the Community, we are not legally responsible for any material posted by third parties and we may stop, or suspend, moderating the Community at any time.</span>
+      <div class="km-pill-badge">
+        <i class="bi bi-file-earmark-ruled-fill"></i>
+        <span>Platform Guidelines & Terms</span>
+      </div>
+
+      <h1 class="km-hero-title mb-3">
+        Terms of Service & <br>
+        Creator Partnership Agreement
+      </h1>
+
+      <p class="km-hero-subtitle mb-4">
+        Our terms are written to protect creators, uphold civil dialogue, and ensure zero-compromise ownership of your intellectual property and work.
+      </p>
+
+      <div class="km-meta-chips">
+        <div class="km-chip">
+          <i class="bi bi-calendar-check text-primary"></i>
+          <span>Effective: October 2026</span>
         </div>
-        <div class="col-md-12" style="margin-top: 20px;">
-            <h3>Minors</h3>
-            <span>The Community is intended for use by individuals aged 18 years or more. Minors must get permission from their parent or guardian before using the Community. We recommend that parents who allow their children to use the Community discuss online safety with their children first and that parents endeavour to monitor any use of the Community. Minors should also be given guidance on how to use the Community safely and in a way that complies with these Rules.</span>
+        <div class="km-chip">
+          <i class="bi bi-patch-check-fill text-success"></i>
+          <span>100% Creator IP Ownership</span>
         </div>
-        <div class="col-md-12" style="margin-top: 20px;">
-            <h3>Copyright</h3>
-            <span>By submitting a Contribution to the Community, you agree to grant KonnectMe a non-exclusive perpetual licence to use that Contribution and to waive your moral rights. Although you will still own the copyright in your Contribution, KonnectMe will have the right to freely use, edit, alter, reproduce, publish and/or distribute the material contained in your Contribution in any format and media. This licence will be free of charge, perpetual and capable of sub-licence. KonnectMe may exercise all copyright and publicity rights in the material contained in your Contribution in all jurisdictions, to their full extent and for the full period for which any such rights exist in that material. We reserve the right to display advertisements in connection with your Contribution.
-              </span>
+        <div class="km-chip">
+          <i class="bi bi-currency-dollar text-warning"></i>
+          <span>0% Platform Monetization Fee</span>
         </div>
-        <div class="col-md-12" style="margin-top: 20px;">
-            <h3>Data protection</h3>
-            <span>If you are required to submit personal data directly to KonnectMe during the registration process, we will only use such data for administration and monitoring purposes and will not share your data with third parties unless legally required to do so.
-              </span>
+        <div class="km-chip">
+          <i class="bi bi-clock-history text-secondary"></i>
+          <span>6 min read</span>
         </div>
-        <div class="col-md-12" style="margin-top: 20px;">
-            <h3>Governing law and jurisdiction</h3>
-            <span>These Rules are governed by and shall be construed in accordance with English law and you irrevocably submit to the exclusive jurisdiction of the courts of England and Wales to settle any dispute or claim that arises out of or in connection with these Rules, their subject matter or formation. If any part of these Rules is deemed unlawful, void, or for any reason unenforceable then that part will be deemed severable and will not affect the validity and enforceability of the remaining parts.
-              </span>
-        </div>
+      </div>
     </div>
-</div>
+  </section>
 
+  <!-- BODY CONTENT -->
+  <section class="km-terms-body">
+    <div class="container">
+      <div class="row g-5">
+        <!-- Sticky Sidebar Navigation -->
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="km-toc-sticky">
+            <h6 class="km-toc-title">
+              <i class="bi bi-list-nested text-primary"></i>
+              Table of Contents
+            </h6>
+            <ul class="km-toc-list">
+              <li>
+                <a 
+                  class="km-toc-link" 
+                  [class.active]="activeSection === 'acceptance'" 
+                  (click)="scrollTo('acceptance')">
+                  1. Acceptance & Community Scope
+                </a>
+              </li>
+              <li>
+                <a 
+                  class="km-toc-link" 
+                  [class.active]="activeSection === 'ownership'" 
+                  (click)="scrollTo('ownership')">
+                  2. 100% Creator IP Ownership
+                </a>
+              </li>
+              <li>
+                <a 
+                  class="km-toc-link" 
+                  [class.active]="activeSection === 'conduct'" 
+                  (click)="scrollTo('conduct')">
+                  3. Code of Conduct & Standards
+                </a>
+              </li>
+              <li>
+                <a 
+                  class="km-toc-link" 
+                  [class.active]="activeSection === 'monetization'" 
+                  (click)="scrollTo('monetization')">
+                  4. Peer Monetization & Fees
+                </a>
+              </li>
+              <li>
+                <a 
+                  class="km-toc-link" 
+                  [class.active]="activeSection === 'moderation'" 
+                  (click)="scrollTo('moderation')">
+                  5. Community Moderation & Safety
+                </a>
+              </li>
+              <li>
+                <a 
+                  class="km-toc-link" 
+                  [class.active]="activeSection === 'liability'" 
+                  (click)="scrollTo('liability')">
+                  6. Disclaimers & Governing Law
+                </a>
+              </li>
+            </ul>
+
+            <div class="km-sidebar-support-box">
+              <h6 class="km-support-title">Questions about Rights?</h6>
+              <p class="km-support-text">Our legal and creator rights team responds within 24 business hours.</p>
+              <a href="mailto:legal@konnectme.com" class="km-support-btn">
+                <span>Contact Legal Team</span>
+                <i class="bi bi-envelope-fill ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article Main Content -->
+        <div class="col-lg-8">
+          <div class="km-article-container">
+            <!-- Section 1 -->
+            <article id="acceptance" class="km-legal-card">
+              <span class="km-card-number">Section 01</span>
+              <h2 class="km-section-title">Acceptance of Terms & Community Scope</h2>
+              <p class="km-lead-text">
+                By creating a KonnectMe account, accessing our feeds, participating in audio studio spaces, or using our API services, you agree to enter into a binding agreement governed by these Terms of Service.
+              </p>
+              <p class="km-body-text">
+                KonnectMe is designed for creators, professionals, engineers, and digital artists aged 18 and older. If you represent an organization or team studio, you confirm that you possess full corporate authority to bind your organization to these terms.
+              </p>
+
+              <div class="km-notice-box">
+                <i class="bi bi-check-circle-fill km-notice-icon"></i>
+                <p class="km-notice-text">
+                  <strong>The Anti-Doomscroll Standard:</strong> KonnectMe is designed to foster genuine, intentional networking. We reject manipulative psychological dark patterns, engagement-gaming bots, and toxic outrage farming.
+                </p>
+              </div>
+            </article>
+
+            <!-- Section 2 -->
+            <article id="ownership" class="km-legal-card">
+              <span class="km-card-number">Section 02</span>
+              <h2 class="km-section-title">100% Creator Intellectual Property Ownership</h2>
+              <p class="km-lead-text">
+                You retain complete, exclusive copyright, trademark, and intellectual property ownership over all photography, 3D assets, audio recordings, code snippets, and written articles you publish on KonnectMe.
+              </p>
+              <p class="km-body-text">
+                When you upload your creative work to KonnectMe, you grant us solely a non-exclusive, royalty-free, worldwide license strictly to host, transmit, and display your media within our network to your followers and audiences according to your visibility settings.
+              </p>
+
+              <div class="km-rule-grid">
+                <div class="km-rule-item">
+                  <div class="km-rule-icon">
+                    <i class="bi bi-patch-check"></i>
+                  </div>
+                  <h4 class="km-rule-heading">No AI Training</h4>
+                  <p class="km-rule-desc">We never license, scrape, or sell your uploaded visual art, photography, or audio to third-party generative AI models without explicit opt-in consent.</p>
+                </div>
+
+                <div class="km-rule-item">
+                  <div class="km-rule-icon">
+                    <i class="bi bi-shield-slash"></i>
+                  </div>
+                  <h4 class="km-rule-heading">Zero Lossless Claims</h4>
+                  <p class="km-rule-desc">Displaying your work in raw 4K does not give KonnectMe any derivative commercial ownership. Your work is entirely yours.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Section 3 -->
+            <article id="conduct" class="km-legal-card">
+              <span class="km-card-number">Section 03</span>
+              <h2 class="km-section-title">Code of Conduct & Community Standards</h2>
+              <p class="km-body-text">
+                To keep KonnectMe safe and inspiring for 450,000+ members worldwide, every account must adhere to our zero-tolerance standards:
+              </p>
+
+              <ul class="km-body-text mb-4">
+                <li><strong>No Harassment or Bullying:</strong> Targeted abuse, hate speech, doxxing, non-consensual imagery, or threats of violence lead to immediate permanent suspension.</li>
+                <li><strong>No Impersonation or Sybil Bots:</strong> Creating fake personas, purchasing fake engagement followers, or deploying automated scrapers is strictly prohibited.</li>
+                <li><strong>Intellectual Integrity:</strong> Uploading copyrighted artwork, photographs, or software without rightful ownership or explicit creator attribution is forbidden.</li>
+                <li><strong>No Phishing or Malicious Scripts:</strong> Distributing exploit payloads, malware links, or credential harvesters triggers automated account termination and IP blacklisting.</li>
+              </ul>
+
+              <div class="km-warning-box">
+                <i class="bi bi-exclamation-triangle-fill km-warning-icon"></i>
+                <p class="km-warning-text">
+                  <strong>Zero Bot Tolerance:</strong> Automated bots, scraping spiders, or unauthorized headless client scripts attempting to harvest user emails or phone records will be blocked and reported.
+                </p>
+              </div>
+            </article>
+
+            <!-- Section 4 -->
+            <article id="monetization" class="km-legal-card">
+              <span class="km-card-number">Section 04</span>
+              <h2 class="km-section-title">Peer Monetization & 0% Platform Fee Guarantee</h2>
+              <p class="km-lead-text">
+                We believe creators should keep what they earn. Direct peer micro-tipping, paid studio audio tickets, and client commission contracts incur 0% platform commission fee from KonnectMe.
+              </p>
+              <p class="km-body-text">
+                Third-party payment gateways (such as Stripe) may assess their standard regulatory interchange processing fee (typically 2.9% + $0.30 per successful transaction). KonnectMe takes $0 cut on your creative transactions.
+              </p>
+            </article>
+
+            <!-- Section 5 -->
+            <article id="moderation" class="km-legal-card">
+              <span class="km-card-number">Section 05</span>
+              <h2 class="km-section-title">Community Moderation & Safety Appeals</h2>
+              <p class="km-body-text">
+                We employ a hybrid moderation architecture combining client-side cryptographic hashing for illegal material with human peer review for community disputes:
+              </p>
+
+              <div class="km-rule-grid">
+                <div class="km-rule-item">
+                  <div class="km-rule-icon">
+                    <i class="bi bi-person-lines-fill"></i>
+                  </div>
+                  <h4 class="km-rule-heading">Human Review</h4>
+                  <p class="km-rule-desc">Account suspensions are never carried out entirely by opaque automated bots without verified human confirmation.</p>
+                </div>
+
+                <div class="km-rule-item">
+                  <div class="km-rule-icon">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                  </div>
+                  <h4 class="km-rule-heading">Transparent Appeals</h4>
+                  <p class="km-rule-desc">If your post is flagged or removed, you have a 30-day window to submit an appeal directly to our Trust & Safety board.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Section 6 -->
+            <article id="liability" class="km-legal-card">
+              <span class="km-card-number">Section 06</span>
+              <h2 class="km-section-title">Limitation of Liability & Governing Law</h2>
+              <p class="km-body-text">
+                KonnectMe is provided on an "as-is" and "as-available" basis. While we maintain a 99.9% uptime SLA across our redundant cluster nodes, we do not warrant that transmission will be uninterrupted or error-free at all times.
+              </p>
+              <p class="km-body-text">
+                These Terms shall be governed by and construed in accordance with the laws of Sweden and the European Union, without regard to conflict of law principles. Any legal dispute shall be subject to the exclusive jurisdiction of the competent courts in Stockholm, Sweden.
+              </p>
+            </article>
+
+            <!-- Section 7: Action Box -->
+            <article class="km-terms-cta-card">
+              <span class="km-pill-badge bg-white text-dark mb-3">
+                <i class="bi bi-shield-check text-primary"></i> Ready to Join?
+              </span>
+              <h3 class="km-terms-cta-heading">Experience Social Without Compromise</h3>
+              <p class="km-terms-cta-desc">
+                By clicking "Join Free", you confirm that you accept our Terms of Service and Privacy Manifesto. Start building momentum today.
+              </p>
+              <div class="d-flex flex-wrap gap-3">
+                <a routerLink="/register" class="km-cta-action-btn">
+                  <span>Create Free Account</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+                <a routerLink="/policy" class="km-cta-action-btn bg-dark border-secondary">
+                  <span>Read Privacy Policy</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

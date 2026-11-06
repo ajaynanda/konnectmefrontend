@@ -1,39 +1,61 @@
-<div class="container-fluid">
-    <div class="row  ">
-        <div class="col-md-12 menurow">
-            <div class="col-md-3">
-                <ul>
-                    <li><a>Home</a></li>
-                    <li><a>Login</a></li>
-                    <li><a>Register</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <ul>
-                    <li><a>Guidelines</a></li>
-                    <li><a>Membership</a></li>
-                    <li><a>Policies</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <ul>
-                    <li><a>Careers</a></li>
-                    <li><a>Security</a></li>
-                    <li><a>SponsorShip</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <ul>
-                    <li><a>Feedback</a></li>
-                    <li><a>Help</a></li>
-                    <li><a>Chat Support</a></li>
-                </ul>
-            </div>
+<footer class="km-footer" *ngIf="!isLoggedIn">
+  <div class="container py-5">
+    <div class="row g-4 justify-content-between">
+      <div class="col-lg-4 col-md-6">
+        <div class="km-footer-brand mb-3">
+          <span class="km-brand-icon"><i class="bi bi-diagram-3-fill"></i></span>
+          <span class="km-brand-name">Konnect<span class="km-brand-accent">Me</span></span>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-11 copyrow">
-            <span>copyrigth&#64;konnectme2022 powered by mosco Ltd</span>
+        <p class="km-footer-desc mb-4">
+          The next-generation network engineered for high-signal collaboration, lossless visual expression, and distraction-free momentum.
+        </p>
+        <div class="d-flex gap-2 km-social-links">
+          <a href="#" class="km-social-btn" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="km-social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+          <a href="#" class="km-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="km-social-btn" aria-label="Discord"><i class="bi bi-discord"></i></a>
         </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6 class="km-footer-heading">Platform</h6>
+        <ul class="km-footer-list">
+          <li><a routerLink="/home">Overview</a></li>
+          <li><a routerLink="/membership">Membership</a></li>
+          <li><a routerLink="/login">Live Feed</a></li>
+          <li><a routerLink="/register">Creator Rooms</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6 class="km-footer-heading">Ecosystem</h6>
+        <ul class="km-footer-list">
+          <li><a routerLink="/membership">Pro Creator</a></li>
+          <li><a routerLink="/membership">Enterprise Studio</a></li>
+          <li><a routerLink="/policy">Data Guidelines</a></li>
+          <li><a routerLink="/terms">Verification Badges</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <h6 class="km-footer-heading">Legal & Trust</h6>
+        <ul class="km-footer-list">
+          <li><a routerLink="/policy">Privacy Policy</a></li>
+          <li><a routerLink="/terms">Terms of Service</a></li>
+          <li><a routerLink="/policy">Security & Encryption</a></li>
+          <li><a routerLink="/terms">Cookie Preferences</a></li>
+        </ul>
+      </div>
     </div>
-</div>
+
+    <hr class="km-footer-divider my-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 km-footer-bottom">
+      <span class="km-copy">© 2026 KonnectMe Inc. All rights reserved.</span>
+      <div class="d-flex align-items-center gap-2 km-system-status">
+        <span class="km-status-dot"></span>
+        <span class="km-status-text">All systems operational & encrypted</span>
+      </div>
+    </div>
+  </div>
+</footer>

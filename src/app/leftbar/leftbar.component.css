@@ -1,96 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-.container{
-    padding: 0;
-}
-.sidenav{
-    background-color: #263238;
-    transition:all .5s ease ;
-    z-index: 1;
-    top: 20px;
-    width: 5rem;
-    height: 100vh;
-    box-shadow: 0.063rem 0 1.63rem 0 #8690a3;
-}
-.logo-container{
-    display: flex;
-    align-items: center;
-    padding: 0.938rem 0.938rem 0 0.938rem;
-    width: 100%;
-}
-.bi-list{
-    text-align:center ;
-    width: .1rem;
-    min-width: 3rem;
-    border-radius: 0.313rem;
-    padding:0.1rem ;
-    font-size: 14px;
-    font-weight: 900;
-    cursor: pointer;
-    border: none;
-    color: blue;
-    font-size: 30px;
-}
-.logo-text{
-    margin-left: 1.5rem;
-    font-size:24px ;
-    font-weight:700 ;
-    color: #fff;
-}
-.btn-close{
-    margin-left: auto;
-    cursor: pointer;
-    width: 2rem;
-    height: 2rem;
-    border-radius:50% ;
-    background-color: transparent;
-    border: none;
-}
-.sidenav-collapsed{
-    width: 15.5625rem;
-}
-.sidenav-nav{
-    list-style: none;
-    padding: 0.938rem;
-    margin: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
-    cursor: pointer;
-}
-.sidenav-nav-link{
-    display: flex;
-    align-items: center;
-    height: 3rem;
-    color: #f3f3f3;
-    text-decoration: none;
-    transition: color .3s ease;
-}   
-.sidenav-nav-item{
-    width: 100%;
-    margin-bottom: 0.625rem;
-}
-.sidenav-link-icon{
-    font-size: 22px;
-    width: 2rem;
-    min-width: 2rem;
-    margin: 0 0.5rem;
-    text-align: center;
-}
-.sidenav-link-text{
-    margin-left: 1.5rem;
-}
-.sidenav-nav-link:hover{
-    background-color: #fff;
-    color: blue;
-    border-radius: 10px;
-    padding: .2rem;
-}
-.url_active{
-    background-color: #fff;
-    color: blue;
-    border-radius: 10px;
-    padding: .2rem;
+.container {
+  padding: 0;
+  height: 100%;
 }
 
+.sidenav {
+  width: 100%;
+  height: 100%;
+  background: #1e2235;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 0;
+}
 
+/* Toggle button */
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.toggle-btn:hover {
+  background: rgba(99, 102, 241, 0.18);
+  color: #818cf8;
+}
+
+.toggle-btn i {
+  font-size: 18px;
+}
+
+/* Nav list */
+.sidenav-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.sidenav-nav-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Each nav link: icon above label */
+.sidenav-nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 52px;
+  height: 56px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.sidenav-nav-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #94a3b8;
+}
+
+.sidenav-nav-link.url_active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.sidenav-nav-link.url_active .sidenav-link-icon {
+  color: #fff;
+}
+
+.sidenav-link-icon {
+  font-size: 20px;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.sidenav-link-text {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: inherit;
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+/* Bottom user avatar */
+.sidenav-bottom {
+  padding: 8px 0;
+  margin-top: auto;
+}
+
+.user-mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+/* Brand row - hidden; not needed in collapsed vertical mode */
+.brand-row {
+  display: none;
+}
+
+.divider {
+  display: none;
+}
+
+/* User info text — only shown in expanded mode */
+.user-info {
+  display: none;
+}

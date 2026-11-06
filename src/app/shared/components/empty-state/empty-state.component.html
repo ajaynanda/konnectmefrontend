@@ -1,0 +1,14 @@
+<div class="empty-state" [class.empty-state--sm]="size === 'sm'">
+  <div class="empty-state__icon-ring">
+    <i class="bi" [class]="icon"></i>
+  </div>
+  <h4 class="empty-state__title">{{ title }}</h4>
+  @if (subtitle) {
+    <p class="empty-state__subtitle">{{ subtitle }}</p>
+  }
+  @if (actionLabel) {
+    <button class="empty-state__action" type="button">
+      {{ actionLabel }}
+    </button>
+  }
+</div>

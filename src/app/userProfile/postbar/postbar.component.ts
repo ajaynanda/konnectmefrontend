@@ -4,12 +4,13 @@ import { PostService } from '../../postService/post.service';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass, DatePipe } from '@angular/common';
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
 @Component({
     selector: 'app-postbars',
     templateUrl: './postbar.component.html',
     styleUrls: ['./postbar.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, NgClass, FormsModule, DatePipe]
+    imports: [MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, NgClass, FormsModule, DatePipe, EmptyStateComponent]
 })
 export class PostbarsComponent implements OnInit {
 likes:Boolean=false

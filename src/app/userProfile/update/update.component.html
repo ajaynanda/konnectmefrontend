@@ -1,41 +1,192 @@
-<img class="closedialog" src="../../../assets/close.png" (click)="closeDialog()" width="20px" height="20px"><br>
-<h5 class="text-center p-3 m-2"><b>Edit Your Info</b></h5>
-<div class="container">
- 
-    <form #updateForm="ngForm" (ngSubmit)="update(updateForm)" >
-        <div class="row">
-            <div class="col-md-6">
-                <label>FirstName</label>
-                <input type="text" class="form-control" required name="fname" ngModel [(ngModel)]="data.Firstname">
-            </div>
-            <div class="col-md-6">
-                <label>LastName</label>
-                <input type="text" class="form-control" required #lname="ngModel" name="lname" [(ngModel)]="data.Lastname">
-            </div>
+<section class="edit-profile-dialog" aria-labelledby="edit-profile-title">
+  <header class="dialog-header">
+    <h2 id="edit-profile-title"><i class="bi bi-person-badge"></i> Edit Profile</h2>
+    <button class="close-button" type="button" aria-label="Close dialog" (click)="closeDialog()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </header>
+
+  <nav class="dialog-tabs" role="tablist" aria-label="Edit profile sections">
+    <button
+      class="dialog-tab"
+      [class.active]="activeTab === 'basic'"
+      [attr.aria-selected]="activeTab === 'basic'"
+      role="tab"
+      type="button"
+      (click)="activeTab = 'basic'">
+      <i class="bi bi-person"></i> Basic Info
+    </button>
+    <button
+      class="dialog-tab"
+      [class.active]="activeTab === 'account'"
+      [attr.aria-selected]="activeTab === 'account'"
+      role="tab"
+      type="button"
+      (click)="activeTab = 'account'">
+      <i class="bi bi-gear"></i> Account Settings
+    </button>
+    <button
+      class="dialog-tab"
+      [class.active]="activeTab === 'privacy'"
+      [attr.aria-selected]="activeTab === 'privacy'"
+      role="tab"
+      type="button"
+      (click)="activeTab = 'privacy'">
+      <i class="bi bi-shield-lock"></i> Privacy &amp; Security
+    </button>
+  </nav>
+
+  <form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+    <div class="dialog-body">
+      @if (activeTab === 'basic') {
+        <div class="section-label">Cover &amp; Avatar</div>
+        <div
+          class="cover-preview"
+          [style.background-image]="'url(' + (data?.Coverpic?.url || data?.Coverpic || defaultCover) + ')'">
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Date of Birth</label>
-                <input type="date" class="form-control" required name="dob" ngModel [(ngModel)]="data.DateofBirth">
-            </div>
-            <div class="col-md-6">
-                <label>City</label>
-                <input type="text" class="form-control" required name="city" ngModel [(ngModel)]="data.City">
-            </div>
+
+        <div class="avatar-row">
+          <img
+            class="avatar-preview"
+            [src]="data?.Profilepic || defaultAvatar"
+            alt="Profile photo">
+          <div>
+            <div class="avatar-title">Profile Photo</div>
+            <div class="avatar-hint">Your current profile photo</div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Realtionship</label>
-                <input type="text" class="form-control" required name="relation" ngModel [(ngModel)]="data.Relation">
+
+        <div class="form-grid">
+          <label class="form-field">
+            <span>First Name</span>
+            <input type="text" name="fname" [(ngModel)]="data.Firstname" required autocomplete="given-name">
+          </label>
+          <label class="form-field">
+            <span>Last Name</span>
+            <input type="text" name="lname" [(ngModel)]="data.Lastname" required autocomplete="family-name">
+          </label>
+          <label class="form-field">
+            <span>Date of Birth</span>
+            <input type="date" name="dob" [(ngModel)]="data.DateofBirth" required>
+          </label>
+          <label class="form-field">
+            <span>Location</span>
+            <div class="input-with-icon">
+              <i class="bi bi-geo-alt"></i>
+              <input type="text" name="city" [(ngModel)]="data.City" required autocomplete="address-level2">
             </div>
-            <div class="col-md-6">
-                <label>About me</label>
-                <input type="text" class="form-control" required name="description" ngModel [(ngModel)]="data.Aboutme"> 
-            </div>
+          </label>
+          <label class="form-field full-width">
+            <span>Relationship</span>
+            <input type="text" name="relation" [(ngModel)]="data.Relation" required>
+          </label>
+          <label class="form-field full-width">
+            <span>About Me</span>
+            <textarea
+              name="description"
+              [(ngModel)]="data.Aboutme"
+              maxlength="300"
+              rows="4"
+              required></textarea>
+            <small class="character-count">{{ data.Aboutme?.length || 0 }} / 300</small>
+          </label>
         </div>
-        <div class="actionButton">
-            <button [disabled]="updateForm.invalid" type="submit" class="btn btn-primary btn-sm">Update</button>
-            <button type="button" (click)="cancelDialog()" class="btn btn-off btn-sm">Cancel</button>
+      }
+
+      @if (activeTab === 'account') {
+        <div class="section-label">Account Details</div>
+        <div class="settings-card">
+          <div class="settings-card-icon"><i class="bi bi-envelope"></i></div>
+          <div class="settings-card-content">
+            <h3>Email Address</h3>
+            <p>{{ data?.Email || 'No email address available' }}</p>
+            <small>Your email is managed by your account and cannot be changed here.</small>
+          </div>
+          <span class="status-badge"><i class="bi bi-check-circle-fill"></i> Account</span>
         </div>
-    </form>
-</div>
+
+        <div class="settings-card">
+          <div class="settings-card-icon"><i class="bi bi-at"></i></div>
+          <div class="settings-card-content">
+            <h3>Username</h3>
+            <p>{{ data?.Username || data?.username || 'Not available' }}</p>
+            <small>Your username is managed by your account and cannot be changed here.</small>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <div class="settings-card-icon"><i class="bi bi-telephone"></i></div>
+          <div class="settings-card-content">
+            <h3>Phone number</h3>
+            <p>{{ data?.Phone || data?.phone || 'Not available' }}</p>
+            <small>Your phone number is managed by your account and cannot be changed here.</small>
+          </div>
+        </div>
+
+        <div class="settings-section-heading">Password</div>
+        <div class="settings-card">
+          <div class="settings-card-icon"><i class="bi bi-key"></i></div>
+          <div class="settings-card-content">
+            <h3>Change your password</h3>
+            <p>Update your password to help keep your account secure.</p>
+          </div>
+          <button class="settings-action" type="button" (click)="openChangePassword()">
+            Change Password <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      }
+
+      @if (activeTab === 'privacy') {
+        <div class="section-label">Privacy &amp; Security</div>
+        <div class="privacy-notice">
+          <i class="bi bi-info-circle"></i>
+          <p>These details are part of your profile. Privacy controls for restricting who can see them are not available yet.</p>
+        </div>
+
+        <div class="settings-section-heading">Profile information</div>
+        <div class="privacy-list">
+          <div class="privacy-item">
+            <span class="privacy-icon"><i class="bi bi-person"></i></span>
+            <span><strong>Name</strong><small>{{ data?.Firstname }} {{ data?.Lastname }}</small></span>
+            <span class="visibility-label">Profile</span>
+          </div>
+          <div class="privacy-item">
+            <span class="privacy-icon"><i class="bi bi-geo-alt"></i></span>
+            <span><strong>Location</strong><small>{{ data?.City || 'Not added' }}</small></span>
+            <span class="visibility-label">Profile</span>
+          </div>
+          <div class="privacy-item">
+            <span class="privacy-icon"><i class="bi bi-card-text"></i></span>
+            <span><strong>About me</strong><small>{{ data?.Aboutme || 'Not added' }}</small></span>
+            <span class="visibility-label">Profile</span>
+          </div>
+        </div>
+
+        <div class="settings-section-heading">Security</div>
+        <div class="settings-card">
+          <div class="settings-card-icon security-icon"><i class="bi bi-shield-check"></i></div>
+          <div class="settings-card-content">
+            <h3>Keep your account secure</h3>
+            <p>Use a strong password and update it regularly.</p>
+          </div>
+          <button class="settings-action" type="button" (click)="openChangePassword()">
+            Change Password <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (activeTab === 'basic') {
+      <footer class="dialog-footer">
+        <button class="cancel-button" type="button" (click)="cancelDialog()">Cancel</button>
+        <button class="save-button" type="submit" [disabled]="updateForm.invalid">
+          <i class="bi bi-check2"></i> Save Changes
+        </button>
+      </footer>
+    } @else {
+      <footer class="dialog-footer">
+        <button class="cancel-button" type="button" (click)="cancelDialog()">Close</button>
+      </footer>
+    }
+  </form>
+</section>
